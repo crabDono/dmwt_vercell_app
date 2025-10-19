@@ -1,7 +1,12 @@
-export default function Page() {
-  return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800">Hallo Welt....</h1>
-    </main>
-  );
+import InfoCardList from '@/app/components/InfoCardList';
+import ResourceLinks from '@/app/components/ResourceLinks';
+
+export default function HomePage() {
+    return (
+        <div className="space-y-8">
+            <h1 className="text-3xl font-bold text-center">Willkommen zur Finanzbildung BTC</h1>
+            <InfoCardList />
+            <ResourceLinks />
+        </div>
+    );
 }
