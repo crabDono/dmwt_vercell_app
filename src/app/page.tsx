@@ -1,7 +1,30 @@
+import TimelineCard from "../components/ui/TimelineCard";
+
+
 export default function Page() {
+
+  const timelineItems = [
+    {year: "2009", title: "Einführung von Bitcoin", description: "Das Bitcoin Zahlungssystem wurde laut Satashi Nakomoto 2007 eingeführt.", id:"0"},
+    {year: "2009", title: "Einführung von Bitcoin", description: "Das Bitcoin Zahlungssystem wurde laut Satashi Nakomoto 2007 eingeführt.", id:"1"},
+    {year: "2011", title: "Steigender Kurs", description: "Das Bitcoin Zahlungssystem wurde laut Satashi Nakomoto 2007 eingeführt.", id:"2"},
+  ]
+
+
+
+
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800">Hallo Welt....</h1>
-    </main>
-  );
+    <ul>
+      {timelineItems.map((item) => (
+          <li key={item.id}>
+            <TimelineCard
+              year={item.year}
+              title={item.title}
+              description={item.description}
+            />
+          </li>
+        ))}
+      </ul>
+
+
+    );
 }

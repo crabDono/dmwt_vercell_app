@@ -1,5 +1,6 @@
 import "./globals.css"
-import Navbar from "../components/UI/Navbar"
+import Navbar from "../components/ui/Navbar"
+import Footer from "../components/ui/Footer"
 
 
 export const metadata = {
@@ -15,8 +16,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}</body>
+        <main className="min-h-screen bg-gray-100">
+              <Navbar/>
+                <div className="flex items-center justify-center">
+                  {children}
+                </div>
+              <Footer/>
+            </main>
+        </body>
     </html>
   )
 }

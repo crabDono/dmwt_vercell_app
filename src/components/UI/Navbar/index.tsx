@@ -1,6 +1,5 @@
 "use client"
 
-import "./Navbar.module.css"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -9,12 +8,12 @@ export default function Navbar() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/blog", label: "Blog" },
+    { href: "/quiz", label: "Quiz" },
   ]
 
   return (
-    <nav className="fuu flex items-center justify-between px-6 py-3 bg-gray-100 shadow-sm">
-      <div className="text-lg font-semibold">MySite</div>
+    <nav className= "flex items-center justify-between px-6 py-3 bg-gray-100 shadow-sm">
+      <div className="text-lg font-semibold"> </div>
       <ul className="flex gap-6">
         {navItems.map((item) => (
           <li key={item.href}>
