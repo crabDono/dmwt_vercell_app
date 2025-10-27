@@ -1,27 +1,62 @@
-"use client"
-
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/quiz", label: "Quiz" },
-  ]
+    { href: "/zeitreise", label: "Zeitreise" },
+  ];
+
+  const rightItems = [
+    { href: "/login", label: "Einloggen" },
+    { href: "/signup", label: "Kostenlos testen" },
+  ];
 
   return (
-    <nav className= "flex items-center justify-between px-6 py-3 bg-gray-100 shadow-sm">
-      <div className="text-lg font-semibold"> </div>
-      <ul className="flex gap-6">
-        {navItems.map((item) => (
+    <nav className="flex items-center justify-between px-8 h-[60px] bg-white pl-[176px] shadow-md mb-6">
+      <div className="flex items-center gap-[27px]">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="logo_tripleM.svg"
+            alt="Logo"
+            width={75}
+            height={43}
+            className="rounded-full"
+          />
+        </Link>
+        <ul className="flex gap-6">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`transition-colors ${
+                  pathname === item.href
+                    ? "text-black-600 font-bold"
+                    : "text-gray-700 hover:text-blue-500"
+                }`}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <ul className="flex gap-6 pr-[176px]">
+        {rightItems.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
-              className={`transition-colors ${
-                pathname === item.href
-                  ? "text-blue-600 font-medium"
+              className={`transition-colors px-4 py-2 ${
+                item.label === "Kostenlos testen"
+                  ? "bg-black text-white rounded-md hover:bg-gray-800"
+                  : pathname === item.href
+                  ? "text-black font-bold"
                   : "text-gray-700 hover:text-blue-500"
               }`}
             >
@@ -31,6 +66,5 @@ export default function Navbar() {
         ))}
       </ul>
     </nav>
-  )
-
+  );
 }
