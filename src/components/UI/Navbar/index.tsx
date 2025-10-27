@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const rightItems = [
     { href: "/login", label: "Einloggen" },
-    { href: "/signup", label: "Kostenlos testen" },
+    { href: "/free_test", label: "Kostenlos testen" },
   ];
 
   return (
