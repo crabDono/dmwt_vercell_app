@@ -18,7 +18,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="flex items-center justify-between px-8 h-[60px] bg-white pl-[176px] shadow-md mb-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-[60px] pl-[176px] bg-white/95 backdrop-blur-sm shadow-md">
       <div className="flex items-center gap-[27px]">
         <Link href="/" className="flex items-center gap-2">
           <Image

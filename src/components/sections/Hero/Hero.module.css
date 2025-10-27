@@ -1,0 +1,40 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: white; /* entspricht bg-gray-100 */
+  display: flex;
+  align-items: flex-start; /* Inhalt oben ausrichten */
+  justify-content: flex-start;
+  padding-top: 8rem; /* Abstand von oben anpassen (z. B. 4rem) */
+  padding-left: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 6rem;
+  padding: 4rem 1rem;
+}
+
+.title {
+  font-size: 4.5rem; /* text-4xl */
+  font-weight: bold;
+  margin-bottom: 1rem; /* mb-4 */
+  color: #111827;
+}
+
+.subtitle {
+  font-size: 1.3125rem; /* text-xl */
+  color: darkgray;
+}
+
+.cornerImage {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0rem;
+  width: 600px;
+  max-width: 40vw;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
