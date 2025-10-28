@@ -1,5 +1,6 @@
 "use client";
 
+import InfoCard from "../../features/InfoCard";
 import styles from "./Infographic.module.css";
 
 const Infographic = () => {
@@ -14,7 +15,23 @@ const Infographic = () => {
         <p className={styles.subsubtitle}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr
         </p>
-        <div className={styles.grid}></div>
+        <div className={styles.grid}>
+          <InfoCard
+            title="Grundlagen"
+            subtitle="Sparen & Budget"
+            body="Lerne die Basics: Budget erstellen, Ziel setzen, Ausgaben checken."
+          />
+          <InfoCard
+            title="Investieren"
+            subtitle="Langfristig wachsen"
+            body="Einfach starten: ETFs, Diversifikation und Kosten verstehen."
+          />
+          <InfoCard
+            title="Risikomanagement"
+            subtitle="Schutz & Planung"
+            body="Notgroschen, Versicherung und Notfallpläne — kurz erklärt."
+          />
+        </div>
       </div>
     </section>
   );

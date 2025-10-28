@@ -1,0 +1,30 @@
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.25rem;
+  border-radius: 12px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 360px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  margin-top: 3rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #d1d5db;
+}
+
+.body {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-top: auto; /* schiebt Body nach unten, falls gewünscht */
+}
