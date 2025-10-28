@@ -1,0 +1,55 @@
+.infografic {
+  min-height: 100vh;
+  height: 100%;
+  padding: 4rem 0;
+  background-color: #0e0e0e;
+  background-image: linear-gradient(180deg, #0e0e0e 0%, #2f2f2f 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column; /* untereinander */
+  align-items: center; /* horizontal zentrieren */
+  justify-content: flex-start; /* vertikal zentrieren */
+  gap: 1.5rem; /* Abstand zwischen den Items */
+  min-height: 100vh; /* sorgt dafür, dass Centering sich über die volle Sektion erstreckt */
+  text-align: center;
+}
+
+.title {
+  font-size: 4.0625rem;
+  font-weight: bold;
+  margin-top: 6.5rem;
+  margin-bottom: -1.75rem;
+  color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.subtitle {
+  font-size: 1.75rem;
+  font-weight: medium;
+  margin-bottom: -1.25rem;
+  color: white;
+}
+
+.subsubtitle {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: darkgray;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
