@@ -33,6 +33,7 @@
   color: transparent; /* Fallback / Firefox */
   font-size: 1.3125rem; /* text-xl */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 2rem;
 }
 
 .cornerImage {

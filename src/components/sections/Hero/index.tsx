@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "../../features/Button";
+import ButtonComponent from "../../features/InteractiveButton";
 import styles from "./Hero.module.css";
 import Image from "next/image";
 
@@ -16,9 +17,11 @@ const Hero = () => {
         </p>
 
         <div className="mt-6">
-          <Button onClick={() => console.log("Mehr erfahren button gedrückt")}>
+          <ButtonComponent
+            onClick={() => console.log("Mehr erfahren button gedrückt")}
+          >
             Mehr erfahren
-          </Button>
+          </ButtonComponent>
         </div>
       </div>
 
