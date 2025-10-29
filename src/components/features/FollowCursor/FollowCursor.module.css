@@ -1,0 +1,19 @@
+.follow-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+
+  /* Steuerbare CSS-Variable: Größe des Kreises (px) */
+  --dot-size: 7px;
+  /* optional: Farbe */
+  --dot-color: rgba(41, 41, 41, 0.95);
+
+  --dot-offset-x: -2px;
+  --dot-offset-y: -2px;
+
+  --dot-lag: 3;
+}

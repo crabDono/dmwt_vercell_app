@@ -18,22 +18,29 @@
 
 .title {
   font-size: 4.5rem; /* text-4xl */
-  font-weight: bold;
+  font-weight: regular;
   margin-bottom: 1rem; /* mb-4 */
   color: #111827;
+  font-family: "Georgia", serif;
 }
 
 .subtitle {
+  /* Verlauf von rechts nach links */
+  background: linear-gradient(to right, #990000 0%, #120071 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Chrome, Safari */
+  color: transparent; /* Fallback / Firefox */
   font-size: 1.3125rem; /* text-xl */
-  color: darkgray;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .cornerImage {
   position: absolute;
   right: 1.5rem;
   bottom: 0rem;
-  width: 600px;
-  max-width: 40vw;
+  width: 850px;
+  max-width: 100vw;
   height: auto;
   z-index: 10;
   pointer-events: none;

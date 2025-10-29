@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/UI/Navbar";
 import Footer from "../components/UI/Footer";
+import FollowCursor from "../components/features/FollowCursor";
 
 export const metadata = {
   title: "Next.js",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <main className="min-h-screen bg-white">
           <Navbar />
+          <FollowCursor />
           <div className="w-full">{children}</div>{" "}
           {/* Platz für feste Navbar */}
           {/* <Footer /> */}

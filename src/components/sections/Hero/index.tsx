@@ -9,11 +9,10 @@ const Hero = () => {
     <section className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+          Warte nicht auf den richtigen Moment – investiere ihn!
         </h1>
         <p className={styles.subtitle}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br /> sed
-          diam nonumy eirmod tempor invidunt ut labore et dolore
+          Wir nehmen deine Angst vor dem Investieren!
         </p>
 
         <div className="mt-6">
@@ -26,8 +25,8 @@ const Hero = () => {
       <Image
         src={"/btcmann.png"}
         alt="Mann mit BTC in der Hand"
-        width={240}
-        height={240}
+        width={920}
+        height={920}
         className={styles.cornerImage}
       />
     </section>
