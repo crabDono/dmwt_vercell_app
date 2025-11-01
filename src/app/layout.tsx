@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <main className="min-h-screen bg-white">
           <Navbar />
-          {/* <FollowCursor /> */}
+          <FollowCursor />
           <div className="w-full">{children}</div>{" "}
           {/* Platz für feste Navbar */}
           {/* <Footer /> */}

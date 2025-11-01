@@ -1,0 +1,13 @@
+.information {
+  min-height: 100vh;
+  height: 100%;
+  padding: 4rem 0;
+  background-color: #eeeef2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem; /* entspricht p-8 (32px) */
+}
+
+.information > * + * {
+  margin-top: 3rem; /* entspricht space-y-12 (48px) */
+}

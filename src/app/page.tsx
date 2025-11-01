@@ -1,6 +1,7 @@
 import Hero from "../components/sections/Hero";
 import Infographic from "../components/sections/Infographic";
-import About from "../components/sections/About";
+import Information from "../components/sections/Information";
+
 import Navbar from "../components/UI/Navbar";
 
 export default function Page() {
@@ -8,7 +9,7 @@ export default function Page() {
     <main>
       <Hero />
       <Infographic />
-      <About />
+      <Information />
     </main>
   );
 }
