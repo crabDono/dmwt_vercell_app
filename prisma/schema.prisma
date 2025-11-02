@@ -1,7 +1,7 @@
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -16,4 +16,5 @@ model Comment {
   createdAt DateTime @default(now())
 }
 
-relationMode = "prisma"
+
+
