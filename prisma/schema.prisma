@@ -15,3 +15,5 @@ model Comment {
   content String 
   createdAt DateTime @default(now())
 }
+
+relationMode = "prisma"

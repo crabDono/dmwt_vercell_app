@@ -1,12 +1,17 @@
-"use client";
+import CommentField from "../../features/CommentField";
+import { prisma } from "@/lib/prisma";
 
-import InformationCard from "../../features/InformationCard";
-import TextComponent from "../../features/TextComponent";
-import CombinedTextInformationComponent from "../../UI/CombinedTextInfo";
-import styles from "./Comment.module.css";
-
-const CommentSection = () => {
-  return <p className={styles.information}>cool</p>;
+const CommentSection = async () => {
+  const comments = await prisma.comment.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return (
+    <div>
+      <CommentField comments={comments} />
+    </div>
+  );
 };
 
 export default CommentSection;
