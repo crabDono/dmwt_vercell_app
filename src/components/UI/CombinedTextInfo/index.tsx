@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/src/lib/utils";
+import { cn } from "@/lib/utils";
 import InformationCard from "../../features/InformationCard";
 import TextComponent from "../../features/TextComponent";
 
