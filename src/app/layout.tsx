@@ -21,7 +21,7 @@ export default function RootLayout({
           {/* <FollowCursor /> */}
           <div className="w-full">{children}</div>{" "}
           {/* Platz für feste Navbar */}
-          {/* <Footer /> */}
+          <Footer />
         </main>
       </body>
     </html>
