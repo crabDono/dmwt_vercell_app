@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { Comment } from "@prisma/client";
+import styles from "./CommentField.module.css";
 
 interface CommentFieldProps {
   comments: Comment[];
@@ -12,6 +13,8 @@ export default function CommentField({ comments }: CommentFieldProps) {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const commentsPerPage = 6;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,23 +29,29 @@ export default function CommentField({ comments }: CommentFieldProps) {
 
     setName("");
     setContent("");
-    router.refresh(); // Lädt die Server-Komponenten neu, um die neue Kommentarliste abzurufen
+    router.refresh();
+  };
+
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = comments.slice(
+    indexOfFirstComment,
+    indexOfLastComment
+  );
+  const totalPages = Math.ceil(comments.length / commentsPerPage);
+
+  const handlePageChange = (pageNumber: number) => {
+    if (pageNumber > 0 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <form
-        onSubmit={handleSubmit}
-        className="mb-6 p-4 border rounded-lg shadow-sm"
-      >
-        <h3 className="text-lg font-semibold mb-4">
-          Hinterlassen Sie einen Kommentar
-        </h3>
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h3 className={styles.formTitle}>Hinterlassen Sie einen Kommentar</h3>
+        <div className={styles.inputGroup}>
+          <label htmlFor="name" className={styles.label}>
             Name
           </label>
           <input
@@ -52,15 +61,12 @@ export default function CommentField({ comments }: CommentFieldProps) {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className={styles.input}
             placeholder="Ihr Name"
           />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="content"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+        <div className={styles.textareaGroup}>
+          <label htmlFor="content" className={styles.label}>
             Kommentar
           </label>
           <textarea
@@ -70,29 +76,61 @@ export default function CommentField({ comments }: CommentFieldProps) {
             required
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className={styles.textarea}
             placeholder="Was denken Sie?"
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
-        >
+        <button type="submit" className={styles.submitButton}>
           Senden
         </button>
       </form>
 
-      <div className="space-y-4">
-        {comments.map((comment) => (
-          <div key={comment.id} className="p-4 border rounded-lg bg-gray-50">
-            <p className="font-bold">{comment.name}</p>
-            <p className="text-gray-800 mt-1">{comment.content}</p>
-            <p className="text-xs text-gray-500 mt-2">
-              {new Date(comment.createdAt).toLocaleDateString("de-DE")}
-            </p>
+      <div className={styles.commentList}>
+        {currentComments.map((comment) => (
+          <div key={comment.id} className={styles.commentItem}>
+            <div className={styles.avatarContainer}>
+              <div className={styles.avatar}>
+                {comment.name.charAt(0).toUpperCase()}
+              </div>
+            </div>
+            <div className={styles.commentContent}>
+              <div className={styles.commentHeader}>
+                <p className={styles.commentName}>{comment.name}</p>
+                <p className={styles.commentDate}>
+                  {new Date(comment.createdAt).toLocaleDateString("de-DE", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
+                </p>
+              </div>
+              <p className={styles.commentText}>{comment.content}</p>
+            </div>
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={styles.paginationButton}
+          >
+            Zurück
+          </button>
+          <span className={styles.paginationInfo}>
+            Seite {currentPage} von {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={styles.paginationButton}
+          >
+            Weiter
+          </button>
+        </div>
+      )}
     </div>
   );
 }
