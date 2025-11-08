@@ -1,30 +1,33 @@
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-height: 360px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  margin-top: 3rem;
+  padding: 1.25rem; /* Reduziert von z.B. 1.5rem oder 2rem */
+  text-align: left;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
 }
 
 .title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 1.125rem; /* 18px, reduziert */
+  font-weight: bold;
+  color: white;
+  margin: 0 0 0.25rem 0;
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #d1d5db;
+  font-size: 0.875rem; /* 14px, reduziert */
+  color: #a0aec0; /* light gray */
+  margin: 0 0 0.75rem 0; /* Abstand reduziert */
 }
 
 .body {
-  font-size: 0.9rem;
-  color: #9ca3af;
-  margin-top: auto; /* schiebt Body nach unten, falls gewünscht */
+  font-size: 0.9rem; /* 15px, reduziert */
+  color: #d1d5db; /* lighter gray */
+  line-height: 1.5;
+  margin: 0;
 }

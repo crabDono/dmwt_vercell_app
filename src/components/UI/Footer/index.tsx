@@ -11,51 +11,51 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link href="/" className="flex items-center gap-2">
+        <div className={styles.topSection}>
+          <Link href="/" className={styles.logoLink}>
             <Image
-              src="triple.svg"
+              src="/triple.svg" // Pfad anpassen, falls nötig
               alt="Logo"
-              width={100}
-              height={100}
+              width={80} // Größe angepasst
+              height={80}
               className="rounded-full"
             />
           </Link>
-          <div className={styles.text_container}>
-            <p className={styles.subtitle}>
-              © {new Date().getFullYear()} IMMM Finances
-            </p>
-          </div>
+          <p className={styles.copyright}>
+            © {new Date().getFullYear()} IMMM Finances
+          </p>
         </div>
-      </div>
-      <hr className={styles.line} />
-      <div className="p-6">
-        <Accordion
-          multiple={false}
-          className="w-full max-w-2xl bg-white shadow rounded-lg"
-        >
-          <AccordionItem id="item-1" title="Impressum" defaultOpen>
-            <p className="text-sm text-gray-700">
-              Das ist der Inhalt des ersten Items. Hier kannst du beliebige
-              React-Elemente platzieren — z. B. Texte, Listen oder Formulare.
-            </p>
-          </AccordionItem>
 
-          <AccordionItem id="item-2" title="Terms & Conditions">
-            <ul className="list-disc pl-5 text-sm text-gray-700">
-              <li>Punkt A</li>
-              <li>Punkt B</li>
-              <li>Punkt C</li>
-            </ul>
-          </AccordionItem>
+        <hr className={styles.line} />
 
-          <AccordionItem id="item-3" title="Privacy Policy">
-            <div className="text-sm text-gray-700">
-              <strong>Hinweis:</strong> Du kannst beliebig viele Items
-              hinzufügen.
-            </div>
-          </AccordionItem>
-        </Accordion>
+        <div className={styles.accordionContainer}>
+          <Accordion
+            multiple={false}
+            className={styles.accordion} // Eigene Klasse für das Accordion
+          >
+            <AccordionItem id="item-1" title="Impressum" defaultOpen>
+              <p className={styles.accordionContent}>
+                Das ist der Inhalt des ersten Items. Hier kannst du beliebige
+                React-Elemente platzieren — z. B. Texte, Listen oder Formulare.
+              </p>
+            </AccordionItem>
+
+            <AccordionItem id="item-2" title="Terms & Conditions">
+              <ul className={styles.accordionList}>
+                <li>Punkt A</li>
+                <li>Punkt B</li>
+                <li>Punkt C</li>
+              </ul>
+            </AccordionItem>
+
+            <AccordionItem id="item-3" title="Privacy Policy">
+              <div className={styles.accordionContent}>
+                <strong>Hinweis:</strong> Du kannst beliebig viele Items
+                hinzufügen.
+              </div>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </div>
     </footer>
   );

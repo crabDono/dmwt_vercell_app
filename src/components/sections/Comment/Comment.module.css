@@ -1,13 +1,115 @@
 .information {
   min-height: 100vh;
-  height: 100%;
-  padding: 4rem 0;
-  background-color: #eeeef2;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 2rem; /* entspricht p-8 (32px) */
+  padding: 4rem 2rem;
+  /* Hintergrund auf ein sehr helles Grau geändert (wirkt oft besser als reines Weiß) */
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.information > * + * {
-  margin-top: 3rem; /* entspricht space-y-12 (48px) */
+/* Angepasster Container für hellen Hintergrund */
+.glassContainer {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff; /* Weißer Hintergrund */
+  border-radius: 16px;
+  border: 1px solid #e5e7eb; /* Heller grauer Rand */
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); /* Subtiler Schatten */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  /* Farbverlauf für den Text */
+  background: linear-gradient(90deg, #4f46e5, #a855f7); /* Indigo zu Lila */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback */
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #4b5563; /* Mittleres Grau */
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+}
+
+/* --- Stile für deine CommentField Komponente --- */
+
+/* NEUER Stil für das Eingabefeld */
+.commentInput {
+  background-color: #f3f4f6; /* Helles Grau für das Input-Feld */
+  border: 1px solid #d1d5db; /* Grauer Rand */
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #111827; /* Dunkle Schriftfarbe */
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.commentInput::placeholder {
+  color: #9ca3af; /* Helleres Grau für Platzhalter */
+}
+
+.commentInput:focus {
+  outline: none;
+  border-color: #4f46e5; /* Akzentfarbe für Fokus */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* NEUER Stil für die einzelnen Kommentare */
+.commentCard {
+  background-color: transparent;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e5e7eb; /* Helle graue Trennlinie */
+}
+
+.commentCard:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.commentCard:first-of-type {
+  padding-top: 0;
+}
+
+.commentAuthor {
+  font-weight: bold;
+  color: #111827; /* Dunkle Schriftfarbe */
+  margin-bottom: 0.5rem;
+}
+
+.commentText {
+  color: #374151; /* Dunkelgrau für den Text */
+  line-height: 1.6;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 767px) {
+  .information {
+    padding: 2rem 1rem;
+    background-color: #ffffff; /* Auf Mobilgeräten reines Weiß, da der Container den ganzen Platz einnimmt */
+  }
+
+  .glassContainer {
+    padding: 1.5rem;
+    border: none; /* Kein Rand auf Mobilgeräten, da es nahtlos ist */
+    box-shadow: none; /* Kein Schatten */
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 }

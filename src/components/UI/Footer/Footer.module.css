@@ -1,33 +1,76 @@
 .footer {
-  /* min-height: 100vh; */
   background-color: #161616;
+  padding: 2rem 0; /* Vertikales Padding, horizontales Padding wird im Container gesteuert */
+  color: white;
 }
 
 .container {
-  margin-left: 5rem;
-  margin-right: 5rem;
-  padding-top: 2rem;
+  max-width: 1200px;
+  margin: 0 auto; /* Zentriert den Container */
+  padding: 0 2rem; /* Seitenabstand für größere Bildschirme */
 }
 
-.logo {
+.topSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
-.text_container {
-  /* margin-left: 5rem;
-  margin-right: 5rem;
-  padding-top: 2rem; */
+.logoLink {
+  display: flex;
+  align-items: center;
 }
 
-.subtitle {
-  color: white;
-  font-size: large;
+.copyright {
+  font-size: 1rem;
+  color: #a0a0a0;
 }
 
 .line {
-  color: #d9d9d9;
-  margin-right: 5rem;
-  margin-left: 5rem;
+  border: none;
+  border-top: 1px solid #444;
+  margin: 0 0 2rem 0;
+}
+
+.accordionContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.accordion {
+  width: 100%;
+  max-width: 48rem;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.accordionContent {
+  font-size: 0.875rem; /* 14px */
+  color: #d1d5db; /* Helles Grau */
+}
+
+.accordionList {
+  list-style: disc;
+  padding-left: 1.25rem; /* pl-5 */
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+/* --- Media Queries für Responsiveness --- */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 1rem; /* Weniger Seitenabstand auf Mobilgeräten */
+  }
+
+  .topSection {
+    flex-direction: column; /* Logo und Copyright untereinander */
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 0.875rem;
+  }
 }

@@ -1,11 +1,14 @@
 .infografic {
   min-height: 100vh;
   height: 100%;
-  padding: 4rem 0;
+  padding: 2rem 0; /* Reduziert von 4rem */
   background-color: #0e0e0e;
   background-image: linear-gradient(180deg, #0e0e0e 0%, #2f2f2f 100%);
   background-repeat: no-repeat;
   background-size: cover;
+  /* Flexbox hinzugefügt, um den Container vertikal zu zentrieren */
+  display: flex;
+  align-items: center;
 }
 
 .container {
@@ -15,41 +18,91 @@
   display: flex;
   flex-direction: column; /* untereinander */
   align-items: center; /* horizontal zentrieren */
-  justify-content: flex-start; /* vertikal zentrieren */
-  gap: 1.5rem; /* Abstand zwischen den Items */
-  min-height: 100vh; /* sorgt dafür, dass Centering sich über die volle Sektion erstreckt */
+  justify-content: center; /* von flex-start auf center geändert */
+  gap: 1rem; /* Abstand reduziert */
+  width: 100%;
   text-align: center;
+  /* min-height entfernt, da .infografic die Höhe steuert */
 }
 
 .title {
-  font-size: 4.0625rem;
+  font-size: 3.5rem; /* Leicht reduziert */
   font-weight: bold;
-  margin-top: 6.5rem;
-  margin-bottom: -1.75rem;
+  margin-top: 0; /* Entfernt, da justify-content zentriert */
+  margin-bottom: 0; /* Angepasst */
   color: white;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem; /* Leicht reduziert */
+  width: 100%; /* Stellt sicher, dass das Grid die volle Breite des Containers nutzt */
 }
 
 .subtitle {
-  font-size: 1.75rem;
-  font-weight: medium;
-  margin-bottom: -1.25rem;
-  color: white;
+  font-size: 1.25rem; /* Reduziert */
+  font-weight: normal; /* Von medium auf normal */
+  margin-bottom: 0; /* Angepasst */
+  color: #d1d5db; /* Etwas heller als darkgray */
+  max-width: 800px; /* Begrenzt die Zeilenlänge für bessere Lesbarkeit */
 }
 
 .subsubtitle {
-  font-size: 1.5rem;
+  font-size: 1.125rem; /* Reduziert */
   font-weight: normal;
-  color: darkgray;
+  color: #9ca3af; /* darkgray */
+  margin-top: -0.5rem; /* Zieht es näher an den subtitle */
 }
 
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Media Queries für Responsiveness --- */
+
+/* Medium screens (tablets, ~1024px und kleiner) */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3rem; /* Schriftgröße reduzieren */
+    margin-top: 4rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .subsubtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* Small screens (mobile, ~767px und kleiner) */
+@media (max-width: 767px) {
+  .infografic {
+    padding: 3rem 0;
+  }
+
+  .container {
+    min-height: auto; /* Höhe an Inhalt anpassen */
+    justify-content: flex-start;
+  }
+
+  .title {
+    font-size: 2.25rem; /* Schriftgröße für Mobile */
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subsubtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
 }
