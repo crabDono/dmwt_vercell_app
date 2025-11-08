@@ -155,20 +155,36 @@ Nur falls Tailwind nicht möglich ist
   transform: rotate(-45deg);
 }
 
+/* Overlay für das mobile Menü */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 52; /* Unter dem Menü, über dem Rest der Seite */
+}
+
 /* Mobile Navigation Menu */
 .mobileNav {
-  display: none;
+  display: flex; /* von none auf flex geändert für Animation */
   flex-direction: column;
+  justify-content: center; /* Zentriert die Items vertikal */
   list-style: none;
-  padding: 2rem;
+  padding: 0 2rem; /* Oben/Unten 0, da justify-content center */
   margin: 0;
   position: fixed;
   top: 0;
   left: 0;
-  width: 75%; /* Breite auf 75% reduziert */
+  width: 80%; /* Etwas breiter */
+  max-width: 320px; /* Maximale Breite für größere Screens */
   height: 100vh;
-  background: white;
-  z-index: 55; /* Unter dem Burger, aber über dem Rest */
+  background: #f9fafb; /* Helles Grau statt Weiß */
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+  z-index: 55;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
 }
@@ -177,16 +193,64 @@ Nur falls Tailwind nicht möglich ist
   transform: translateX(0);
 }
 
+/* Staggered Animation für die Listenelemente */
+.mobileNavOpen .mobileNavItem {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .mobileNavItem {
-  padding: 1rem 0;
-  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+  padding: 0; /* Padding vom Link übernehmen lassen */
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Delay für jeden Menüpunkt */
+.mobileNavOpen .mobileNavItem:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.mobileNavOpen .mobileNavItem:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.mobileNavOpen .mobileNavItem:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.mobileNavOpen .mobileNavItem:nth-child(4) {
+  transition-delay: 0.25s;
+}
+.mobileNavOpen .mobileNavItem:nth-child(5) {
+  transition-delay: 0.3s;
 }
 
 .mobileNavLink {
-  color: #4b5563; /* gray-700 */
+  display: block; /* Macht den ganzen Bereich klickbar */
+  padding: 1rem;
+  text-align: center;
+  color: #374151; /* gray-700 */
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink:focus {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #111827; /* black */
+}
+
+/* CTA-Button im mobilen Menü */
+.mobileCta {
+  background-color: #000;
+  color: #fff;
+}
+
+.mobileCta:hover,
+.mobileCta:focus {
+  background-color: #374151; /* gray-700 */
+  color: #fff;
 }
 
 /* Responsive: kleinere Bildschirme */

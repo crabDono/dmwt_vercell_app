@@ -38,6 +38,11 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Overlay, das die Seite abdunkelt */}
+      {isMobileMenuOpen && (
+        <div className={styles.overlay} onClick={closeMobileMenu}></div>
+      )}
+
       <nav className={styles.nav}>
         <div className={styles.left}>
           <Link href="/" className={styles.logoLink}>
@@ -118,7 +123,12 @@ export default function Navbar() {
       >
         {allMobileItems.map((item) => (
           <li key={item.href} className={styles.mobileNavItem}>
-            <Link href={item.href} className={styles.mobileNavLink}>
+            <Link
+              href={item.href}
+              className={`${styles.mobileNavLink} ${
+                item.href === "/free_test" ? styles.mobileCta : ""
+              }`}
+            >
               {item.label}
             </Link>
           </li>

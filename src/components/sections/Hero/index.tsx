@@ -14,8 +14,8 @@ const Hero = () => {
         </h1>
         <p className={styles.subtitle}>
           Tauche ein in die Welt der dezentralen Finanzen. Lerne, wie du sicher
-          handelst, <br />
-          Staking nutzt und das Potenzial der Blockchain für dich erschließt.!
+          handelst, Staking nutzt und das Potenzial der Blockchain für dich
+          erschließt!
         </p>
 
         <div className="mt-6">

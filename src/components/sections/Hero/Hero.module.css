@@ -46,3 +46,60 @@
   z-index: 10;
   pointer-events: none;
 }
+
+/* --- Media Queries für Responsiveness --- */
+
+/* Medium screens (tablets, ~1024px und kleiner) */
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: 6rem;
+    align-items: center; /* Inhalt mehr zentrieren */
+    text-align: center; /* Text zentrieren */
+  }
+
+  .container {
+    margin: 0 2rem; /* Seitenabstände reduzieren */
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 3.5rem; /* Schriftgröße reduzieren */
+  }
+
+  .subtitle {
+    font-size: 1.125rem; /* Schriftgröße reduzieren */
+  }
+
+  .cornerImage {
+    width: 600px; /* Bild verkleinern */
+    right: 0;
+    opacity: 0.7; /* Bild etwas transparenter machen */
+  }
+}
+
+/* Small screens (mobile, ~767px und kleiner) */
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 8rem; /* Mehr Platz für die fixe Navbar */
+    align-items: flex-start; /* Inhalt wieder oben ausrichten */
+    text-align: left; /* Text wieder linksbündig */
+  }
+
+  .container {
+    margin: 0 1rem; /* Seitenabstände weiter reduzieren */
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem; /* Schriftgröße für Mobile anpassen */
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .cornerImage {
+    /* Bild auf kleinen Bildschirmen ausblenden, um den Text lesbar zu halten */
+    display: none;
+  }
+}
