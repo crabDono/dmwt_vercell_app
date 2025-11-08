@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --container-max: 1200px;
+  --gap: 1rem;
+  --font-base: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+} /* 16px */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111;
+  line-height: 1.5;
+}
+
+/* responsive typography (scale down on small screens) */
+@media (max-width: 420px) {
+  html {
+    font-size: 93%;
+  } /* ~15px */
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 100%;
+  } /* back to 16 */
+}
+
+/* centered page container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* utility */
+.row {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: wrap;
+}
+.col {
+  flex: 1 1 0%;
+}

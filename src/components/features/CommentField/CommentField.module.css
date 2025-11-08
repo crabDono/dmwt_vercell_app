@@ -94,6 +94,26 @@
   gap: 1.5rem;
 }
 
+/* tablet / desktop: 2 columns */
+@media (min-width: 768px) {
+  .commentList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .commentItem {
+    align-self: stretch;
+  }
+}
+
+/* ensure form inputs are responsive */
+.input,
+.textarea,
+.submitButton {
+  width: 100%;
+  max-width: 100%;
+}
+
 .commentItem {
   background-color: #fff;
   padding: 1rem;
@@ -175,12 +195,4 @@
 
 .paginationInfo {
   color: rgb(55 65 81);
-}
-
-/* Für Bildschirme, die breiter als 768px sind */
-@media (min-width: 768px) {
-  .commentList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
 }

@@ -10,28 +10,27 @@ const Hero = () => {
     <section className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Warte nicht auf den richtigen Moment – investiere ihn!
+          Deine digitale Zukunft beginnt jetzt: Finanzwissen für die Krypto-Ära.
         </h1>
         <p className={styles.subtitle}>
-          Wir nehmen deine Angst vor dem Investieren!
+          Tauche ein in die Welt der dezentralen Finanzen. Lerne, wie du sicher
+          handelst, <br />
+          Staking nutzt und das Potenzial der Blockchain für dich erschließt.!
         </p>
 
         <div className="mt-6">
           <ButtonComponent
-            onClick={() => console.log("Mehr erfahren button gedrückt")}
+            onClick={() => {
+              const section = document.getElementById("infographic");
+              if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
           >
             Mehr erfahren
           </ButtonComponent>
         </div>
       </div>
-
-      <Image
-        src={"/btcmann.png"}
-        alt="Mann mit BTC in der Hand"
-        width={920}
-        height={920}
-        className={styles.cornerImage}
-      />
     </section>
   );
 };

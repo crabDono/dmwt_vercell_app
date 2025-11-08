@@ -1,4 +1,33 @@
 .footer {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: #161616;
+}
+
+.container {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding-top: 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text_container {
+  /* margin-left: 5rem;
+  margin-right: 5rem;
+  padding-top: 2rem; */
+}
+
+.subtitle {
+  color: white;
+  font-size: large;
+}
+
+.line {
+  color: #d9d9d9;
+  margin-right: 5rem;
+  margin-left: 5rem;
 }

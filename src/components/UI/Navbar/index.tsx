@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -18,54 +20,110 @@ export default function Navbar() {
     { href: "/free_test", label: "Kostenlos testen" },
   ];
 
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-[60px] pl-[176px] bg-white/95 backdrop-blur-sm shadow-md">
-      <div className="flex items-center gap-[27px]">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="logo_tripleM.svg"
-            alt="Logo"
-            width={75}
-            height={43}
-            className="rounded-full"
-          />
-        </Link>
-        <ul className="flex gap-6">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`transition-colors ${
-                  pathname === item.href
-                    ? "text-black-600 font-bold"
-                    : "text-gray-700 hover:text-blue-500"
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+  // Alle Items für das mobile Menü zusammenführen
+  const allMobileItems = [...navItems, ...rightItems];
 
-      <ul className="flex gap-6 pr-[176px]">
-        {rightItems.map((item) => (
-          <li key={item.href}>
-            <Link
-              href={item.href}
-              className={`transition-colors px-4 py-2 ${
-                item.label === "Kostenlos testen"
-                  ? "bg-black text-white rounded-md hover:bg-gray-800"
-                  : pathname === item.href
-                  ? "text-black font-bold"
-                  : "text-gray-700 hover:text-blue-500"
-              }`}
-            >
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Schließt das mobile Menü, wenn sich die Route ändert
+  useEffect(() => {
+    closeMobileMenu();
+  }, [pathname]);
+
+  return (
+    <>
+      <nav className={styles.nav}>
+        <div className={styles.left}>
+          <Link href="/" className={styles.logoLink}>
+            <Image
+              src="/logo_tripleM.svg" // Pfad anpassen, falls im public-Ordner
+              alt="Logo"
+              width={75}
+              height={43}
+              className="rounded-full"
+            />
+          </Link>
+
+          <ul className={styles.navList}>
+            {navItems.map((item) => (
+              <li key={item.href} className={styles.navItem}>
+                <Link
+                  href={item.href}
+                  className={`${styles.navLink} ${
+                    pathname === item.href ? styles.navLinkActive : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <ul className={styles.rightList}>
+          {rightItems.map((item) => {
+            const isCTA = item.label === "Kostenlos testen";
+            const isActive = pathname === item.href;
+            if (isCTA) {
+              return (
+                <li key={item.href}>
+                  <Link href={item.href} className={styles.cta}>
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            }
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`${styles.rightLink} ${
+                    isActive ? styles.rightLinkActive : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Burger Menu Button WIRD HIER ENTFERNT */}
+      </nav>
+
+      {/* Burger Menu Button HIER NEU EINFÜGEN */}
+      <button
+        className={`${styles.burgerMenu} ${
+          isMobileMenuOpen ? styles.burgerOpen : ""
+        }`}
+        onClick={toggleMobileMenu}
+        aria-label="Menü öffnen/schließen"
+      >
+        <div className={styles.burgerLine}></div>
+        <div className={styles.burgerLine}></div>
+        <div className={styles.burgerLine}></div>
+      </button>
+
+      {/* Mobile Navigation Menu */}
+      <ul
+        className={`${styles.mobileNav} ${
+          isMobileMenuOpen ? styles.mobileNavOpen : ""
+        }`}
+      >
+        {allMobileItems.map((item) => (
+          <li key={item.href} className={styles.mobileNavItem}>
+            <Link href={item.href} className={styles.mobileNavLink}>
               {item.label}
             </Link>
           </li>
         ))}
       </ul>
-    </nav>
+    </>
   );
 }

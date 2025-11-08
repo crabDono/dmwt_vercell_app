@@ -5,7 +5,7 @@ import styles from "./Infographic.module.css";
 
 const Infographic = () => {
   return (
-    <section className={styles.infografic}>
+    <section className={styles.infografic} id="infographic">
       <div className={styles.container}>
         <h2 className={styles.title}>Lorem ipsum dolor sit amet</h2>
         <p className={styles.subtitle}>
