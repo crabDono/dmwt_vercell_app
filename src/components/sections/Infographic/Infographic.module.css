@@ -1,14 +1,17 @@
 .infografic {
   min-height: 100vh;
   height: 100%;
-  padding: 2rem 0; /* Reduziert von 4rem */
+  padding: 2rem 0;
   background-color: #0e0e0e;
   background-image: linear-gradient(180deg, #0e0e0e 0%, #2f2f2f 100%);
   background-repeat: no-repeat;
   background-size: cover;
-  /* Flexbox hinzugefügt, um den Container vertikal zu zentrieren */
+
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .container {
@@ -16,13 +19,12 @@
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
-  flex-direction: column; /* untereinander */
-  align-items: center; /* horizontal zentrieren */
-  justify-content: center; /* von flex-start auf center geändert */
-  gap: 1rem; /* Abstand reduziert */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
   text-align: center;
-  /* min-height entfernt, da .infografic die Höhe steuert */
 }
 
 .title {
@@ -95,14 +97,58 @@
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
-
-  .subtitle {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
+  .arrowButton {
+    padding: 0.4rem 0.6rem;
   }
+  .dot,
+  .activeDot {
+    transform: scale(0.9);
+  }
+}
 
-  .subsubtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+/* Chart-Container: größer und responsive */
+.chartArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+/* Chart Wrapper: maximale Breite erhöhen, Höhe über Viewport definieren */
+.chartWrapper {
+  width: 100%;
+  max-width: 1100px; /* größer als vorher */
+  height: 56vh; /* responsive Höhe (56% der Viewport-Höhe) */
+  min-height: 360px; /* verhindert zu kleines Chart auf großen Bildschirmen */
+  max-height: 720px; /* verhindert zu hohe Charts */
+  transition: transform 240ms ease, opacity 240ms ease;
+  display: block;
+}
+
+/* Falls Chart-Komponenten canvas/svg verwenden: zwinge volle Größe */
+.chartWrapper :global(canvas),
+.chartWrapper :global(svg) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Mobile: etwas geringere Höhe */
+@media (max-width: 767px) {
+  .chartWrapper {
+    max-width: 100%;
+    height: 46vh;
+    min-height: 240px;
+  }
+}
+
+/* Tablet / kleinere Laptops */
+@media (max-width: 1024px) {
+  .chartWrapper {
+    max-width: 900px;
+    height: 50vh;
+    min-height: 300px;
   }
 }
