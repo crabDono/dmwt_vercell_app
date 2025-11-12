@@ -26,7 +26,7 @@ interface LineChartProps {
   data: [number, number][] | null; // Array von [timestamp, price] Tupeln
 }
 
-const LineChartETH = ({ data: apiData }: LineChartProps) => {
+const LineChartUSDC = ({ data: apiData }: LineChartProps) => {
   // Wenn keine Daten da sind, zeige nichts oder einen Ladezustand
   if (!apiData) {
     return <div>Daten werden geladen...</div>;
@@ -36,7 +36,7 @@ const LineChartETH = ({ data: apiData }: LineChartProps) => {
     labels: apiData.map((entry) => new Date(entry[0]).toLocaleDateString()), // Timestamps in lesbare Daten umwandeln
     datasets: [
       {
-        label: "Ethereum Kurs (EUR)",
+        label: "USD Coin Kurs (EUR)",
         data: apiData.map((entry) => entry[1]), // Nur die Preise verwenden
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
@@ -53,7 +53,7 @@ const LineChartETH = ({ data: apiData }: LineChartProps) => {
       },
       title: {
         display: true,
-        text: "Ethereum (ETH) Kursverlauf - 365 Tage",
+        text: "USD Coin (USDC) Kursverlauf - 365 Tage",
       },
     },
   };
@@ -61,4 +61,4 @@ const LineChartETH = ({ data: apiData }: LineChartProps) => {
   return <Line options={options} data={chartData} />;
 };
 
-export default LineChartETH;
+export default LineChartUSDC;

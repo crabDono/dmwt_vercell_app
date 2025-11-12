@@ -239,3 +239,17 @@
   height: 12px;
   transform: scale(1.05);
 }
+
+/* In Infographic.module.css hinzufügen */
+.loadingIndicator,
+.errorIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: white;
+  font-size: 1.2rem;
+}
+.errorIndicator {
+  color: #ff8a8a;
+}

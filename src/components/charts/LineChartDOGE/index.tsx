@@ -23,21 +23,21 @@ ChartJS.register(
 
 // Typ für die Props definieren
 interface LineChartProps {
-  data: [number, number][] | null; // Array von [timestamp, price] Tupeln
+  data: [number, number][] | null;
 }
 
-const LineChartETH = ({ data: apiData }: LineChartProps) => {
-  // Wenn keine Daten da sind, zeige nichts oder einen Ladezustand
+const LineChartDOGE = ({ data: apiData }: LineChartProps) => {
+  // Wenn keine Daten da sind, zeige einen Ladezustand
   if (!apiData) {
     return <div>Daten werden geladen...</div>;
   }
 
   const chartData = {
-    labels: apiData.map((entry) => new Date(entry[0]).toLocaleDateString()), // Timestamps in lesbare Daten umwandeln
+    labels: apiData.map((entry) => new Date(entry[0]).toLocaleDateString()),
     datasets: [
       {
-        label: "Ethereum Kurs (EUR)",
-        data: apiData.map((entry) => entry[1]), // Nur die Preise verwenden
+        label: "Dogecoin Kurs (EUR)",
+        data: apiData.map((entry) => entry[1]),
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
@@ -53,7 +53,7 @@ const LineChartETH = ({ data: apiData }: LineChartProps) => {
       },
       title: {
         display: true,
-        text: "Ethereum (ETH) Kursverlauf - 365 Tage",
+        text: "Dogecoin (DOGE) Kursverlauf - 365 Tage",
       },
     },
   };
@@ -61,4 +61,4 @@ const LineChartETH = ({ data: apiData }: LineChartProps) => {
   return <Line options={options} data={chartData} />;
 };
 
-export default LineChartETH;
+export default LineChartDOGE;
