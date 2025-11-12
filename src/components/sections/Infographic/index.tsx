@@ -40,21 +40,28 @@ const Infographic = () => {
           aria-roledescription="carousel"
           aria-label="Charts"
         >
-          <div className={styles.chartWrapper} key={charts[current].id}>
-            {charts[current].node}
-          </div>
-        </div>
-
-        {/* Controls / Pagination für Charts */}
-        <div className={styles.carouselControls}>
           <button
-            className={styles.arrowButton}
+            className={`${styles.sideArrow} ${styles.left}`}
             onClick={prev}
             aria-label="Vorheriges Chart"
           >
             ←
           </button>
 
+          <div className={styles.chartWrapper} key={charts[current].id}>
+            {charts[current].node}
+          </div>
+          <button
+            className={`${styles.sideArrow} ${styles.right}`}
+            onClick={next}
+            aria-label="Nächstes Chart"
+          >
+            →
+          </button>
+        </div>
+
+        {/* Controls / Pagination für Charts */}
+        <div className={styles.carouselControls}>
           <div className={styles.dots}>
             {charts.map((c, i) => (
               <button
@@ -68,14 +75,6 @@ const Infographic = () => {
               />
             ))}
           </div>
-
-          <button
-            className={styles.arrowButton}
-            onClick={next}
-            aria-label="Nächstes Chart"
-          >
-            →
-          </button>
         </div>
 
         <div className={styles.grid}>
