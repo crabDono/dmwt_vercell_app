@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image"; // 1. Image-Komponente importieren
 import styles from "./Infographic.module.css";
 import LineChartBTC from "../../charts/LineChartBTC";
 import LineChartETH from "../../charts/LineChartETH";
@@ -152,6 +153,24 @@ const Infographic = () => {
               />
             ))}
           </div>
+        </div>
+
+        {/* Quellenangabe unter den Punkten */}
+        <div className={styles.attribution}>
+          <span>Data provided by </span>
+          {/* Das Image wird jetzt von einem Link umschlossen */}
+          <a
+            href="https://www.coingecko.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/CGAPI-Lockup.svg"
+              alt="CoinGecko API"
+              width={120}
+              height={30}
+            />
+          </a>
         </div>
       </div>
     </section>
