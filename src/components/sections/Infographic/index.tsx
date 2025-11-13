@@ -6,8 +6,6 @@ import styles from "./Infographic.module.css";
 import LineChartBTC from "../../charts/LineChartBTC";
 import LineChartETH from "../../charts/LineChartETH";
 import LineChartSOL from "../../charts/LineChartSOL";
-import LineChartUSDT from "../../charts/LineChartUSDT";
-import LineChartUSDC from "../../charts/LineChartUSDC";
 import LineChartBNB from "../../charts/LineChartBNB";
 import LineChartXRP from "../../charts/LineChartXRP";
 import LineChartADA from "../../charts/LineChartADA";
@@ -22,8 +20,6 @@ const Infographic = () => {
     btc: ChartData | null;
     eth: ChartData | null;
     sol: ChartData | null;
-    usdt: ChartData | null;
-    usdc: ChartData | null;
     bnb: ChartData | null;
     xrp: ChartData | null;
     ada: ChartData | null;
@@ -33,8 +29,6 @@ const Infographic = () => {
     btc: null,
     eth: null,
     sol: null,
-    usdt: null,
-    usdc: null,
     bnb: null,
     xrp: null,
     ada: null,
@@ -57,8 +51,6 @@ const Infographic = () => {
           btc: data.btc,
           eth: data.eth,
           sol: data.sol,
-          usdt: data.usdt,
-          usdc: data.usdc,
           bnb: data.bnb,
           xrp: data.xrp,
           ada: data.ada,
@@ -82,8 +74,6 @@ const Infographic = () => {
     { id: "btc", node: <LineChartBTC data={chartData.btc} /> },
     { id: "eth", node: <LineChartETH data={chartData.eth} /> },
     { id: "sol", node: <LineChartSOL data={chartData.sol} /> },
-    { id: "usdt", node: <LineChartUSDT data={chartData.usdt} /> },
-    { id: "usd-coin", node: <LineChartUSDC data={chartData.usdc} /> },
     { id: "binancecoin", node: <LineChartBNB data={chartData.bnb} /> },
     { id: "xrp", node: <LineChartXRP data={chartData.xrp} /> },
     { id: "ada", node: <LineChartADA data={chartData.ada} /> },
