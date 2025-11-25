@@ -47,7 +47,7 @@ export default function Navbar() {
         <div className={styles.left}>
           <Link href="/" className={styles.logoLink}>
             <Image
-              src="/logo_tripleM.svg" // Pfad anpassen, falls im public-Ordner
+              src="/triple.svg" // Pfad anpassen, falls im public-Ordner
               alt="Logo"
               width={75}
               height={43}

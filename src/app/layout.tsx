@@ -17,11 +17,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main className="min-h-screen bg-white">
-          <Navbar />
+          {/* <Navbar /> */}
           {/* <FollowCursor /> */}
           <div className="w-full">{children}</div>{" "}
           {/* Platz für feste Navbar */}
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </body>
     </html>

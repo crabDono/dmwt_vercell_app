@@ -7,13 +7,13 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ButtonComponent = forwardRef<HTMLButtonElement, Props>(
-  ({ text = "Mehr erfahren", className, ...rest }, ref) => {
+  ({ text = "Starte Quiz!", className, ...rest }, ref) => {
     return (
       <button
         ref={ref}
         {...rest}
         className={cn(
-          "group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-background p-2 px-6 text-center font-semibold",
+          "group relative w-auto cursor-pointer overflow-hidden rounded-full border border-white bg-background p-2 px-6 text-center font-semibold text-white",
           className
         )}
       >

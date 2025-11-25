@@ -8,6 +8,16 @@
   justify-content: flex-start;
   padding-top: 8rem; /* Abstand von oben anpassen (z. B. 4rem) */
   padding-left: 0;
+
+  /* Hinzugefügte Stile für den Hintergrund */
+  background-image: linear-gradient(
+      rgba(14, 14, 14, 0.7),
+      rgba(14, 14, 14, 0.7)
+    ),
+    url("/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -20,17 +30,16 @@
   font-size: 4.5rem; /* text-4xl */
   font-weight: regular;
   margin-bottom: 1rem; /* mb-4 */
-  color: #111827;
+  color: white;
   font-family: "Georgia", serif;
 }
 
 .subtitle {
-  /* Verlauf von rechts nach links */
-  background: linear-gradient(to right, #990000 0%, #120071 50%);
+  /* background: linear-gradient(to right, #990000 0%, #120071 50%);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent; /* Chrome, Safari */
-  color: transparent; /* Fallback / Firefox */
+  -webkit-text-fill-color: transparent; */
+  color: white; /* Fallback / Firefox */
   font-size: 1.3125rem; /* text-xl */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 2rem;

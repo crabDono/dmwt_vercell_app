@@ -16,10 +16,10 @@ Nur falls Tailwind nicht möglich ist
   padding-left: 176px;
   padding-right: 176px;
   height: 60px;
-  background-color: rgba(255, 255, 255, 0.95);
+  /* background-color: transparent;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); */
   gap: 1rem;
 }
 
@@ -49,7 +49,7 @@ Nur falls Tailwind nicht möglich ist
 }
 
 .navLink {
-  color: #4b5563; /* gray-700 */
+  color: white; /* gray-700 */
   text-decoration: none;
   transition: color 150ms ease;
   font-weight: 500;
@@ -60,7 +60,7 @@ Nur falls Tailwind nicht möglich ist
 }
 
 .navLinkActive {
-  color: #111827; /* almost black */
+  color: white; /* almost black */
   font-weight: 700;
 }
 
@@ -76,7 +76,7 @@ Nur falls Tailwind nicht möglich ist
 }
 
 .rightLink {
-  color: #4b5563;
+  color: white;
   text-decoration: none;
   transition: color 150ms ease;
   padding: 0.5rem 1rem;
@@ -90,8 +90,8 @@ Nur falls Tailwind nicht möglich ist
 
 /* CTA / "Kostenlos testen" */
 .cta {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border-radius: 8px;
   padding: 0.5rem 1rem;
   display: inline-block;
@@ -100,7 +100,7 @@ Nur falls Tailwind nicht möglich ist
 }
 
 .cta:hover {
-  background-color: #111827; /* darker */
+  background-color: #3b82f6; /* darker */
 }
 
 /* aktive rechte Links */

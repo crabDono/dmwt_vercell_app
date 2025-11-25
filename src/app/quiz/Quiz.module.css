@@ -1,0 +1,154 @@
+.quizContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #111827; /* Dunkelgrauer Hintergrund */
+  padding: 1rem;
+}
+
+.quizBox {
+  background-color: transparent; /* Hintergrund entfernt */
+  border-radius: 15px;
+  box-shadow: none; /* Schatten entfernt */
+  width: 100%;
+  max-width: 700px;
+  padding: 2rem;
+  color: #f9fafb; /* Heller Text */
+  border: none; /* Rahmen entfernt */
+}
+
+/* Score & Restart Section */
+.scoreSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.scoreSection h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.scoreSection p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.restartButton {
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.restartButton:hover {
+  background-color: #4338ca;
+}
+
+/* Question Section */
+.questionSection {
+  margin-bottom: 2rem;
+}
+
+.questionCount {
+  font-size: 1rem;
+  color: #9ca3af; /* Grauer Text */
+  margin-bottom: 0.5rem;
+}
+
+.questionText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Answer Section */
+.answerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.answerButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #374151; /* Dunkelgraue Buttons */
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  color: #f9fafb;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.answerButton:hover:not(:disabled) {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+.answerButton:disabled {
+  cursor: not-allowed;
+}
+
+/* Feedback Styles */
+.correct {
+  background-color: #10b981 !important; /* Grün */
+  border-color: #059669 !important;
+  color: white !important;
+}
+
+.incorrect {
+  background-color: #ef4444 !important; /* Rot */
+  border-color: #dc2626 !important;
+  color: white !important;
+}
+
+/* Selected State */
+.selected {
+  background-color: #4b5563 !important;
+  border-color: #9ca3af !important;
+}
+
+/* Result Text Styles */
+.resultText {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.scoreNumber {
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.levelText {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.levelName {
+  font-weight: 700;
+  color: #818cf8; /* Helles Indigo für die Hervorhebung */
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .quizBox {
+    padding: 1.5rem;
+  }
+  .questionText {
+    font-size: 1.25rem;
+  }
+  .answerButton {
+    padding: 0.75rem;
+  }
+}

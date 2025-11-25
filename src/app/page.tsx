@@ -9,8 +9,8 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <Infographic />
-      <CommentSection />
+      {/* <Infographic />
+      <CommentSection /> */}
     </main>
   );
 }
