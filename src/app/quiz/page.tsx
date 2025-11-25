@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./Quiz.module.css";
 import Navbar from "@/src/components/UI/Navbar";
+import Image from "next/image"; // Image-Komponente importieren
 
 const quizQuestions = [
   {
@@ -170,6 +171,15 @@ export default function QuizPage() {
   return (
     <div className={styles.quizContainer}>
       <Navbar />
+      {/* Astronauten-Bild als Hintergrund-Element hinzugefügt */}
+      <Image
+        src="/astronaut_1.png" // Pfad zum Bild im public-Ordner
+        alt="Ein schwebender Astronaut"
+        width={750}
+        height={750}
+        className={styles.backgroundImage}
+        priority
+      />
       <div className={styles.quizBox}>
         {showResult ? (
           <div className={styles.scoreSection}>
@@ -189,9 +199,7 @@ export default function QuizPage() {
         ) : (
           <>
             <div className={styles.questionSection}>
-              <div className={styles.questionCount}>
-                <span>Frage {currentQuestion + 1}</span>/{quizQuestions.length}
-              </div>
+              <div className={styles.questionCount}></div>
               <h2 className={styles.questionText}>
                 {quizQuestions[currentQuestion].question}
               </h2>
