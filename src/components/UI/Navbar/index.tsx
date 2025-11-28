@@ -8,6 +8,22 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Setzt den State auf true, wenn mehr als 10px gescrollt wurde
+      setScrolled(window.scrollY > 10);
+    };
+
+    // Event Listener hinzufügen
+    window.addEventListener("scroll", handleScroll);
+
+    // Event Listener beim Verlassen der Komponente entfernen
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Leeres Array sorgt dafür, dass der Effekt nur einmal ausgeführt wird
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -43,7 +59,7 @@ export default function Navbar() {
         <div className={styles.overlay} onClick={closeMobileMenu}></div>
       )}
 
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
         <div className={styles.left}>
           <Link href="/" className={styles.logoLink}>
             <Image

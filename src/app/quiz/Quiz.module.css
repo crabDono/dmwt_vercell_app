@@ -5,17 +5,30 @@
   min-height: 100vh;
   background-color: #111827; /* Dunkelgrauer Hintergrund */
   padding: 1rem;
+  position: relative; /* Wichtig für die Positionierung des Bildes */
+  overflow: hidden; /* Verhindert, dass das Bild über den Rand hinausragt */
+}
+
+.backgroundImage {
+  position: absolute;
+  bottom: -80px;
+  right: -100px;
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
+  transform: rotate(20deg);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .quizBox {
-  background-color: transparent; /* Hintergrund entfernt */
-  border-radius: 15px;
-  box-shadow: none; /* Schatten entfernt */
+  background-color: transparent;
   width: 100%;
   max-width: 700px;
   padding: 2rem;
-  color: #f9fafb; /* Heller Text */
-  border: none; /* Rahmen entfernt */
+  color: #f9fafb;
+  border: none;
+  position: relative;
+  z-index: 1;
 }
 
 /* Score & Restart Section */
@@ -140,15 +153,54 @@
   color: #818cf8; /* Helles Indigo für die Hervorhebung */
 }
 
-/* Responsive Design */
-@media (max-width: 640px) {
+/* --- Media Queries für Responsiveness --- */
+
+/* Tablets (bis 768px) */
+@media (max-width: 768px) {
   .quizBox {
     padding: 1.5rem;
   }
+
+  .questionText {
+    font-size: 1.375rem; /* Etwas kleiner */
+  }
+
+  .scoreSection h2 {
+    font-size: 1.75rem;
+  }
+
+  .backgroundImage {
+    opacity: 0.07;
+    width: 400px; /* Passt sich an */
+    height: 400px;
+    right: -120px;
+  }
+}
+
+/* Mobile Geräte (bis 640px) */
+@media (max-width: 640px) {
+  .quizBox {
+    padding: 1rem; /* Weniger Padding auf kleinen Bildschirmen */
+  }
+
   .questionText {
     font-size: 1.25rem;
   }
+
   .answerButton {
-    padding: 0.75rem;
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .scoreSection h2 {
+    font-size: 1.5rem;
+  }
+
+  .scoreSection p {
+    font-size: 1.125rem;
+  }
+
+  .backgroundImage {
+    display: none; /* Auf sehr kleinen Bildschirmen ausblenden für mehr Lesbarkeit */
   }
 }

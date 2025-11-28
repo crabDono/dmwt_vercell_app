@@ -16,11 +16,22 @@ Nur falls Tailwind nicht möglich ist
   padding-left: 176px;
   padding-right: 176px;
   height: 60px;
-  /* background-color: transparent;
+  /* Hintergrund-Eigenschaften werden entfernt und in .scrolled verschoben */
+  gap: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Für einen weichen Übergang */
+}
+
+/* Neue Klasse, die beim Scrollen hinzugefügt wird */
+.scrolled {
+  background-color: rgba(
+    20,
+    20,
+    22,
+    0.7
+  ); /* Leicht transparenter Hintergrund */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); */
-  gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 .left {
@@ -34,6 +45,7 @@ Nur falls Tailwind nicht möglich ist
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  cursor: pointer; /* Hinzugefügt */
 }
 
 .navList {
@@ -53,6 +65,7 @@ Nur falls Tailwind nicht möglich ist
   text-decoration: none;
   transition: color 150ms ease;
   font-weight: 500;
+  cursor: pointer; /* Hinzugefügt */
 }
 
 .navLink:hover {
@@ -71,7 +84,6 @@ Nur falls Tailwind nicht möglich ist
   list-style: none;
   margin: 0;
   padding: 0;
-  padding-right: 176px; /* entspricht pr-[176px] */
   align-items: center;
 }
 
@@ -82,6 +94,7 @@ Nur falls Tailwind nicht möglich ist
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: 500;
+  cursor: pointer; /* Hinzugefügt */
 }
 
 .rightLink:hover {
@@ -97,6 +110,7 @@ Nur falls Tailwind nicht möglich ist
   display: inline-block;
   transition: background-color 150ms ease;
   text-decoration: none;
+  cursor: pointer; /* Hinzugefügt */
 }
 
 .cta:hover {
@@ -134,7 +148,7 @@ Nur falls Tailwind nicht möglich ist
 .burgerLine {
   width: 2rem;
   height: 0.25rem;
-  background: #111827;
+  background: #fff; /* Geändert von #111827 auf weiß */
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -233,6 +247,7 @@ Nur falls Tailwind nicht möglich ist
   font-weight: 600;
   border-radius: 8px;
   transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer; /* Hinzugefügt */
 }
 
 .mobileNavLink:hover,

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import styles from "./Quiz.module.css";
 import Navbar from "@/src/components/UI/Navbar";
-import Image from "next/image"; // Image-Komponente importieren
+import Image from "next/image";
+import { useRouter } from "next/navigation"; // 1. useRouter importieren
 
 const quizQuestions = [
   {
@@ -117,6 +118,7 @@ const quizQuestions = [
 ];
 
 export default function QuizPage() {
+  const router = useRouter(); // 2. useRouter initialisieren
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResult, setShowResult] = useState(false);
@@ -138,7 +140,6 @@ export default function QuizPage() {
       if (nextQuestion < quizQuestions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        // Quiz ist vorbei, berechne das Ergebnis
         const totalScore = newAnswers.reduce(
           (sum, current) => sum + current,
           0
@@ -153,6 +154,8 @@ export default function QuizPage() {
           setResultLevel("Profi");
         }
 
+        // 3. Quiz-Status im localStorage speichern
+        localStorage.setItem("quizCompleted", "true");
         setShowResult(true);
       }
       setSelectedAnswerIndex(null);
@@ -170,7 +173,6 @@ export default function QuizPage() {
 
   return (
     <div className={styles.quizContainer}>
-      <Navbar />
       {/* Astronauten-Bild als Hintergrund-Element hinzugefügt */}
       <Image
         src="/astronaut_1.png" // Pfad zum Bild im public-Ordner
@@ -192,8 +194,13 @@ export default function QuizPage() {
               Deine Einstufung:{" "}
               <span className={styles.levelName}>{resultLevel}</span>
             </p>
-            <button onClick={restartQuiz} className={styles.restartButton}>
-              Quiz neustarten
+            {/* 4. Button zum Zurückkehren zur Hauptseite */}
+            <button
+              onClick={() => router.push("/")}
+              className={styles.restartButton}
+              style={{ marginTop: "1rem" }}
+            >
+              Zurück zur Hauptseite
             </button>
           </div>
         ) : (

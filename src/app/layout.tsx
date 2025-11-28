@@ -1,7 +1,16 @@
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/UI/Navbar";
 import Footer from "../components/UI/Footer";
 import FollowCursor from "../components/features/FollowCursor";
+
+// Konfiguriere die Schriftart mit einer CSS-Variable
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-urbanist", // 1. Definiere den Namen der CSS-Variable
+  weight: "variable", // <-- hier bestimmst du die weights
+});
 
 export const metadata = {
   title: "IMMM Finances",
@@ -14,10 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    // 2. Füge die Variable zum className hinzu
+    <html lang="de" className={`${urbanist.variable} ${urbanist.className}`}>
       <body>
         <main className="min-h-screen bg-white">
-          {/* <Navbar /> */}
+          <Navbar />
           {/* <FollowCursor /> */}
           <div className="w-full">{children}</div>{" "}
           {/* Platz für feste Navbar */}
