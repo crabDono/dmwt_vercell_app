@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finanzbildung für die Krypto-Ära
 
-## Getting Started
+Eine moderne Webanwendung, die Nutzern grundlegendes und fortgeschrittenes Wissen über Kryptowährungen und die Blockchain-Technologie vermittelt.
 
-First, run the development server:
+## 🚀 Beschreibung
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Dieses Projekt wurde im Rahmen des Moduls "Digitale Medien und Webtechnologien" im 3. Semester von Maximilian Schichov, Meik Gaab und Michael Ott entwickelt. Es ist eine interaktive Lernplattform, die darauf abzielt, die Lücke im Finanzwissen im Bereich der digitalen Währungen zu schließen. Nutzer können ihr Wissen mit einem Quiz testen, die Kursverläufe der wichtigsten Kryptowährungen in dynamischen Charts verfolgen und sich mit anderen Nutzern in einem Kommentarbereich austauschen.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   **Interaktives Quiz:** Ein Quiz zur Selbsteinschätzung, das den Wissensstand des Nutzers in die Kategorien "Anfänger", "Amateur" oder "Profi" einteilt.
+-   **Dynamische Kurs-Charts:** Eine Infografik-Sektion, die historische Kursdaten für wichtige Kryptowährungen (BTC, ETH, SOL, etc.) von der CoinGecko-API abruft und visualisiert.
+-   **Kommentarfunktion:** Ein Bereich, in dem Nutzer Kommentare und Fragen hinterlassen können.
+-   **Modernes UI/UX:** Ein ansprechendes und vollständig responsives Design, das auf allen Geräten funktioniert.
+-   **Serverseitiges Rendering (SSR):** Nutzung der Stärken von Next.js für schnelle Ladezeiten und SEO-Vorteile.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+-   **Framework:** [Next.js](https://nextjs.org/)
+-   **Sprache:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [CSS Modules](https://github.com/css-modules/css-modules)
+-   **Datenbank-ORM:** [Prisma](https://www.prisma.io/)
+-   **Charts:** [Chart.js](https://www.chartjs.org/)
+-   **Datenquelle:** [CoinGecko API](https://www.coingecko.com/en/api)
+-   **Deployment:** [Vercel](https://vercel.com/)
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Erste Schritte
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Um das Projekt lokal auszuführen, befolge diese Schritte:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Repository klonen:**
+    ```bash
+    git clone <repository-url>
+    cd finanzbildung
+    ```
 
-## Deploy on Vercel
+2.  **Abhängigkeiten installieren:**
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Umgebungsvariablen einrichten:**
+    Erstelle eine Datei namens `.env.local` im Hauptverzeichnis und füge deine Datenbank-URL und deinen CoinGecko API-Key hinzu:
+    ```
+    DATABASE_URL="deine-prisma-db-url"
+    COINGECKO_API_KEY="dein-coingecko-api-key"
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Prisma-Client generieren:**
+    ```bash
+    npx prisma generate
+    ```
+
+5.  **Entwicklungsserver starten:**
+    ```bash
+    npm run dev
+    ```
+    Öffne [http://localhost:3000](http://localhost:3000) in deinem Browser.
+
+---
+
+## ✅ To-Do Liste
+
+Hier ist eine Liste geplanter Features und Verbesserungen für das Projekt.
+
+### Kernfunktionalität
+- [ ] Benutzerauthentifizierung (Login/Registrierung) implementieren.
+- [ ] Personalisierte Lerninhalte basierend auf dem Quiz-Ergebnis anzeigen.
+- [ ] Eine "Zeitreise"-Seite mit historischen Meilensteinen der Krypto-Welt erstellen.
+
+### Inhalt & UX
+- [ ] Weitere Kryptowährungen zu den Infografiken hinzufügen.
+- [ ] Das Quiz um weitere Fragen und Themengebiete erweitern.
+- [ ] Detaillierte Artikel oder Guides zu den wichtigsten Themen erstellen.
+- [ ] Animationen und Übergänge für eine bessere User Experience hinzufügen.
+
+### Technik
+- [ ] Unit- und Integration-Tests für kritische Komponenten schreiben.
+- [ ] Error-Handling und Ladezustände weiter verbessern.
+- [ ] Pagination für den Kommentarbereich implementieren.

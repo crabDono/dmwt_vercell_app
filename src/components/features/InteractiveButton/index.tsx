@@ -7,7 +7,7 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ButtonComponent = forwardRef<HTMLButtonElement, Props>(
-  ({ text = "Starte Quiz!", className, ...rest }, ref) => {
+  ({ text = "STARTE QUIZ!", className, ...rest }, ref) => {
     return (
       <button
         ref={ref}
