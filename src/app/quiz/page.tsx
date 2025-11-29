@@ -196,11 +196,11 @@ export default function QuizPage() {
             </p>
             {/* 4. Button zum Zurückkehren zur Hauptseite */}
             <button
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/zeitreise")}
               className={styles.restartButton}
               style={{ marginTop: "1rem" }}
             >
-              Zurück zur Hauptseite
+              Zur Zeitreise
             </button>
           </div>
         ) : (

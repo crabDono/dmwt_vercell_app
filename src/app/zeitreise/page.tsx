@@ -1,3 +1,13 @@
+import Infographic from "@/src/components/sections/Infographic";
+import CommentSection from "@/src/components/sections/Comment";
+import TextParallax from "@/src/components/features/SlideInText";
+
 export default function Page() {
-  return <h1 className="text-3xl font-bold text-gray-800">Hello, Zeireise!</h1>;
+  return (
+    <main>
+      <Infographic />
+      <TextParallax />
+      <CommentSection />
+    </main>
+  );
 }
