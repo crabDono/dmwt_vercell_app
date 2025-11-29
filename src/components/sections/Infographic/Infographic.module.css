@@ -2,10 +2,7 @@
   min-height: 100vh;
   height: 100%;
   padding: 2rem 0;
-  background-color: #0e0e0e;
-  background-image: linear-gradient(180deg, #0e0e0e 0%, #2f2f2f 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #e6e6e6;
 
   display: flex;
   flex-direction: column;
@@ -32,7 +29,7 @@
   font-weight: bold;
   margin-top: 0; /* Entfernt, da justify-content zentriert */
   margin-bottom: 0; /* Angepasst */
-  color: white;
+  color: #0b0e1c;
 }
 
 .grid {
@@ -46,7 +43,7 @@
   font-size: 1.25rem; /* Reduziert */
   font-weight: normal; /* Von medium auf normal */
   margin-bottom: 0; /* Angepasst */
-  color: #d1d5db; /* Etwas heller als darkgray */
+  color: #0b0e1c; /* Etwas heller als darkgray */
   max-width: 800px; /* Begrenzt die Zeilenlänge für bessere Lesbarkeit */
 }
 
@@ -155,6 +152,7 @@
   transition: background 140ms ease, transform 120ms ease, box-shadow 140ms ease;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   z-index: 5;
+  /* margin: 0 -2rem; */
 }
 
 .sideArrow:hover {
@@ -185,10 +183,10 @@
 /* Fallback / mobile: Pfeile näher an Chart platzieren */
 @media (max-width: 1024px) {
   .sideArrow.left {
-    left: 8px;
+    left: 2px;
   }
   .sideArrow.right {
-    right: 8px;
+    right: 2px;
   }
 }
 
@@ -247,7 +245,7 @@
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1.5rem; /* Abstand nach oben */
-  color: rgba(255, 255, 255, 0.6);
+  color: black;
   font-size: 0.875rem;
   opacity: 0.8;
 }

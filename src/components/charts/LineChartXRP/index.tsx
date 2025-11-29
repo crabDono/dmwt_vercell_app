@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import styles from "../Charts.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -33,7 +34,12 @@ const LineChartXRP = ({ data: apiData }: LineChartProps) => {
   }
 
   const chartData = {
-    labels: apiData.map((entry) => new Date(entry[0]).toLocaleDateString()),
+    labels: apiData.map((entry) =>
+      new Date(entry[0]).toLocaleDateString("de-DE", {
+        day: "2-digit",
+        month: "short",
+      })
+    ),
     datasets: [
       {
         label: "XRP Kurs (EUR)",
@@ -58,7 +64,13 @@ const LineChartXRP = ({ data: apiData }: LineChartProps) => {
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <Line
+      options={options}
+      data={chartData}
+      className={styles.chartContainer}
+    />
+  );
 };
 
 export default LineChartXRP;

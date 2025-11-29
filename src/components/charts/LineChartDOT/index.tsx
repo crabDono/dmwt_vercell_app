@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import styles from "../Charts.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -58,7 +59,13 @@ const LineChartDOT = ({ data: apiData }: LineChartProps) => {
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <Line
+      options={options}
+      data={chartData}
+      className={styles.chartContainer}
+    />
+  );
 };
 
 export default LineChartDOT;

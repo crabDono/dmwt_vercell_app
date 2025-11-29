@@ -1,5 +1,6 @@
 "use client";
 import { Line } from "react-chartjs-2";
+import styles from "../Charts.module.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -58,7 +59,13 @@ const LineChartBTC = ({ data: apiData }: LineChartProps) => {
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <Line
+      options={options}
+      data={chartData}
+      className={styles.chartContainer}
+    />
+  );
 };
 
 export default LineChartBTC;

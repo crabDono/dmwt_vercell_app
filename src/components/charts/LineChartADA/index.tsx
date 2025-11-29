@@ -1,4 +1,5 @@
 "use client";
+import styles from "../Charts.module.css";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -58,7 +59,13 @@ const LineChartADA = ({ data: apiData }: LineChartProps) => {
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <Line
+      options={options}
+      data={chartData}
+      className={styles.chartContainer}
+    />
+  );
 };
 
 export default LineChartADA;
