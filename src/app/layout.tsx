@@ -23,14 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // 2. Füge die Variable zum className hinzu
     <html lang="de" className={`${urbanist.variable} ${urbanist.className}`}>
       <body>
         <main className="min-h-screen bg-white">
           <Navbar />
           {/* <FollowCursor /> */}
-          <div className="w-full">{children}</div>{" "}
-          {/* Platz für feste Navbar */}
+          <div className="w-full">{children}</div>
           <Footer />
         </main>
       </body>
