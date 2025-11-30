@@ -137,10 +137,10 @@ export default function CommentField({ comments }: CommentFieldProps) {
                 </span>
               </div>
               {/* Sterne im Kommentar anzeigen */}
-              <div className={styles.displayStars}>
-                {/* @ts-ignore - falls TS meckert weil Prisma Types noch nicht updated sind */}
+              {/* <div className={styles.displayStars}>
+                @ts-expect-error
                 {renderStars(comment.rating || 5)}
-              </div>
+              </div> */}
             </div>
 
             <p className={styles.commentText}>{comment.content}</p>
