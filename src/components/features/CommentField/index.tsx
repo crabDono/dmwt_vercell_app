@@ -1,3 +1,4 @@
+// components/features/CommentField/index.tsx
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -12,26 +13,33 @@ interface CommentFieldProps {
 export default function CommentField({ comments }: CommentFieldProps) {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
+  const [rating, setRating] = useState(0); // State für die Sterne (0-5)
+  const [hoverRating, setHoverRating] = useState(0); // Für Hover-Effekt
+
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const commentsPerPage = 6;
+  const commentsPerPage = 4; // Weniger pro Seite, da Karten größer sind
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (rating === 0) {
+      alert("Bitte wähle eine Bewertung aus.");
+      return;
+    }
 
     await fetch("/api/comments", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, content }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, content, rating }),
     });
 
     setName("");
     setContent("");
+    setRating(0);
     router.refresh();
   };
 
+  // Pagination Logic
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = comments.slice(
@@ -40,16 +48,45 @@ export default function CommentField({ comments }: CommentFieldProps) {
   );
   const totalPages = Math.ceil(comments.length / commentsPerPage);
 
-  const handlePageChange = (pageNumber: number) => {
-    if (pageNumber > 0 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-    }
+  // Helper um Sterne anzuzeigen (wiederverwendbar)
+  const renderStars = (score: number, interactive = false) => {
+    return (
+      <div className={styles.starRow}>
+        {[1, 2, 3, 4, 5].map((star) => {
+          const isFilled = interactive
+            ? star <= (hoverRating || rating)
+            : star <= score;
+
+          return (
+            <span
+              key={star}
+              className={`${styles.star} ${isFilled ? styles.starFilled : ""} ${
+                interactive ? styles.starInteractive : ""
+              }`}
+              onClick={() => interactive && setRating(star)}
+              onMouseEnter={() => interactive && setHoverRating(star)}
+              onMouseLeave={() => interactive && setHoverRating(0)}
+            >
+              ★
+            </span>
+          );
+        })}
+      </div>
+    );
   };
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <h3 className={styles.formTitle}>Hinterlassen Sie einen Kommentar</h3>
+      {/* --- FORMULAR --- */}
+      <form onSubmit={handleSubmit} className={styles.formCard}>
+        <h3 className={styles.formTitle}>Hinterlasse Feedback</h3>
+
+        {/* Rating Input */}
+        <div className={styles.ratingInputContainer}>
+          <label className={styles.label}>Deine Bewertung</label>
+          {renderStars(0, true)}
+        </div>
+
         <div className={styles.inputGroup}>
           <label htmlFor="name" className={styles.label}>
             Name
@@ -57,73 +94,75 @@ export default function CommentField({ comments }: CommentFieldProps) {
           <input
             type="text"
             id="name"
-            name="name"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={styles.input}
-            placeholder="Ihr Name"
+            placeholder="Dein Name"
           />
         </div>
+
         <div className={styles.textareaGroup}>
           <label htmlFor="content" className={styles.label}>
-            Kommentar
+            Nachricht
           </label>
           <textarea
             id="content"
-            name="content"
-            rows={4}
+            rows={3}
             required
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className={styles.textarea}
-            placeholder="Was denken Sie?"
+            placeholder="Was denkst du über Kryptos?"
           ></textarea>
         </div>
+
         <button type="submit" className={styles.submitButton}>
-          Senden
+          Feedback senden
         </button>
       </form>
 
+      {/* --- LISTE DER FEEDBACKS --- */}
       <div className={styles.commentList}>
         {currentComments.map((comment) => (
-          <div key={comment.id} className={styles.commentItem}>
-            <div className={styles.avatarContainer}>
+          <div key={comment.id} className={styles.commentCard}>
+            <div className={styles.cardHeader}>
               <div className={styles.avatar}>
                 {comment.name.charAt(0).toUpperCase()}
               </div>
-            </div>
-            <div className={styles.commentContent}>
-              <div className={styles.commentHeader}>
-                <p className={styles.commentName}>{comment.name}</p>
-                <p className={styles.commentDate}>
-                  {new Date(comment.createdAt).toLocaleDateString("de-DE", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </p>
+              <div className={styles.metaData}>
+                <span className={styles.commentName}>{comment.name}</span>
+                <span className={styles.commentDate}>
+                  {new Date(comment.createdAt).toLocaleDateString("de-DE")}
+                </span>
               </div>
-              <p className={styles.commentText}>{comment.content}</p>
+              {/* Sterne im Kommentar anzeigen */}
+              <div className={styles.displayStars}>
+                {/* @ts-ignore - falls TS meckert weil Prisma Types noch nicht updated sind */}
+                {renderStars(comment.rating || 5)}
+              </div>
             </div>
+
+            <p className={styles.commentText}>{comment.content}</p>
           </div>
         ))}
       </div>
 
+      {/* --- PAGINATION --- */}
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => setCurrentPage((p) => p - 1)}
             disabled={currentPage === 1}
             className={styles.paginationButton}
           >
             Zurück
           </button>
           <span className={styles.paginationInfo}>
-            Seite {currentPage} von {totalPages}
+            {currentPage} / {totalPages}
           </span>
           <button
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => setCurrentPage((p) => p + 1)}
             disabled={currentPage === totalPages}
             className={styles.paginationButton}
           >
