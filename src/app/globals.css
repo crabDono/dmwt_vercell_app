@@ -18,7 +18,7 @@ html {
 } /* 16px */
 body {
   margin: 0;
-  font-family: var(--font-urbanist), sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #111;

@@ -30,7 +30,7 @@ export default function CommentField({ comments }: CommentFieldProps) {
     await fetch("/api/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, content, rating }),
+      body: JSON.stringify({ name, content }),
     });
 
     setName("");

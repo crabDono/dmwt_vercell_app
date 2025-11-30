@@ -25,13 +25,11 @@
   font-weight: 600;
   margin-bottom: 1rem;
   color: white;
-  font-family: var(--font-urbanist), sans-serif;
 }
 
 .subtitle {
   color: white;
   font-size: 1.3125rem;
-  font-family: var(--font-urbanist), sans-serif;
   margin-bottom: 2rem;
 }
 
