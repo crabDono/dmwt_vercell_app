@@ -1,302 +1,202 @@
-/*
-Nur falls Tailwind nicht möglich ist
-*/
+/* Navbar.module.css */
 
-.nav {
+/* Definiere Variablen direkt im Container, damit sie sicher da sind */
+.navContainer {
+  --bg: #171717;
+  --fg: #ffffff;
+  --menu-bg: #0f0f0f;
+  --menu-fg-secondary: #5f5f5f;
+  --hamburger-border: rgba(255, 255, 255, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+/* ... menuBar, logoWrapper etc. bleiben gleich ... */
+
+.menuBar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 50;
+  width: 100vw;
+  padding: 2rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  /* Basis horizontaler Padding (wird durch die expliziten left/right überschrieben) */
-  padding: 0 2rem;
-  padding-left: 176px;
-  padding-right: 176px;
-  height: 60px;
-  /* Hintergrund-Eigenschaften werden entfernt und in .scrolled verschoben */
+  align-items: center;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.logoWrapper,
+.toggleBtn {
+  pointer-events: auto;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
   gap: 1rem;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Für einen weichen Übergang */
-}
-
-/* Neue Klasse, die beim Scrollen hinzugefügt wird */
-.scrolled {
-  background-color: rgba(
-    20,
-    20,
-    22,
-    0.7
-  ); /* Leicht transparenter Hintergrund */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-}
-
-.left {
-  display: flex;
-  align-items: center;
-  gap: 27px;
-}
-
-.logoLink {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  cursor: pointer; /* Hinzugefügt */
-}
-
-.navList {
-  display: flex;
-  gap: 1.5rem; /* entspricht tailwind gap-6 */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navItem {
-  margin: 0;
-}
-
-.navLink {
-  color: white; /* gray-700 */
-  text-decoration: none;
-  transition: color 150ms ease;
-  font-weight: 500;
-  cursor: pointer; /* Hinzugefügt */
-}
-
-.navLink:hover {
-  color: #3b82f6; /* blue-500 */
-}
-
-.navLinkActive {
-  color: white; /* almost black */
-  font-weight: 700;
-}
-
-/* rechte Elemente */
-.rightList {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-.rightLink {
-  color: white;
-  text-decoration: none;
-  transition: color 150ms ease;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer; /* Hinzugefügt */
-}
-
-.rightLink:hover {
-  color: #3b82f6;
-}
-
-/* CTA / "Kostenlos testen" */
-.cta {
-  background-color: #fff;
-  color: #000;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  display: inline-block;
-  transition: background-color 150ms ease;
-  text-decoration: none;
-  cursor: pointer; /* Hinzugefügt */
-}
-
-.cta:hover {
-  background-color: #3b82f6; /* darker */
-}
-
-/* aktive rechte Links */
-.rightLinkActive {
-  color: #111827;
-  font-weight: 700;
-}
-
-/* Burger Menu Button */
-.burgerMenu {
-  display: none;
-  /* Positionierung für feste Platzierung oben rechts */
-  position: fixed;
-  top: 1rem; /* 16px */
-  right: 1rem; /* 16px */
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: none;
   cursor: pointer;
-  padding: 0;
-  z-index: 60; /* Muss über .nav und .mobileNav sein */
+  background: none;
+  border: none;
+  color: var(--fg);
 }
 
-.burgerMenu:focus {
-  outline: none;
+.toggleLabel {
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--fg); /* Explizit Farbe setzen */
 }
 
-.burgerLine {
-  width: 2rem;
-  height: 0.25rem;
-  background: #fff; /* Geändert von #111827 auf weiß */
-  border-radius: 10px;
-  transition: all 0.3s linear;
+/* Hamburger Styles */
+.hamburgerIcon {
   position: relative;
-  transform-origin: 1px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--hamburger-border);
+  border-radius: 50%;
+  transition: border-color 0.3s ease;
 }
 
-/* Animation für Burger zu X */
-.burgerOpen .burgerLine:nth-child(1) {
+.hamburgerIcon span {
+  position: absolute;
+  width: 15px;
+  height: 1.5px;
+  background-color: var(--fg);
+  transition: all 0.3s ease; /* Schnellere Transition für CSS */
+}
+
+.hamburgerIcon span:nth-child(1) {
+  transform: translateY(-3px);
+}
+.hamburgerIcon span:nth-child(2) {
+  transform: translateY(3px);
+}
+
+/* Wenn Klasse 'hamburgerActive' gesetzt ist */
+.hamburgerActive span:nth-child(1) {
   transform: rotate(45deg);
 }
-
-.burgerOpen .burgerLine:nth-child(2) {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.burgerOpen .burgerLine:nth-child(3) {
+.hamburgerActive span:nth-child(2) {
   transform: rotate(-45deg);
 }
 
-/* Overlay für das mobile Menü */
-.overlay {
+/* --- OVERLAY --- */
+.menuOverlay {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--menu-bg); /* Prüfe, ob das Schwarz ist! */
+  z-index: 40;
+
+  display: flex;
+  overflow: hidden;
+
+  /* WICHTIG: Wir entfernen hier clip-path! 
+     Wir lassen GSAP das übernehmen. */
+  visibility: hidden; /* Startet unsichtbar, damit es nicht flackert */
+}
+
+.overlayContent {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: 52; /* Unter dem Menü, über dem Rest der Seite */
+  display: flex;
+  color: var(--fg);
 }
 
-/* Mobile Navigation Menu */
-.mobileNav {
-  display: flex; /* von none auf flex geändert für Animation */
+/* Linkes Bild */
+.mediaWrapper {
+  flex: 2;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  /* Opacity wird von GSAP gesteuert */
+}
+
+.mediaWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+}
+
+/* Rechter Content */
+.contentWrapper {
+  flex: 3;
+  position: relative;
+  display: flex;
   flex-direction: column;
-  justify-content: center; /* Zentriert die Items vertikal */
-  list-style: none;
-  padding: 0 2rem; /* Oben/Unten 0, da justify-content center */
-  margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80%; /* Etwas breiter */
-  max-width: 320px; /* Maximale Breite für größere Screens */
-  height: 100vh;
-  background: #f9fafb; /* Helles Grau statt Weiß */
-  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
-  z-index: 55;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  justify-content: space-between;
+  padding: 2rem;
 }
 
-.mobileNavOpen {
-  transform: translateX(0);
+.menuMain {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding-left: 4rem;
 }
 
-/* Staggered Animation für die Listenelemente */
-.mobileNavOpen .mobileNavItem {
-  opacity: 1;
-  transform: translateX(0);
+.menuCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.mobileNavItem {
-  padding: 0; /* Padding vom Link übernehmen lassen */
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+/* Helper Klassen für Animation */
+.revealTextWrapper {
+  overflow: hidden; /* Maske */
+  line-height: 1.1;
 }
 
-/* Delay für jeden Menüpunkt */
-.mobileNavOpen .mobileNavItem:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.mobileNavOpen .mobileNavItem:nth-child(2) {
-  transition-delay: 0.15s;
-}
-.mobileNavOpen .mobileNavItem:nth-child(3) {
-  transition-delay: 0.2s;
-}
-.mobileNavOpen .mobileNavItem:nth-child(4) {
-  transition-delay: 0.25s;
-}
-.mobileNavOpen .mobileNavItem:nth-child(5) {
-  transition-delay: 0.3s;
+.revealTextInner {
+  display: block;
+  /* Transform wird von GSAP gesetzt */
 }
 
-.mobileNavLink {
-  display: block; /* Macht den ganzen Bereich klickbar */
-  padding: 1rem;
-  text-align: center;
-  color: #374151; /* gray-700 */
+.menuLink {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--fg);
   text-decoration: none;
-  font-size: 1.125rem; /* 18px */
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  cursor: pointer; /* Hinzugefügt */
+  transition: color 0.3s;
 }
 
-.mobileNavLink:hover,
-.mobileNavLink:focus {
-  background-color: #e5e7eb; /* gray-200 */
-  color: #111827; /* black */
+.menuTag {
+  font-size: 1.5rem;
+  color: var(--menu-fg-secondary);
+  text-decoration: none;
 }
 
-/* CTA-Button im mobilen Menü */
-.mobileCta {
-  background-color: #000;
-  color: #fff;
+.menuFooter {
+  display: flex;
+  gap: 4rem;
+  padding-left: 4rem;
+  padding-bottom: 2rem;
+  color: var(--menu-fg-secondary);
 }
 
-.mobileCta:hover,
-.mobileCta:focus {
-  background-color: #374151; /* gray-700 */
-  color: #fff;
-}
-
-/* Responsive: kleinere Bildschirme */
-@media (max-width: 900px) {
-  .nav {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@media (max-width: 1000px) {
+  .mediaWrapper {
+    display: none;
   }
-
-  .navList,
-  .rightList {
-    display: none; /* hide desktop links on small screens */
+  .menuMain {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 0;
+    gap: 2rem;
   }
-
-  .burgerMenu {
-    display: flex; /* show burger menu */
+  .menuFooter {
+    padding-left: 0;
   }
-
-  .mobileNav {
-    display: flex; /* mobile nav is controlled by transform */
-  }
-}
-
-/* optional: show inline nav again on medium screens */
-@media (min-width: 901px) and (max-width: 1199px) {
-  .nav {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .navList {
-    display: flex;
+  .menuLink {
+    font-size: 3rem;
   }
 }
