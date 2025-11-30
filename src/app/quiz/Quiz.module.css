@@ -1,206 +1,271 @@
+/* --- Globaler Container --- */
 .quizContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  background-color: #111827; /* Dunkelgrauer Hintergrund */
-  padding: 1rem;
-  position: relative; /* Wichtig für die Positionierung des Bildes */
-  overflow: hidden; /* Verhindert, dass das Bild über den Rand hinausragt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b0e1d; /* Dein gewünschtes Dark Blue */
+  color: #ffffff; /* Weißer Text als Standard */
+  font-family: "Inter", sans-serif;
+  padding: 2rem;
 }
 
+/* Optional: Das Astronautenbild. 
+   Auf dem dunklen Hintergrund sieht es vermutlich sehr gut aus.
+   Wir lassen es sichtbar, aber positionieren es absolut im Hintergrund.
+*/
 .backgroundImage {
   position: absolute;
-  bottom: -80px;
-  right: -100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.15; /* Dezent im Hintergrund */
+  pointer-events: none; /* Klicks gehen durch das Bild durch */
   z-index: 0;
-  opacity: 0.1;
-  pointer-events: none;
-  transform: rotate(20deg);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+/* Der Content-Container liegt ÜBER dem Bild (z-index) */
 .quizBox {
-  background-color: transparent;
   width: 100%;
   max-width: 700px;
-  padding: 2rem;
-  color: #f9fafb;
-  border: none;
-  position: relative;
-  z-index: 1;
-}
-
-/* Score & Restart Section */
-.scoreSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  gap: 2rem;
+  z-index: 1;
+  position: relative;
 }
 
-.scoreSection h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.scoreSection p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.restartButton {
-  background-color: #4f46e5; /* Indigo */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.restartButton:hover {
-  background-color: #4338ca;
-}
-
-/* Question Section */
+/* --- Header / Fortschritt --- */
 .questionSection {
-  margin-bottom: 2rem;
-}
-
-.questionCount {
-  font-size: 1rem;
-  color: #9ca3af; /* Grauer Text */
-  margin-bottom: 0.5rem;
-}
-
-.questionText {
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-/* Answer Section */
-.answerSection {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.answerButton {
-  width: 100%;
-  padding: 1rem;
-  background-color: #374151; /* Dunkelgraue Buttons */
-  border: 1px solid #4b5563;
-  border-radius: 8px;
-  color: #f9fafb;
-  font-size: 1rem;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+/* Anpassung für den Fall, dass du die Dots/Text eingebaut hast */
+.progressHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.answerButton:hover:not(:disabled) {
-  background-color: #4b5563;
-  border-color: #6b7280;
+.questionCountText {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #94a3b8; /* Helles Grau-Blau für Nebentext */
+}
+
+/* Die Frage selbst */
+.questionText {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff; /* Reinweiß für maximalen Kontrast */
+  margin: 0;
+}
+
+/* --- Antwortbereich --- */
+.answerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.answerButton {
+  background: none;
+  border: none;
+  padding: 10px 0; /* Etwas mehr Klickfläche */
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #e2e8f0; /* Leicht abgetöntes Weiß für Antworten (angenehmer für die Augen) */
+  transition: all 0.2s ease;
+}
+
+/* Der "Radio-Kreis" - Jetzt mit weißem Rand */
+.answerButton::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ffffff; /* Weißer Rand */
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  background-color: transparent; /* Erstmal leer */
+}
+
+/* Hover-Effekt: Eine dezente, transparente weiße Fläche */
+.answerButton:hover:not(:disabled):not(.selected) {
+  opacity: 0.8;
+}
+
+.answerButton:hover:not(:disabled):not(.selected)::before {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparenter Schimmer */
+}
+
+/* Ausgewählter Zustand */
+.selected.answerButton {
+  font-weight: 700;
+  color: #ffffff; /* Wird reinweiß */
+}
+
+.selected.answerButton::before {
+  background-color: #ffffff; /* Kreis wird komplett weiß gefüllt */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Optional: Ein kleiner "Glow" */
 }
 
 .answerButton:disabled {
-  cursor: not-allowed;
+  cursor: default;
+  opacity: 0.5; /* Nicht gewählte Antworten dimmen ab */
 }
 
-/* Feedback Styles */
-.correct {
-  background-color: #10b981 !important; /* Grün */
-  border-color: #059669 !important;
-  color: white !important;
+/* --- Ergebnis-Sektion --- */
+.scoreSection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Leichter Container-Hintergrund für das Ergebnis */
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.incorrect {
-  background-color: #ef4444 !important; /* Rot */
-  border-color: #dc2626 !important;
-  color: white !important;
+.scoreSection h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
-/* Selected State */
-.selected {
-  background-color: #4b5563 !important;
-  border-color: #9ca3af !important;
-}
-
-/* Result Text Styles */
-.resultText {
-  font-size: 1.125rem;
-  color: #d1d5db;
-  margin-bottom: 0.5rem;
-}
-
-.scoreNumber {
-  font-weight: 700;
-  color: #f9fafb;
-}
-
+.resultText,
 .levelText {
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  color: #cbd5e1;
 }
 
+.scoreNumber,
 .levelName {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Der Button am Ende: Invertiert (Weißer Button auf dunklem Grund) */
+.restartButton {
+  margin-top: 2rem !important;
+  background-color: #ffffff; /* Weißer Hintergrund */
+  color: #0c1222; /* Dunkelblaue Schrift */
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  border-radius: 4px; /* Leicht abgerundet */
+}
+
+.restartButton:hover {
+  background-color: #e2e8f0; /* Leicht graues Weiß beim Hover */
+  transform: scale(1.02);
+}
+
+/* --- Progress Dots (Falls du sie im JSX nutzt) --- */
+.progressDots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1e293b; /* Dunkelgrau für noch kommende Fragen */
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff; /* Weiß für die aktuelle Frage */
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dotPast {
+  background-color: #475569; /* Mittelgrau für vergangene Fragen */
+  border: none;
+}
+
+/* --- Navigation Buttons (Unten) --- */
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between; /* Links Zurück, Rechts Weiter */
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Feine Trennlinie */
+}
+
+.navButton {
+  padding: 12px 24px;
+  font-size: 1rem;
   font-weight: 700;
-  color: #818cf8; /* Helles Indigo für die Hervorhebung */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* --- Media Queries für Responsiveness --- */
-
-/* Tablets (bis 768px) */
-@media (max-width: 768px) {
-  .quizBox {
-    padding: 1.5rem;
-  }
-
-  .questionText {
-    font-size: 1.375rem; /* Etwas kleiner */
-  }
-
-  .scoreSection h2 {
-    font-size: 1.75rem;
-  }
-
-  .backgroundImage {
-    opacity: 0.07;
-    width: 400px; /* Passt sich an */
-    height: 400px;
-    right: -120px;
-  }
+/* Der "Weiter" Button (Primär: Weiß) */
+.navButtonNext {
+  background-color: #ffffff;
+  color: #0c1222;
+  border: none;
 }
 
-/* Mobile Geräte (bis 640px) */
-@media (max-width: 640px) {
-  .quizBox {
-    padding: 1rem; /* Weniger Padding auf kleinen Bildschirmen */
-  }
+.navButtonNext:hover:not(:disabled) {
+  background-color: #e2e8f0;
+  transform: translateY(-2px);
+}
 
-  .questionText {
-    font-size: 1.25rem;
-  }
+.navButtonNext:disabled {
+  background-color: #475569; /* Dunkelgrau wenn deaktiviert */
+  color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 
-  .answerButton {
-    padding: 0.875rem;
-    font-size: 0.95rem;
-  }
+/* Der "Zurück" Button (Sekundär: Nur Text/Rand) */
+.navButtonBack {
+  background-color: transparent;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
 
-  .scoreSection h2 {
-    font-size: 1.5rem;
-  }
-
-  .scoreSection p {
-    font-size: 1.125rem;
-  }
-
-  .backgroundImage {
-    display: none; /* Auf sehr kleinen Bildschirmen ausblenden für mehr Lesbarkeit */
-  }
+.navButtonBack:hover {
+  border-color: #ffffff;
+  color: #ffffff;
 }

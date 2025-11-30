@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import styles from "./Quiz.module.css";
-import Navbar from "@/src/components/UI/Navbar";
+// import Navbar from "@/src/components/UI/Navbar"; // Falls du sie brauchst
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // 1. useRouter importieren
+import { useRouter } from "next/navigation";
 
 const quizQuestions = [
   {
@@ -118,64 +118,69 @@ const quizQuestions = [
 ];
 
 export default function QuizPage() {
-  const router = useRouter(); // 2. useRouter initialisieren
+  const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [showResult, setShowResult] = useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(
-    null
+
+  // Wir initialisieren das Array mit null, damit wir wissen, ob eine Frage schon beantwortet wurde
+  const [answers, setAnswers] = useState<(number | null)[]>(
+    new Array(quizQuestions.length).fill(null)
   );
+
+  const [showResult, setShowResult] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [resultLevel, setResultLevel] = useState("");
 
-  const handleAnswerClick = (answerIndex: number) => {
-    if (selectedAnswerIndex !== null) return;
-
-    setSelectedAnswerIndex(answerIndex);
-    const newAnswers = [...answers, answerIndex + 1];
+  // Wählt eine Antwort aus, geht aber noch NICHT weiter
+  const handleAnswerSelect = (answerIndex: number) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = answerIndex + 1; // +1 für den Score (1-5 Punkte)
     setAnswers(newAnswers);
-
-    setTimeout(() => {
-      const nextQuestion = currentQuestion + 1;
-      if (nextQuestion < quizQuestions.length) {
-        setCurrentQuestion(nextQuestion);
-      } else {
-        const totalScore = newAnswers.reduce(
-          (sum, current) => sum + current,
-          0
-        );
-        setFinalScore(totalScore);
-
-        if (totalScore <= 20) {
-          setResultLevel("Anfänger");
-        } else if (totalScore <= 38) {
-          setResultLevel("Amateur");
-        } else {
-          setResultLevel("Profi");
-        }
-
-        // 3. Quiz-Status im localStorage speichern
-        localStorage.setItem("quizCompleted", "true");
-        setShowResult(true);
-      }
-      setSelectedAnswerIndex(null);
-    }, 500);
   };
 
-  const restartQuiz = () => {
-    setCurrentQuestion(0);
-    setAnswers([]);
-    setShowResult(false);
-    setSelectedAnswerIndex(null);
-    setFinalScore(0);
-    setResultLevel("");
+  const handleNext = () => {
+    // Wenn wir bei der letzten Frage sind -> Auswerten
+    if (currentQuestion === quizQuestions.length - 1) {
+      calculateResult();
+    } else {
+      // Sonst -> Nächste Frage
+      setCurrentQuestion((prev) => prev + 1);
+    }
   };
+
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prev) => prev - 1);
+    }
+  };
+
+  const calculateResult = () => {
+    // Summiere alle Antworten (wir gehen davon aus, dass keine null ist, da der Next Button sonst disabled wäre)
+    const totalScore =
+      answers.reduce((sum, current) => sum! + (current || 0), 0) || 0;
+
+    setFinalScore(totalScore);
+
+    if (totalScore <= 20) {
+      setResultLevel("Anfänger");
+    } else if (totalScore <= 38) {
+      setResultLevel("Amateur");
+    } else {
+      setResultLevel("Profi");
+    }
+
+    localStorage.setItem("quizCompleted", "true");
+    setShowResult(true);
+  };
+
+  // Hilfsvariable: Welche Antwort ist aktuell bei DIESER Frage ausgewählt?
+  const currentSelectedAnswer = answers[currentQuestion];
+  // Ist es die letzte Frage?
+  const isLastQuestion = currentQuestion === quizQuestions.length - 1;
 
   return (
     <div className={styles.quizContainer}>
-      {/* Astronauten-Bild als Hintergrund-Element hinzugefügt */}
       <Image
-        src="/astronaut_1.png" // Pfad zum Bild im public-Ordner
+        src="/astronaut_1.png"
         alt="Ein schwebender Astronaut"
         width={750}
         height={750}
@@ -194,11 +199,9 @@ export default function QuizPage() {
               Deine Einstufung:{" "}
               <span className={styles.levelName}>{resultLevel}</span>
             </p>
-            {/* 4. Button zum Zurückkehren zur Hauptseite */}
             <button
               onClick={() => router.push("/zeitreise")}
               className={styles.restartButton}
-              style={{ marginTop: "1rem" }}
             >
               Zur Zeitreise
             </button>
@@ -206,15 +209,26 @@ export default function QuizPage() {
         ) : (
           <>
             <div className={styles.questionSection}>
-              <div className={styles.questionCount}></div>
+              {/* Optional: Header mit Fortschritt */}
+              <div className={styles.progressHeader}>
+                <span className={styles.questionCountText}>
+                  FRAGE {currentQuestion + 1} VON {quizQuestions.length}
+                </span>
+              </div>
+
               <h2 className={styles.questionText}>
                 {quizQuestions[currentQuestion].question}
               </h2>
             </div>
+
             <div className={styles.answerSection}>
               {quizQuestions[currentQuestion].answers.map((answer, index) => {
+                // Wir prüfen, ob der Index im answers-Array gespeichert ist
+                // (Index im Array ist 0-basiert, gespeicherter Wert ist 1-basiert, daher index + 1)
+                const isSelected = currentSelectedAnswer === index + 1;
+
                 let buttonClass = styles.answerButton;
-                if (selectedAnswerIndex === index) {
+                if (isSelected) {
                   buttonClass += ` ${styles.selected}`;
                 }
 
@@ -222,13 +236,34 @@ export default function QuizPage() {
                   <button
                     key={index}
                     className={buttonClass}
-                    onClick={() => handleAnswerClick(index)}
-                    disabled={selectedAnswerIndex !== null}
+                    onClick={() => handleAnswerSelect(index)}
                   >
                     {answer}
                   </button>
                 );
               })}
+            </div>
+
+            {/* NEU: Navigation Buttons */}
+            <div className={styles.navigationButtons}>
+              <button
+                className={`${styles.navButton} ${styles.navButtonBack}`}
+                onClick={handleBack}
+                disabled={currentQuestion === 0}
+                style={{
+                  visibility: currentQuestion === 0 ? "hidden" : "visible",
+                }}
+              >
+                Zurück
+              </button>
+
+              <button
+                className={`${styles.navButton} ${styles.navButtonNext}`}
+                onClick={handleNext}
+                disabled={currentSelectedAnswer === null} // Nur aktiv wenn Antwort gewählt
+              >
+                {isLastQuestion ? "Ergebnis anzeigen" : "Weiter"}
+              </button>
             </div>
           </>
         )}
