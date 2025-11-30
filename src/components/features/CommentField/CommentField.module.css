@@ -1,192 +1,212 @@
+/* components/features/CommentField/CommentField.module.css */
+
 .container {
-  padding: 1rem;
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 100vh;
+  width: 100%;
 }
 
-.form {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
+/* --- Formular Karte --- */
+.formCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(10px);
 }
 
 .formTitle {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
-  color: rgb(31 41 55);
-}
-
-.inputGroup {
-  margin-bottom: 1rem;
-}
-
-.textareaGroup {
   margin-bottom: 1.5rem;
+  color: #ffffff;
 }
 
 .label {
   display: block;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 500;
-  color: rgb(55 65 81);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1; /* Helles Grau */
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+/* --- Input Felder im Dark Mode --- */
 .input,
 .textarea {
   width: 100%;
-  padding: 0.75rem;
-  background-color: rgb(249 250 251);
-  border: 1px solid rgb(229 231 235);
-  border-radius: 0.5rem;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.2); /* Dunkler Hintergrund */
+  border: 1px solid #334155; /* Dunkelblauer Rand */
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.2s;
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: rgb(156 163 175);
+  color: #64748b;
 }
 
 .input:focus,
 .textarea:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  --tw-ring-color: rgb(59 130 246);
-  box-shadow: 0 0 0 2px var(--tw-ring-color);
-  border-color: transparent;
+  outline: none;
+  border-color: #ffffff; /* Weißer Rand bei Fokus */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
+.inputGroup,
+.textareaGroup,
+.ratingInputContainer {
+  margin-bottom: 1.5rem;
+}
+
+/* --- Sternen Bewertung --- */
+.starRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.star {
+  font-size: 1.8rem;
+  color: #334155; /* Inaktiver Stern (dunkelgrau) */
+  transition: color 0.2s;
+}
+
+.starInteractive {
+  cursor: pointer;
+}
+
+/* Wenn der Stern "gefüllt" ist (durch State oder Hover) */
+.starFilled {
+  color: #ffffff; /* Weißer Stern (Space Look) */
+  /* Alternativ Gold: color: #fbbf24; */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Senden Button (Wie Quiz Restart Button) --- */
 .submitButton {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: rgb(37 99 235);
-  color: #fff;
-  font-weight: 700;
-  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #0c1222;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .submitButton:hover {
-  background-color: rgb(29 78 216);
+  background-color: #e2e8f0;
+  transform: translateY(-2px);
 }
 
-.submitButton:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  --tw-ring-color: rgb(59 130 246);
-  --tw-ring-offset-color: #fff;
-  box-shadow: 0 0 0 2px var(--tw-ring-offset-color),
-    0 0 0 4px var(--tw-ring-color);
-}
-
+/* --- Kommentar Liste (Grid) --- */
 .commentList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
-/* tablet / desktop: 2 columns */
 @media (min-width: 768px) {
   .commentList {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-  .commentItem {
-    align-self: stretch;
   }
 }
 
-/* ensure form inputs are responsive */
-.input,
-.textarea,
-.submitButton {
-  width: 100%;
-  max-width: 100%;
-}
-
-.commentItem {
-  padding: 1rem;
+/* --- Einzelne Feedback Karte --- */
+.commentCard {
+  background: rgba(255, 255, 255, 0.05); /* Sehr transparent */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
 }
 
-.avatarContainer {
-  flex-shrink: 0;
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .avatar {
   height: 2.5rem;
   width: 2.5rem;
-  border-radius: 9999px;
-  background-color: rgb(229 231 235);
+  border-radius: 50%;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  color: rgb(55 65 81);
 }
 
-.commentContent {
+.metaData {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
-.commentHeader {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
 .commentName {
-  font-weight: 600;
-  color: rgb(17 24 39);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
 }
 
 .commentDate {
   font-size: 0.75rem;
-  line-height: 1rem;
-  color: rgb(107 114 128);
+  color: #94a3b8;
+}
+
+.displayStars .star {
+  font-size: 1rem; /* Kleinere Sterne in der Anzeige */
+  cursor: default;
 }
 
 .commentText {
-  color: rgb(55 65 81);
-  margin-top: 0.25rem;
+  color: #cbd5e1; /* Helles Grau für Text */
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
+/* --- Pagination --- */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .paginationButton {
-  padding: 0.5rem 1rem;
-  background-color: rgb(229 231 235);
-  color: rgb(55 65 81);
-  border-radius: 0.5rem;
-  border: none;
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #334155;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s;
 }
 
 .paginationButton:hover:not(:disabled) {
-  background-color: rgb(209 213 219);
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .paginationButton:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
+  border-color: #334155;
 }
 
 .paginationInfo {
-  color: rgb(55 65 81);
+  color: #94a3b8;
+  font-size: 0.9rem;
 }
