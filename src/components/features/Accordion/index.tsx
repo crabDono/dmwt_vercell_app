@@ -158,7 +158,7 @@ export function AccordionItem({
         role="region"
         aria-labelledby={buttonId}
         ref={contentRef}
-        className="overflow-hidden transition-[max-height] duration-300 ease-[cubic-bezier(.2,.8,.2,1)] max-h-0 text-sm"
+        className="overflow-hidden transition-[max-height] duration-300 ease-[cubic-bezier(0.87, 0, 0.13, 1)] max-h-0 text-sm"
       >
         <div className="pt-0 pb-4">{children}</div>
       </div>

@@ -2,6 +2,7 @@
   background-color: #0b0e1d;
   padding: 2rem 0; /* Vertikales Padding, horizontales Padding wird im Container gesteuert */
   color: white;
+  min-height: 100svh;
 }
 
 .container {
