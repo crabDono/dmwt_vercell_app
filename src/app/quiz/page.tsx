@@ -178,7 +178,7 @@ export default function QuizPage() {
   const isLastQuestion = currentQuestion === quizQuestions.length - 1;
 
   return (
-    <div className={styles.quizContainer}>
+    <div className={styles.quizContainer} data-theme="dark">
       <Image
         src="/astronaut_1.png"
         alt="Ein schwebender Astronaut"

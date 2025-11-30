@@ -33,8 +33,8 @@ export default function Footer() {
             multiple={false}
             className={styles.accordion} // Eigene Klasse für das Accordion
           >
-            <AccordionItem id="item-1" title="Impressum" defaultOpen>
-              <p className={styles.accordionContent}>
+            <AccordionItem id="item-1" title="Impressum">
+              <div className={styles.accordionContent}>
                 Angaben gemäß § 5 TMG <br />
                 Dieses Projekt ist ein studentisches Projekt im Rahmen des
                 Studiengangs Digitale Medien und Webtechnologien an der
@@ -54,8 +54,8 @@ export default function Footer() {
                   <li>meik.gaab@student.reutlingen-university.de</li>
                   <li>michael.ott@student.reutlingen-university.de</li>
                 </ul>
-                <br /> <br />
-                <b>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</b>{" "}
+                <br />
+                <b>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</b>
                 <br />
                 Maximilian Schichov, Meik Gaab, Michael Ott <br /> <br />
                 <b>Kursleitung</b>: <br /> Prof. Dr.-Ing. habil. Natividad
@@ -78,7 +78,7 @@ export default function Footer() {
                   </li>
                 </ul>
                 <br />
-              </p>
+              </div>
             </AccordionItem>
             <AccordionItem id="item-2" title="Terms & Conditions">
               <div className={styles.accordionContent}>

@@ -200,3 +200,50 @@
     font-size: 3rem;
   }
 }
+
+/* STANDARD (Dark Theme: Weiße Schrift) */
+.navThemeDark {
+  --fg: #ffffff;
+  --hamburger-border: rgba(255, 255, 255, 0.1);
+}
+
+/* LIGHT THEME (Heller Hintergrund: Dunkle Schrift) */
+.navThemeLight {
+  --fg: #0c1222; /* Dein dunkles Space-Blau */
+  --hamburger-border: rgba(12, 18, 34, 0.2);
+}
+
+/* Optional: Logo invertieren, falls es ein weißes SVG ist */
+.invertLogo {
+  filter: invert(1); /* Macht Weiß zu Schwarz */
+}
+
+/* Sicherstellen, dass die toggleBtn Farbe die Variable nutzt */
+.toggleBtn {
+  color: var(--fg); /* Wichtig! */
+}
+
+.toggleLabel {
+  color: var(--fg); /* Wichtig! */
+}
+
+.hamburgerIcon {
+  border-color: var(--hamburger-border);
+}
+
+.hamburgerIcon span {
+  background-color: var(--fg);
+}
+.menuOverlay {
+  --fg: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Damit auch die Links im Overlay weiß bleiben */
+.menuOverlay a {
+  color: #ffffff !important;
+}
+
+.menuOverlay .menuTag {
+  color: #94a3b8 !important; /* Hellgrau für die kleinen Links */
+}

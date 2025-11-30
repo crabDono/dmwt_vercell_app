@@ -4,7 +4,7 @@ import TextParallax from "@/src/components/features/SlideInText";
 
 export default function Page() {
   return (
-    <main>
+    <main data-theme="light">
       <Infographic />
       <TextParallax />
       <CommentSection />

@@ -6,54 +6,63 @@
 
 /* --- Formular Karte --- */
 .formCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* NEU: Weiße Karte statt transparent */
+  background: #ffffff;
+  border: 1px solid #e5e7eb; /* Sehr heller Rand */
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 3rem;
-  backdrop-filter: blur(10px);
+  /* NEU: Schatten statt Backdrop-Filter für Tiefe */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .formTitle {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  /* NEU: Dunkle Schrift */
+  color: #0c1222;
 }
 
 .label {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #cbd5e1; /* Helles Grau */
+  /* NEU: Mittelgrau */
+  color: #4b5563;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* --- Input Felder im Dark Mode --- */
+/* --- Input Felder im Light Mode --- */
 .input,
 .textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  background-color: rgba(0, 0, 0, 0.2); /* Dunkler Hintergrund */
-  border: 1px solid #334155; /* Dunkelblauer Rand */
+  /* NEU: Helles Grau für Input-Hintergrund */
+  background-color: #f9fafb;
+  /* NEU: Grauer Rand */
+  border: 1px solid #d1d5db;
   border-radius: 6px;
-  color: #fff;
+  /* NEU: Dunkle Schrift im Input */
+  color: #111827;
   font-size: 1rem;
   transition: all 0.2s;
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: #64748b;
+  color: #9ca3af;
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #ffffff; /* Weißer Rand bei Fokus */
-  background-color: rgba(0, 0, 0, 0.4);
+  /* NEU: Dunkelblauer Rand bei Fokus */
+  border-color: #0c1222;
+  background-color: #ffffff;
 }
 
 .inputGroup,
@@ -70,7 +79,8 @@
 
 .star {
   font-size: 1.8rem;
-  color: #334155; /* Inaktiver Stern (dunkelgrau) */
+  /* NEU: Hellgrau für leere Sterne */
+  color: #d1d5db;
   transition: color 0.2s;
 }
 
@@ -78,19 +88,21 @@
   cursor: pointer;
 }
 
-/* Wenn der Stern "gefüllt" ist (durch State oder Hover) */
+/* Wenn der Stern "gefüllt" ist */
 .starFilled {
-  color: #ffffff; /* Weißer Stern (Space Look) */
-  /* Alternativ Gold: color: #fbbf24; */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  /* NEU: Dunkelblau (oder Gold: #fbbf24) für gefüllte Sterne */
+  color: #0c1222;
+  text-shadow: none;
 }
 
-/* --- Senden Button (Wie Quiz Restart Button) --- */
+/* --- Senden Button (Invertiert) --- */
 .submitButton {
   width: 100%;
   padding: 1rem;
-  background-color: #ffffff;
-  color: #0c1222;
+  /* NEU: Dunkler Button */
+  background-color: #0c1222;
+  /* NEU: Weiße Schrift */
+  color: #ffffff;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -101,7 +113,8 @@
 }
 
 .submitButton:hover {
-  background-color: #e2e8f0;
+  /* Ein etwas helleres Schwarz/Blau beim Hover */
+  background-color: #1e293b;
   transform: translateY(-2px);
 }
 
@@ -120,12 +133,14 @@
 
 /* --- Einzelne Feedback Karte --- */
 .commentCard {
-  background: rgba(255, 255, 255, 0.05); /* Sehr transparent */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* NEU: Weiße Karte */
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .cardHeader {
@@ -139,8 +154,8 @@
   height: 2.5rem;
   width: 2.5rem;
   border-radius: 50%;
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  /* NEU: Dunkler Hintergrund für Avatar */
+  background-color: #0c1222;
   color: #fff;
   display: flex;
   align-items: center;
@@ -156,22 +171,24 @@
 
 .commentName {
   font-weight: 700;
-  color: #fff;
+  /* NEU: Dunkle Schrift */
+  color: #111827;
   font-size: 0.95rem;
 }
 
 .commentDate {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #6b7280;
 }
 
 .displayStars .star {
-  font-size: 1rem; /* Kleinere Sterne in der Anzeige */
+  font-size: 1rem;
   cursor: default;
 }
 
 .commentText {
-  color: #cbd5e1; /* Helles Grau für Text */
+  /* NEU: Dunkelgrauer Text */
+  color: #374151;
   line-height: 1.6;
   font-size: 0.95rem;
 }
@@ -188,25 +205,29 @@
 .paginationButton {
   padding: 0.5rem 1.5rem;
   background-color: transparent;
-  color: #fff;
-  border: 1px solid #334155;
+  /* NEU: Dunkle Schrift für Buttons */
+  color: #0c1222;
+  /* NEU: Dunkler Rand */
+  border: 1px solid #0c1222;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .paginationButton:hover:not(:disabled) {
-  border-color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #0c1222;
+  color: #ffffff;
 }
 
 .paginationButton:disabled {
   opacity: 0.3;
   cursor: not-allowed;
-  border-color: #334155;
+  border-color: #9ca3af;
+  color: #9ca3af;
 }
 
 .paginationInfo {
-  color: #94a3b8;
+  /* NEU: Dunkle Schrift */
+  color: #4b5563;
   font-size: 0.9rem;
 }

@@ -2,7 +2,8 @@
 .information {
   min-height: 100vh;
   padding: 4rem 2rem;
-  background-color: #0c1222; /* Space Blue Background */
+  /* NEU: Dein gewünschtes Helles Grau */
+  background-color: #e6e6e6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,12 +22,14 @@
   font-weight: 800;
   text-align: center;
   margin: 0 0 0.5rem 0;
-  color: #ffffff; /* Reinweiß */
+  /* NEU: Dunkles Blau statt Weiß für Kontrast */
+  color: #0c1222;
 }
 
 .subtitle {
   font-size: 1.125rem;
-  color: #94a3b8; /* Helles Grau-Blau */
+  /* NEU: Dunkleres Grau für Lesbarkeit */
+  color: #4b5563;
   text-align: center;
   margin: 0 0 3rem 0;
 }
