@@ -72,9 +72,9 @@ export default function Footer() {
                   </li>
                   <li>
                     2. Keine Anlageberatung Die auf dieser Webseite
-                    bereitgestellten Inhalte, Zeitreise und Quizfragen stellen
-                    keine Anlageberatung oder Empfehlung zum Kauf oder Verkauf
-                    von Kryptowährungen dar.
+                    bereitgestellten Inhalte, Rechner (Zeitreise) und Quizfragen
+                    stellen keine Anlageberatung oder Empfehlung zum Kauf oder
+                    Verkauf von Kryptowährungen dar.
                   </li>
                 </ul>
                 <br />
@@ -87,8 +87,8 @@ export default function Footer() {
                 Nutzung der Webseite erklären Sie sich mit diesen Bedingungen
                 einverstanden. <br />
                 2. <strong>WICHTIG:</strong> Keine Anlageberatung
-                (Haftungsausschluss) Die Inhalte dieser Webseite - insbesondere
-                der "Zeitreise"-Rechner, Quiz-Inhalte und Blogartikel stellen
+                (Haftungsausschluss) Die Inhalte dieser Webseite (insbesondere
+                der Zeitreise-Rechner, Quiz-Inhalte und Blogartikel) stellen
                 keine Finanz-, Anlage- oder Rechtsberatung dar. Alle
                 Berechnungen sind hypothetisch. Vergangene Kursentwicklungen von
                 Bitcoin oder anderen Kryptowährungen garantieren keine
