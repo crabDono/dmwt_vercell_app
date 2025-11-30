@@ -13,8 +13,6 @@ interface CommentFieldProps {
 export default function CommentField({ comments }: CommentFieldProps) {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState(0); // State für die Sterne (0-5)
-  const [hoverRating, setHoverRating] = useState(0); // Für Hover-Effekt
 
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,10 +20,6 @@ export default function CommentField({ comments }: CommentFieldProps) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (rating === 0) {
-      alert("Bitte wähle eine Bewertung aus.");
-      return;
-    }
 
     await fetch("/api/comments", {
       method: "POST",
@@ -35,7 +29,6 @@ export default function CommentField({ comments }: CommentFieldProps) {
 
     setName("");
     setContent("");
-    setRating(0);
     router.refresh();
   };
 
@@ -48,44 +41,11 @@ export default function CommentField({ comments }: CommentFieldProps) {
   );
   const totalPages = Math.ceil(comments.length / commentsPerPage);
 
-  // Helper um Sterne anzuzeigen (wiederverwendbar)
-  const renderStars = (score: number, interactive = false) => {
-    return (
-      <div className={styles.starRow}>
-        {[1, 2, 3, 4, 5].map((star) => {
-          const isFilled = interactive
-            ? star <= (hoverRating || rating)
-            : star <= score;
-
-          return (
-            <span
-              key={star}
-              className={`${styles.star} ${isFilled ? styles.starFilled : ""} ${
-                interactive ? styles.starInteractive : ""
-              }`}
-              onClick={() => interactive && setRating(star)}
-              onMouseEnter={() => interactive && setHoverRating(star)}
-              onMouseLeave={() => interactive && setHoverRating(0)}
-            >
-              ★
-            </span>
-          );
-        })}
-      </div>
-    );
-  };
-
   return (
     <div className={styles.container}>
       {/* --- FORMULAR --- */}
       <form onSubmit={handleSubmit} className={styles.formCard}>
         <h3 className={styles.formTitle}>Hinterlasse Feedback</h3>
-
-        {/* Rating Input */}
-        <div className={styles.ratingInputContainer}>
-          <label className={styles.label}>Deine Bewertung</label>
-          {renderStars(0, true)}
-        </div>
 
         <div className={styles.inputGroup}>
           <label htmlFor="name" className={styles.label}>
@@ -136,11 +96,6 @@ export default function CommentField({ comments }: CommentFieldProps) {
                   {new Date(comment.createdAt).toLocaleDateString("de-DE")}
                 </span>
               </div>
-              {/* Sterne im Kommentar anzeigen */}
-              {/* <div className={styles.displayStars}>
-                @ts-expect-error
-                {renderStars(comment.rating || 5)}
-              </div> */}
             </div>
 
             <p className={styles.commentText}>{comment.content}</p>
