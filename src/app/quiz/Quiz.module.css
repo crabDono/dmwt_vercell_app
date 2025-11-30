@@ -1,37 +1,54 @@
+/* Quiz.module.css */
+
 /* --- Globaler Container --- */
 .quizContainer {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #0b0e1d; /* Dein gewünschtes Dark Blue */
-  color: #ffffff; /* Weißer Text als Standard */
-  font-family: "Inter", sans-serif;
-  padding: 2rem;
+  /* WICHTIG: Align-items start statt center, damit auf kleinen Screens 
+     der Inhalt gescrollt werden kann und nicht oben abgeschnitten wird */
+  align-items: flex-start;
+
+  background-color: #0c1222; /* Space Blue */
+  color: #ffffff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+
+  /* WICHTIG FÜR NAVBAR: 
+     Da die Navbar 'fixed' ist, müssen wir dem Container oben Platz geben,
+     sonst klebt der Text hinter dem Logo. */
+  padding-top: 120px;
+  padding-bottom: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  position: relative;
+  overflow-x: hidden; /* Verhindert seitliches Scrollen */
 }
 
-/* Optional: Das Astronautenbild. 
-   Auf dem dunklen Hintergrund sieht es vermutlich sehr gut aus.
-   Wir lassen es sichtbar, aber positionieren es absolut im Hintergrund.
-*/
+/* Hintergrundbild */
 .backgroundImage {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.15; /* Dezent im Hintergrund */
-  pointer-events: none; /* Klicks gehen durch das Bild durch */
+  opacity: 0.15;
+  pointer-events: none;
   z-index: 0;
+
+  /* Responsive Anpassung für das Bild */
+  max-width: 90vw;
+  height: auto;
 }
 
-/* Der Content-Container liegt ÜBER dem Bild (z-index) */
+/* Der Content-Container */
 .quizBox {
   width: 100%;
-  max-width: 700px;
+  max-width: 700px; /* Maximale Breite auf Desktop */
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  z-index: 1;
+  z-index: 1; /* Bleibt unter der Navbar (die hat z-index: 50) */
   position: relative;
 }
 
@@ -42,12 +59,11 @@
   gap: 1rem;
 }
 
-/* Anpassung für den Fall, dass du die Dots/Text eingebaut hast */
 .progressHeader {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  justify-content: space-between; /* Verteilt Text und Dots */
+  margin-bottom: 0.5rem;
 }
 
 .questionCountText {
@@ -55,15 +71,15 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
-  color: #94a3b8; /* Helles Grau-Blau für Nebentext */
+  color: #94a3b8;
 }
 
 /* Die Frage selbst */
 .questionText {
-  font-size: 2.5rem;
+  font-size: 2.2rem; /* Desktop Größe */
   font-weight: 800;
-  line-height: 1.1;
-  color: #ffffff; /* Reinweiß für maximalen Kontrast */
+  line-height: 1.2;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -71,161 +87,74 @@
 .answerSection {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-top: 1rem;
 }
 
 .answerButton {
   background: none;
   border: none;
-  padding: 10px 0; /* Etwas mehr Klickfläche */
+  padding: 1rem; /* Größere Klickfläche */
   cursor: pointer;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Text oben bündig falls mehrzeilig */
   text-align: left;
 
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
   font-weight: 500;
-  color: #e2e8f0; /* Leicht abgetöntes Weiß für Antworten (angenehmer für die Augen) */
+  color: #e2e8f0;
   transition: all 0.2s ease;
+  border-radius: 8px; /* Leicht abgerundet */
 }
 
-/* Der "Radio-Kreis" - Jetzt mit weißem Rand */
+/* Der "Radio-Kreis" */
 .answerButton::before {
   content: "";
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid #ffffff; /* Weißer Rand */
-  margin-right: 1.5rem;
-  flex-shrink: 0;
+  border: 2px solid #ffffff;
+  margin-right: 1.25rem;
+  flex-shrink: 0; /* Verhindert, dass Kreis bei langem Text schrumpft */
+  margin-top: 0.2rem; /* Optische Ausrichtung zum Text */
   transition: all 0.3s ease;
-  background-color: transparent; /* Erstmal leer */
 }
 
-/* Hover-Effekt: Eine dezente, transparente weiße Fläche */
-.answerButton:hover:not(:disabled):not(.selected) {
-  opacity: 0.8;
-}
-
-.answerButton:hover:not(:disabled):not(.selected)::before {
-  background-color: rgba(255, 255, 255, 0.1); /* Transparenter Schimmer */
+/* Hover-Effekte (nur Desktop, stört auf Touch) */
+@media (hover: hover) {
+  .answerButton:hover:not(:disabled):not(.selected) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 /* Ausgewählter Zustand */
 .selected.answerButton {
   font-weight: 700;
-  color: #ffffff; /* Wird reinweiß */
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1); /* Hinterlegung */
 }
 
 .selected.answerButton::before {
-  background-color: #ffffff; /* Kreis wird komplett weiß gefüllt */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Optional: Ein kleiner "Glow" */
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 .answerButton:disabled {
   cursor: default;
-  opacity: 0.5; /* Nicht gewählte Antworten dimmen ab */
-}
-
-/* --- Ergebnis-Sektion --- */
-.scoreSection {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  ); /* Leichter Container-Hintergrund für das Ergebnis */
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.scoreSection h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.resultText,
-.levelText {
-  font-size: 1.5rem;
-  color: #cbd5e1;
-}
-
-.scoreNumber,
-.levelName {
-  font-weight: 800;
-  color: #ffffff;
-}
-
-/* Der Button am Ende: Invertiert (Weißer Button auf dunklem Grund) */
-.restartButton {
-  margin-top: 2rem !important;
-  background-color: #ffffff; /* Weißer Hintergrund */
-  color: #0c1222; /* Dunkelblaue Schrift */
-  border: none;
-  padding: 1rem 3rem;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-  border-radius: 4px; /* Leicht abgerundet */
-}
-
-.restartButton:hover {
-  background-color: #e2e8f0; /* Leicht graues Weiß beim Hover */
-  transform: scale(1.02);
-}
-
-/* --- Progress Dots (Falls du sie im JSX nutzt) --- */
-.progressDots {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-grow: 1;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #1e293b; /* Dunkelgrau für noch kommende Fragen */
-  border: 1px solid #334155;
-  transition: all 0.3s ease;
-}
-
-.dotActive {
-  width: 24px;
-  height: 24px;
-  background-color: #ffffff; /* Weiß für die aktuelle Frage */
-  border: none;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.dotPast {
-  background-color: #475569; /* Mittelgrau für vergangene Fragen */
-  border: none;
+  opacity: 0.6;
 }
 
 /* --- Navigation Buttons (Unten) --- */
-
 .navigationButtons {
   display: flex;
-  justify-content: space-between; /* Links Zurück, Rechts Weiter */
+  justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Feine Trennlinie */
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navButton {
@@ -237,9 +166,12 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 120px; /* Mindestbreite für Konsistenz */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Der "Weiter" Button (Primär: Weiß) */
 .navButtonNext {
   background-color: #ffffff;
   color: #0c1222;
@@ -252,13 +184,12 @@
 }
 
 .navButtonNext:disabled {
-  background-color: #475569; /* Dunkelgrau wenn deaktiviert */
-  color: #94a3b8;
+  background-color: #334155;
+  color: #64748b;
   cursor: not-allowed;
-  opacity: 0.5;
+  transform: none;
 }
 
-/* Der "Zurück" Button (Sekundär: Nur Text/Rand) */
 .navButtonBack {
   background-color: transparent;
   color: #94a3b8;
@@ -268,4 +199,120 @@
 .navButtonBack:hover {
   border-color: #ffffff;
   color: #ffffff;
+}
+
+/* --- Ergebnis-Sektion --- */
+.scoreSection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+}
+
+.scoreSection h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.resultText {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+}
+
+.scoreNumber {
+  font-size: 3rem;
+  display: block;
+  margin: 1rem 0;
+  color: #ffffff;
+}
+
+.levelText {
+  font-size: 1.5rem;
+}
+
+.restartButton {
+  margin-top: 1rem !important;
+  background-color: #ffffff;
+  color: #0c1222;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 768px) {
+  .quizContainer {
+    padding-top: 100px; /* Etwas weniger Padding oben auf Mobile */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .questionText {
+    font-size: 1.5rem; /* Schriftgröße deutlich kleiner für Handys */
+  }
+
+  .answerButton {
+    font-size: 1rem; /* Antworttext lesbar halten */
+    padding: 0.75rem;
+  }
+
+  .answerButton::before {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+  }
+
+  .navigationButtons {
+    /* Auf Mobile Buttons vielleicht untereinander? 
+       Oder nebeneinander lassen, aber kleiner. 
+       Hier lassen wir sie nebeneinander, machen sie aber flexibel. */
+    gap: 1rem;
+  }
+
+  .navButton {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    min-width: auto; /* Buttons schrumpfen lassen wenn nötig */
+    flex: 1; /* Beide Buttons gleich breit */
+  }
+
+  .scoreSection {
+    padding: 2rem 1rem;
+  }
+
+  .scoreSection h2 {
+    font-size: 1.8rem;
+  }
+
+  .scoreNumber {
+    font-size: 2.5rem;
+  }
+}
+
+/* Für sehr kleine Handys (iPhone SE etc.) */
+@media (max-width: 380px) {
+  .questionText {
+    font-size: 1.3rem;
+  }
+
+  .navButton {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
 }
