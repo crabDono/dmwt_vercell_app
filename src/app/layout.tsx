@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../components/UI/Navbar";
 import Footer from "../components/UI/Footer";
 import FollowCursor from "../components/features/FollowCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 // Konfiguriere die Schriftart mit einer CSS-Variable
 const urbanist = Urbanist({
