@@ -1,6 +1,54 @@
-/* filepath: /Users/michael/Documents/Studium/Semester 3/Digital Media und Webtochnologien/website/finanzbildung/src/components/charts/LineChartBTC/Bitcoin.module.css */
+/* Simuliert den hellgrauen Bereich um den Graphen herum */
+.pageBackground {
+  background-color: #e6e6e6; /* Dein gewünschtes Hellgrau */
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .chartContainer {
-  background-color: #111827; /* Hier Ihre gewünschte Farbe einfügen */
-  padding: 1rem;
-  border-radius: 8px;
+  /* Dein gewünschter dunkler Hintergrund für den Graphen */
+
+  border-radius: 24px;
+  padding: 32px;
+  /* Schatten, damit sich die dunkle Karte vom hellen Hintergrund abhebt */
+  /* box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.2); */
+  color: white;
+  width: 100%;
+  max-width: 1920px;
+  font-family: "Inter", system-ui, sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.titleLabel {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.bigNumber {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: black;
+  line-height: 1;
+}
+
+.canvasWrapper {
+  position: relative;
+  height: 400px;
+  width: 100%;
 }

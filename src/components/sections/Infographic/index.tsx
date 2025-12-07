@@ -71,7 +71,7 @@ const Infographic = () => {
 
   // Pagination state für die Charts
   const charts = [
-    { id: "btc", node: <LineChartBTC data={chartData.btc} /> },
+    // { id: "btc", node: <LineChartBTC data={chartData.btc} /> },
     { id: "eth", node: <LineChartETH data={chartData.eth} /> },
     { id: "sol", node: <LineChartSOL data={chartData.sol} /> },
     { id: "binancecoin", node: <LineChartBNB data={chartData.bnb} /> },
@@ -104,32 +104,34 @@ const Infographic = () => {
           aria-roledescription="carousel"
           aria-label="Charts"
         >
-          <button
+          {/* <button
             className={`${styles.sideArrow} ${styles.left}`}
             onClick={prev}
             aria-label="Vorheriges Chart"
           >
             ←
-          </button>
+          </button> */}
 
-          <div className={styles.chartWrapper} key={charts[current].id}>
+          {/* <div className={styles.chartWrapper} key={charts[current].id}>
             {isLoading && (
               <div className={styles.loadingIndicator}>Lade Chart-Daten...</div>
             )}
             {error && <div className={styles.errorIndicator}>{error}</div>}
             {!isLoading && !error && charts[current].node}
-          </div>
+          </div> */}
 
-          <button
+          <LineChartBTC />
+
+          {/* <button
             className={`${styles.sideArrow} ${styles.right}`}
             onClick={next}
             aria-label="Nächstes Chart"
           >
             →
-          </button>
+          </button> */}
         </div>
 
-        <div className={styles.carouselControls}>
+        {/* <div className={styles.carouselControls}>
           <div className={styles.dots}>
             {charts.map((c, i) => (
               <button
@@ -143,12 +145,11 @@ const Infographic = () => {
               />
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Quellenangabe unter den Punkten */}
-        <div className={styles.attribution}>
+        {/* <div className={styles.attribution}>
           <span>Data provided by </span>
-          {/* Das Image wird jetzt von einem Link umschlossen */}
           <a
             href="https://www.coingecko.com"
             target="_blank"
@@ -161,7 +162,7 @@ const Infographic = () => {
               height={30}
             />
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );

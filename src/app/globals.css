@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
-}
-
 :root {
   --container-max: 1200px;
   --gap: 1rem;
@@ -13,9 +9,16 @@ html {
 * {
   box-sizing: border-box;
 }
+
 html {
+  scroll-behavior: smooth;
   font-size: 100%;
-} /* 16px */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -23,6 +26,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #111;
   line-height: 1.5;
+  scrollbar-width: none;
 }
 
 /* responsive typography (scale down on small screens) */
