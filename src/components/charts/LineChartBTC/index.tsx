@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
   Filler,
+  ChartData,
+  TooltipItem,
 } from "chart.js";
 
 ChartJS.register(
@@ -45,8 +47,11 @@ const historicalData = [
 ];
 
 const LineChartBTC = () => {
-  const chartRef = useRef<any>(null);
-  const [chartData, setChartData] = useState<any>({
+  const chartRef = useRef<ChartJS<"line", number[], string> | null>(null);
+  const [chartData, setChartData] = useState<
+    ChartData<"line", number[], string>
+  >({
+    labels: [],
     datasets: [],
   });
 
@@ -60,14 +65,8 @@ const LineChartBTC = () => {
     const ctx = chart.ctx;
     const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
 
-    // Start: Ein TIEFERES Blau (Dark Blue) und weniger Deckkraft (0.5 statt 0.9)
-    // Das wirkt "nicht so solide" und deutlich dunkler als die Linie selbst.
     gradient.addColorStop(0, "rgba(29, 78, 216, 0.5)");
-
-    // Mitte: Schneller Übergang ins fast Transparente
     gradient.addColorStop(0.5, "rgba(29, 78, 216, 0.1)");
-
-    // Ende: Hintergrundfarbe (nahtloser Übergang)
     gradient.addColorStop(1, "rgba(11, 14, 29, 0)");
 
     setChartData({
@@ -81,7 +80,7 @@ const LineChartBTC = () => {
           backgroundColor: gradient,
           fill: true,
           tension: 0.4,
-          pointBackgroundColor: "#0b0e1d", // Punkt-Inneres passt sich Hintergrund an
+          pointBackgroundColor: "#0b0e1d",
           pointBorderColor: "#60A5FA",
           pointBorderWidth: 2,
           pointRadius: 5,
@@ -98,7 +97,7 @@ const LineChartBTC = () => {
       legend: { display: false },
       title: { display: false },
       tooltip: {
-        backgroundColor: "rgba(29, 12, 11, 0.95)", // Tooltip fast wie Hintergrund
+        backgroundColor: "rgba(29, 12, 11, 0.03)",
         titleColor: "#94a3b8",
         bodyColor: "#ffffff",
         borderColor: "white",
@@ -106,12 +105,14 @@ const LineChartBTC = () => {
         padding: 12,
         displayColors: false,
         callbacks: {
-          label: function (context: any) {
+          label: function (context: TooltipItem<"line">) {
+            const value = context.parsed.y;
+            if (value === null) return "";
             return new Intl.NumberFormat("de-DE", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
-            }).format(context.parsed.y);
+            }).format(value);
           },
         },
       },
@@ -141,8 +142,6 @@ const LineChartBTC = () => {
   };
 
   return (
-    // Ich habe hier einen Wrapper hinzugefügt, um den grauen Hintergrund zu simulieren,
-    // falls du die Komponente direkt testest.
     <div className={styles.pageBackground}>
       <div className={styles.chartContainer}>
         <div className={styles.header}>
