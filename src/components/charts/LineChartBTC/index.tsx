@@ -97,7 +97,7 @@ const LineChartBTC = () => {
       legend: { display: false },
       title: { display: false },
       tooltip: {
-        backgroundColor: "rgba(29, 12, 11, 0.03)",
+        backgroundColor: "rgba(29, 12, 11, 0.93)",
         titleColor: "#94a3b8",
         bodyColor: "#ffffff",
         borderColor: "white",
