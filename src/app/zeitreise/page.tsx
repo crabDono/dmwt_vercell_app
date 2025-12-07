@@ -4,12 +4,14 @@ import TextParallax from "@/src/components/features/SlideInText";
 import TextParallax2 from "@/src/components/features/SlideInText2";
 import FAQ from "@/src/components/sections/FAQ";
 import CryptoInfographic from "@/src/components/charts/Infographic";
+import Zeitreise from "@/src/components/sections/Zeitreise";
 
 export const dynamic = "force-dynamic";
 
 export default function Page() {
   return (
     <main data-theme="light">
+      <Zeitreise />
       <Infographic />
       <CryptoInfographic />
       <FAQ />

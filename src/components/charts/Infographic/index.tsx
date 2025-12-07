@@ -60,7 +60,7 @@ const CryptoInfographic = () => {
 
   return (
     <>
-      <div className={styles.headerSection}>
+      <div className={styles.headerSection} data-theme="dark">
         <h2 className={styles.mainTitle}>Kryptowährungen verstehen</h2>
         <p className={styles.subtitle}>
           Entdecke die verschiedenen Aspekte der Kryptowelt
