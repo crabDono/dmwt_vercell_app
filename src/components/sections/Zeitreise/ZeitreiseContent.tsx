@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import styles from "./Zeitreise.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,120 +12,132 @@ interface TimelineEvent {
   year: number;
   title: string;
   description: string;
+  phase: string;
+  mountain: string;
 }
 
 const timelineEvents: TimelineEvent[] = [
   {
+    year: 2008,
+    title: "Whitepaper",
+    description: "Satoshi Nakamoto veröffentlicht das Bitcoin Whitepaper",
+    phase: "Die Startphase",
+    mountain: "/mountains/mountain_2008.png",
+  },
+  {
     year: 2009,
-    title: "Bitcoin Genesis",
-    description: "Satoshi Nakamoto erstellt den ersten Bitcoin Block",
+    title: "Genesis Block",
+    description: "Die Idee Bitcoin ist geboren",
+    phase: "Die Startphase",
+    mountain: "/mountains/mountain_2009.png",
+  },
+  {
+    year: 2010,
+    title: "Erste Transaktion",
+    description: "10. 000 BTC für 2 Pizzas",
+    phase: "Die Startphase",
+    mountain: "/mountains/mountain_2010.png",
   },
   {
     year: 2011,
-    title: "First ATH",
-    description: "Bitcoin erreicht $30 für das erste Mal",
+    title: "Parität mit USD",
+    description: "Bitcoin erreicht $1",
+    phase: "Der Aufstieg",
+    mountain: "/mountains/mountain_2011.png",
+  },
+  {
+    year: 2012,
+    title: "Erstes Halving",
+    description: "Block Reward wird halbiert",
+    phase: "Der Aufstieg",
+    mountain: "/mountains/mountain_2012.png",
   },
   {
     year: 2013,
-    title: "Mt. Gox Crash",
-    description: "Die größte Bitcoin-Börse kollabiert",
-  },
-  {
-    year: 2015,
-    title: "Ethereum Launch",
-    description: "Vitalik Buterin startet die Ethereum-Blockchain",
+    title: "Erster Boom",
+    description: "Bitcoin erreicht $1.000",
+    phase: "Der Aufstieg",
+    mountain: "/mountains/mountain_2013.png",
   },
   {
     year: 2017,
-    title: "ICO Boom",
-    description: "Initial Coin Offerings werden populär",
-  },
-  {
-    year: 2019,
-    title: "Bitcoin Halving",
-    description: "Das Mining-Angebot wird halbiert",
+    title: "Mainstream",
+    description: "Bitcoin erreicht $20.000",
+    phase: "Die Explosion",
+    mountain: "/mountains/mountain_2017.png",
   },
   {
     year: 2021,
-    title: "Bull Run",
-    description: "Bitcoin erreicht $69. 000 All-Time-High",
-  },
-  {
-    year: 2023,
-    title: "FTX Zusammenbruch",
-    description: "Kryptobörse FTX kollabiert spektakulär",
+    title: "All-Time-High",
+    description: "Bitcoin erreicht $69. 000",
+    phase: "Die Explosion",
+    mountain: "/mountains/mountain_2021.png",
   },
   {
     year: 2024,
-    title: "Bitcoin ETF Genehmigung",
-    description: "SEC genehmigt Bitcoin Spot ETFs",
-  },
-  {
-    year: 2026,
-    title: "Die Zukunft",
-    description: "Wo wird Bitcoin sein?  Du entscheidest! ",
+    title: "Bitcoin ETF",
+    description: "SEC genehmigt Spot ETFs",
+    phase: "Die Zukunft",
+    mountain: "/mountains/mountain_2024.png",
   },
 ];
+
+// Hilfsfunktion:  Prüft ob ein neuer Abschnitt beginnt
+const isNewPhase = (index: number): boolean => {
+  if (index === 0) return true;
+  return timelineEvents[index].phase !== timelineEvents[index - 1].phase;
+};
+
+// Hilfsfunktion: Prüft ob nach diesem Event ein neuer Abschnitt kommt
+const isPhaseEnd = (index: number): boolean => {
+  if (index === timelineEvents.length - 1) return false;
+  return timelineEvents[index].phase !== timelineEvents[index + 1].phase;
+};
 
 export default function ZeitreiseContent() {
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const eventsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const astronautRef = useRef<HTMLDivElement>(null);
+  const [activeEvent, setActiveEvent] = useState<number>(0);
 
   useEffect(() => {
     const container = containerRef.current;
     const timeline = timelineRef.current;
-    const progress = progressRef.current;
-    const events = eventsRef.current.filter(
-      (el): el is HTMLDivElement => el !== null
-    );
+    const astronaut = astronautRef.current;
 
-    if (!container || !timeline || !progress || events.length === 0) return;
+    if (!container || !timeline || !astronaut) return;
 
     const ctx = gsap.context(() => {
-      const scrollTween = gsap.to(timeline, {
-        xPercent: (-100 * (events.length - 1)) / events.length,
+      gsap.to(timeline, {
+        x: () => -(timeline.scrollWidth - window.innerWidth + 100),
         ease: "none",
         scrollTrigger: {
           trigger: container,
           pin: true,
           scrub: 1,
-          end: "+=3000",
+          end: () => `+=${timeline.scrollWidth - window.innerWidth + 500}`,
           onUpdate: (self) => {
-            gsap.to(progress, {
-              width: `${self.progress * 100}%`,
-              duration: 0.1,
-              ease: "none",
-            });
+            const progress = self.progress;
+            const eventIndex = Math.min(
+              Math.floor(progress * timelineEvents.length),
+              timelineEvents.length - 1
+            );
+            setActiveEvent(eventIndex);
 
-            events.forEach((event, index) => {
-              const eventProgress = index / events.length;
-              if (self.progress >= eventProgress) {
-                event.classList.add(styles.eventActive);
-              } else {
-                event.classList.remove(styles.eventActive);
-              }
-            });
+            const startX = 0;
+            const endX = window.innerWidth - 300;
+            const astronautX = startX + progress * (endX - startX);
+            gsap.set(astronaut, { x: astronautX });
           },
         },
       });
 
-      events.forEach((event) => {
-        const card = event.querySelector("[data-card]");
-        if (card) {
-          gsap.from(card, {
-            opacity: 0,
-            y: 50,
-            scrollTrigger: {
-              trigger: event,
-              containerAnimation: scrollTween,
-              start: "left 80%",
-              end: "left 50%",
-              scrub: true,
-            },
-          });
-        }
+      gsap.to(astronaut, {
+        y: -15,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
     }, container);
 
@@ -132,45 +145,75 @@ export default function ZeitreiseContent() {
   }, []);
 
   return (
-    <section ref={containerRef} className={styles.zeitreiseSection}>
+    <section
+      ref={containerRef}
+      className={styles.zeitreiseSection}
+      data-theme="dark"
+    >
+      {/* Header */}
       <div className={styles.header}>
-        <h2 className={styles.title}>Bitcoin Zeitreise</h2>
-        <p className={styles.subtitle}>
-          Eine Reise durch die Geschichte von Bitcoin und Kryptowährungen
-        </p>
-        <p className={styles.scrollHint}>
-          Scrolle um durch die Timeline zu navigieren
-        </p>
+        <h1 className={styles.title}>History of Bitcoin</h1>
       </div>
 
-      <div className={styles.timelineContainer}>
-        <div className={styles.timelineBackground}>
-          <div
-            ref={progressRef}
-            className={styles.timelineProgress}
-            style={{ width: "0%" }}
-          />
+      {/* Astronaut mit Sprechblase */}
+      <div ref={astronautRef} className={styles.astronautContainer}>
+        <div className={styles.speechBubble}>
+          <p className={styles.speechText}>
+            {timelineEvents[activeEvent].description}
+          </p>
         </div>
+        <Image
+          src="/astronaut_pixel.png"
+          alt="Astronaut"
+          width={180}
+          height={225}
+          className={styles.astronaut}
+          priority
+        />
+      </div>
 
-        <div className={styles.timelineContent} ref={timelineRef}>
-          {timelineEvents.map((event, index) => (
+      {/* Timeline mit Berge, Jahre und Phasen */}
+      <div ref={timelineRef} className={styles.timelineContainer}>
+        {timelineEvents.map((event, index) => (
+          <div key={event.year} className={styles.eventWrapper}>
+            {/* Phase Label - nur beim ersten Event einer Phase */}
+            {isNewPhase(index) && (
+              <div className={styles.phaseLabel}>
+                <span className={styles.phaseLabelText}>{event.phase}</span>
+              </div>
+            )}
+
+            {/* Event Column */}
             <div
-              key={event.year}
-              className={styles.timelineEvent}
-              ref={(el) => {
-                eventsRef.current[index] = el;
-              }}
+              className={`${styles.eventColumn} ${
+                activeEvent === index ? styles.eventColumnActive : ""
+              }`}
             >
-              <div className={styles.eventDot} />
+              {/* Berg */}
+              <div className={styles.mountainWrapper}>
+                <Image
+                  src={event.mountain}
+                  alt={`Berg ${event.year}`}
+                  width={200}
+                  height={250}
+                  className={styles.mountainImage}
+                />
+              </div>
 
-              <div className={styles.eventCard} data-card>
-                <div className={styles.eventYear}>{event.year}</div>
-                <h3 className={styles.eventTitle}>{event.title}</h3>
-                <p className={styles.eventDescription}>{event.description}</p>
+              {/* Timeline Punkt und Jahr */}
+              <div className={styles.eventMarkerWrapper}>
+                <div className={styles.eventMarker} />
+                <span className={styles.eventYear}>{event.year}</span>
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Trennlinie - nach dem letzten Event einer Phase */}
+            {isPhaseEnd(index) && <div className={styles.phaseDivider} />}
+          </div>
+        ))}
+
+        {/* Durchgehende Timeline Linie */}
+        <div className={styles.timelineLine} />
       </div>
     </section>
   );

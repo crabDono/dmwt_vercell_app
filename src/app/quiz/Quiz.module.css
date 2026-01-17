@@ -4,7 +4,7 @@
 .quizContainer {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* GEÄNDERT: Linksbündig statt center */
   /* WICHTIG: Align-items start statt center, damit auf kleinen Screens 
      der Inhalt gescrollt werden kann und nicht oben abgeschnitten wird */
   align-items: flex-start;
@@ -16,11 +16,11 @@
 
   /* WICHTIG FÜR NAVBAR: 
      Da die Navbar 'fixed' ist, müssen wir dem Container oben Platz geben,
-     sonst klebt der Text hinter dem Logo. */
+     sonst klebt der Text hinter dem Logo.  */
   padding-top: 120px;
   padding-bottom: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 4rem; /* GEÄNDERT: Mehr Padding links für Abstand vom Rand */
+  padding-right: 1 5rem;
 
   position: relative;
   overflow-x: hidden; /* Verhindert seitliches Scrollen */
@@ -30,8 +30,9 @@
 .backgroundImage {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  right: 5%; /* GEÄNDERT: Rechtsbündig statt zentriert */
+  left: auto; /* GEÄNDERT: Entfernt die zentrierte Positionierung */
+  transform: translateY(-50%); /* GEÄNDERT: Nur vertikal zentrieren */
   opacity: 0.15;
   pointer-events: none;
   z-index: 0;
@@ -76,7 +77,7 @@
 
 /* Die Frage selbst */
 .questionText {
-  font-size: 2.2rem; /* Desktop Größe */
+  font-size: 2 2rem; /* Desktop Größe */
   font-weight: 800;
   line-height: 1.2;
   color: #ffffff;
@@ -96,7 +97,6 @@
   border: none;
   padding: 1rem; /* Größere Klickfläche */
   cursor: pointer;
-
   display: flex;
   align-items: flex-start; /* Text oben bündig falls mehrzeilig */
   text-align: left;
@@ -117,10 +117,11 @@
   height: 24px;
   border-radius: 50%;
   border: 2px solid #ffffff;
-  margin-right: 1.25rem;
+  /* margin-right: 1 25rem; */
   flex-shrink: 0; /* Verhindert, dass Kreis bei langem Text schrumpft */
   margin-top: 0.2rem; /* Optische Ausrichtung zum Text */
   transition: all 0.3s ease;
+  margin-right: 1rem;
 }
 
 /* Hover-Effekte (nur Desktop, stört auf Touch) */
@@ -153,7 +154,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
-  padding-top: 1.5rem;
+  padding-top: 1 5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -207,7 +208,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1 5rem;
   background: rgba(255, 255, 255, 0.05);
   padding: 3rem 2rem;
   border-radius: 16px;
@@ -261,6 +262,15 @@
     padding-top: 100px; /* Etwas weniger Padding oben auf Mobile */
     padding-left: 1rem;
     padding-right: 1rem;
+    justify-content: center; /* Auf Mobile wieder zentriert */
+  }
+
+  .backgroundImage {
+    /* Auf Mobile das Bild wieder zentrieren, da weniger Platz */
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1; /* Etwas weniger sichtbar auf Mobile */
   }
 
   .questionText {
@@ -279,8 +289,8 @@
   }
 
   .navigationButtons {
-    /* Auf Mobile Buttons vielleicht untereinander? 
-       Oder nebeneinander lassen, aber kleiner. 
+    /* Auf Mobile Buttons vielleicht untereinander?  
+       Oder nebeneinander lassen, aber kleiner.  
        Hier lassen wir sie nebeneinander, machen sie aber flexibel. */
     gap: 1rem;
   }
@@ -301,7 +311,7 @@
   }
 
   .scoreNumber {
-    font-size: 2.5rem;
+    font-size: 2 5rem;
   }
 }
 

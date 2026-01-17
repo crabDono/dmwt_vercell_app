@@ -59,7 +59,7 @@ const CryptoInfographic = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <>
+    <section data-theme="dark">
       <div className={styles.headerSection}>
         <h2 className={styles.mainTitle}>Kryptowährungen verstehen</h2>
         <p className={styles.subtitle}>
@@ -125,7 +125,7 @@ const CryptoInfographic = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -11,13 +11,14 @@ const Hero = () => {
     <section className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          DEINE DIGITALE ZUKUNFT <br /> BEGINNT JETZT: <br /> FINANZWISSEN{" "}
-          <br /> FÜR DIE KRYPTO-ÄRA.
+          Entfliehe der Schwerkraft. <br />
+          Dein Start in die <br />
+          finanzielle Unabhängigkeit
         </h1>
         <p className={styles.subtitle}>
-          Tauche ein in die Welt der dezentralen Finanzen. <br /> Lerne, wie du
-          sicher handelst, Staking nutzt und das Potenzial <br /> der Blockchain
-          für dich erschließt!
+          Das Finanzuniversum ist riesig, aber nicht kompliziert. <br /> Wir
+          geben dir Navigation, Ausrüstung und den Plan <br /> für deine Reise
+          zur Unabhängigkeit.
         </p>
 
         <div className="mt-6 flex justify-center">

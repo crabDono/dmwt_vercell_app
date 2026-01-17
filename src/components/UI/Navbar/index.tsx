@@ -134,8 +134,8 @@ export default function Navbar() {
             <Image
               src="/triple.svg"
               alt="Logo"
-              width={50}
-              height={30}
+              width={100}
+              height={60}
               // Nutze auch hier effectiveTheme!
               className={effectiveTheme === "light" ? styles.invertLogo : ""}
             />

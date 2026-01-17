@@ -8,8 +8,7 @@ const ZeitreiseContent = dynamic(() => import("./ZeitreiseContent"), {
   loading: () => (
     <section className={styles.zeitreiseSection} data-theme="dark">
       <div className={styles.header}>
-        <h2 className={styles.title}>Bitcoin Zeitreise</h2>
-        <p className={styles.subtitle}>Lädt... </p>
+        <h1 className={styles.title}>History of Bitcoin</h1>
       </div>
     </section>
   ),
