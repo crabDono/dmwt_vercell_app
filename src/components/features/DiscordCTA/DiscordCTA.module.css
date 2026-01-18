@@ -1,0 +1,207 @@
+.ctaSection {
+  position: relative;
+  /* Passt zum dunklen Theme, aber etwas heller um sich abzuheben */
+  background: linear-gradient(145deg, #12172d 0%, #0b0e1d 100%);
+  padding: 4rem 2rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(88, 101, 242, 0.2);
+  border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+/* Ein subtiler Schein in der Discord-Farbe im Hintergrund */
+.glowEffect {
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(88, 101, 242, 0.15) 0%,
+    rgba(88, 101, 242, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Linke Seite: Text --- */
+.textContent {
+  flex: 1;
+  max-width: 600px;
+}
+
+.memberBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(88, 101, 242, 0.1);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.onlineIndicator {
+  width: 10px;
+  height: 10px;
+  background-color: #3ba55c; /* Discord "Online" Grün */
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(59, 165, 92, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: #a0a0a0;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* --- Der Button --- */
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.discordButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #5865f2; /* Die offizielle Discord Farbe */
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+}
+
+.discordButton:hover {
+  background-color: #4752c4;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+}
+
+.discordButton img {
+  transition: transform 0.3s ease;
+}
+
+.discordButton:hover img {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.subButtonText {
+  font-size: 0.875rem;
+  color: #a0a0a0;
+  margin-left: 0.5rem;
+}
+
+/* --- Rechte Seite: Visual --- */
+.visualContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floatingIcon {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  /* Sanfte Schwebe-Animation */
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(88, 101, 242, 0.3));
+}
+
+/* --- Animationen --- */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 165, 92, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(59, 165, 92, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 165, 92, 0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 968px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .textContent {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonWrapper {
+    align-items: center;
+  }
+
+  .floatingIcon {
+    max-width: 300px;
+  }
+
+  .glowEffect {
+    top: -20%;
+    right: -50%;
+    width: 600px;
+    height: 600px;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .discordButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
