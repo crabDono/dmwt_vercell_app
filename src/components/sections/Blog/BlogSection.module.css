@@ -1,0 +1,166 @@
+/* Section */
+.section {
+  background-color: #0b0e1d;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  padding-bottom: 8rem;
+  padding-top: 8rem;
+  position: relative;
+}
+
+.waveDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.waveDivider svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.waveTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.waveTop svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Article */
+.article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.article:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .article {
+    flex-direction: row;
+  }
+
+  .articleReversed {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Text Content */
+.textContent {
+  flex: 1;
+  color: white;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.excerpt {
+  color: #d1d5db;
+  line-height: 1.75;
+}
+
+/* Image */
+.imageWrapper {
+  flex: 1;
+}
+
+.imagePlaceholder {
+  background-color: white;
+  border-radius: 0.5rem;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 28rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #161b22;
+  border-radius: 0.75rem;
+  max-width: 42rem;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modalBody {
+  padding: 2rem;
+}
+
+.modalImage {
+  background-color: white;
+  border-radius: 0.5rem;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.modalText {
+  color: #d1d5db;
+  line-height: 1.75;
+}
+
+/* Close Button */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: white;
+}

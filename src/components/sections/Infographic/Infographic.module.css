@@ -3,7 +3,6 @@
   height: 100%;
   padding: 2rem 0;
   background-color: #e6e6e6;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,26 +31,12 @@
   color: #0b0e1c;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem; /* Leicht reduziert */
-  width: 100%; /* Stellt sicher, dass das Grid die volle Breite des Containers nutzt */
-}
-
 .subtitle {
   font-size: 1.25rem; /* Reduziert */
   font-weight: normal; /* Von medium auf normal */
   margin-bottom: 0; /* Angepasst */
   color: #0b0e1c; /* Etwas heller als darkgray */
   max-width: 800px; /* Begrenzt die Zeilenlänge für bessere Lesbarkeit */
-}
-
-.subsubtitle {
-  font-size: 1.125rem; /* Reduziert */
-  font-weight: normal;
-  color: #9ca3af; /* darkgray */
-  margin-top: -0.5rem; /* Zieht es näher an den subtitle */
 }
 
 @media (min-width: 768px) {
@@ -72,10 +57,6 @@
   .subtitle {
     font-size: 1.25rem;
   }
-
-  .subsubtitle {
-    font-size: 1.125rem;
-  }
 }
 
 /* Small screens (mobile, ~767px und kleiner) */
@@ -94,13 +75,6 @@
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
-  .arrowButton {
-    padding: 0.4rem 0.6rem;
-  }
-  .dot,
-  .activeDot {
-    transform: scale(0.9);
-  }
 }
 
 /* Chart-Container: größer und responsive */
@@ -112,154 +86,4 @@
   margin-top: 1.5rem;
   overflow: visible; /* arrows außerhalb erlauben */
   position: relative; /* für absolute Buttons */
-}
-
-/* Chart Wrapper: maximale Breite erhöhen, Höhe über Viewport definieren */
-.chartWrapper {
-  width: 100%;
-  max-width: 1100px; /* größer als vorher */
-  height: 56vh; /* responsive Höhe (56% der Viewport-Höhe) */
-  min-height: 360px; /* verhindert zu kleines Chart auf großen Bildschirmen */
-  max-height: 720px; /* verhindert zu hohe Charts */
-  transition: transform 240ms ease, opacity 240ms ease;
-  display: block;
-  border-radius: 12px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.02)
-  ); /* leichter Hintergrundfall */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
-}
-
-/* Seitliche Pfeile (links/rechts) */
-.sideArrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.125rem;
-  transition: background 140ms ease, transform 120ms ease, box-shadow 140ms ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-  z-index: 5;
-  /* margin: 0 -2rem; */
-}
-
-.sideArrow:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-50%) scale(1.03);
-}
-
-.sideArrow:active {
-  transform: translateY(-50%) scale(0.98);
-}
-
-.sideArrow:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.12);
-  outline-offset: 4px;
-}
-
-/* Positionierung links/rechts */
-.sideArrow.left {
-  left: calc(
-    (100% - 1100px) / 2 - 28px
-  ); /* an Chart-Rand ausrichten bei großen Viewports */
-}
-
-.sideArrow.right {
-  right: calc((100% - 1100px) / 2 - 28px);
-}
-
-/* Fallback / mobile: Pfeile näher an Chart platzieren */
-@media (max-width: 1024px) {
-  .sideArrow.left {
-    left: 2px;
-  }
-  .sideArrow.right {
-    right: 2px;
-  }
-}
-
-/* Mobile: Pfeile kleiner, Charthöhe anpassen */
-@media (max-width: 767px) {
-  .chartWrapper {
-    max-width: 100%;
-    height: 46vh;
-    min-height: 240px;
-    border-radius: 10px;
-  }
-  .sideArrow {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-  .sideArrow.left {
-    left: 6px;
-  }
-  .sideArrow.right {
-    right: 6px;
-  }
-}
-
-/* Dots styling verbessern */
-.dots {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 120ms ease, background 120ms ease;
-}
-
-.activeDot {
-  background: #fff;
-  width: 12px;
-  height: 12px;
-  transform: scale(1.05);
-}
-
-/* NEUE STYLES: Für die Quellenangabe */
-.attribution {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem; /* Abstand nach oben */
-  color: black;
-  font-size: 0.875rem;
-  opacity: 0.8;
-}
-
-/* In Infographic.module.css hinzufügen */
-.loadingIndicator,
-.errorIndicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: white;
-  font-size: 1.2rem;
-}
-.errorIndicator {
-  color: #ff8a8a;
 }

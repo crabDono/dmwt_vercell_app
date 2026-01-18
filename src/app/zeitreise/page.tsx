@@ -5,6 +5,7 @@ import TextParallax2 from "@/src/components/features/SlideInText2";
 import FAQ from "@/src/components/sections/FAQ";
 import CryptoInfographic from "@/src/components/charts/Infographic";
 import Zeitreise from "@/src/components/sections/Zeitreise";
+import BlogSection from "@/src/components/sections/Blog";
 
 export const dynamic = "force-dynamic";
 
@@ -13,8 +14,9 @@ export default function Page() {
     <main data-theme="light">
       <Zeitreise />
       <Infographic />
-      <CryptoInfographic />
+      <BlogSection />
       <FAQ />
+      <CryptoInfographic />
       <TextParallax />
       <CommentSection />
     </main>

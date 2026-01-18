@@ -1,101 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image"; // 1. Image-Komponente importieren
 import styles from "./Infographic.module.css";
 import LineChartBTC from "../../charts/LineChartBTC";
-import LineChartETH from "../../charts/LineChartETH";
-import LineChartSOL from "../../charts/LineChartSOL";
-import LineChartBNB from "../../charts/LineChartBNB";
-import LineChartXRP from "../../charts/LineChartXRP";
-import LineChartADA from "../../charts/LineChartADA";
-import LineChartDOT from "../../charts/LineChartDOT";
-import LineChartDOGE from "../../charts/LineChartDOGE";
 
-// Typdefinition für die Chart-Daten
-type ChartData = [number, number][]; // Array von [timestamp, price] Tupeln
+type ChartData = [number, number][];
 
 const Infographic = () => {
-  const [chartData, setChartData] = useState<{
-    btc: ChartData | null;
-    eth: ChartData | null;
-    sol: ChartData | null;
-    bnb: ChartData | null;
-    xrp: ChartData | null;
-    ada: ChartData | null;
-    dot: ChartData | null;
-    doge: ChartData | null;
-  }>({
-    btc: null,
-    eth: null,
-    sol: null,
-    bnb: null,
-    xrp: null,
-    ada: null,
-    dot: null,
-    doge: null,
-  });
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchChartData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch("/api/coingecko");
-        if (!response.ok) {
-          throw new Error("Daten konnten nicht geladen werden.");
-        }
-        const data = await response.json();
-        setChartData({
-          btc: data.btc,
-          eth: data.eth,
-          sol: data.sol,
-          bnb: data.bnb,
-          xrp: data.xrp,
-          ada: data.ada,
-          dot: data.dot,
-          doge: data.doge,
-        });
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Ein Fehler ist aufgetreten."
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchChartData();
-  }, []);
-
-  // Pagination state für die Charts
-  const charts = [
-    // { id: "btc", node: <LineChartBTC data={chartData.btc} /> },
-    { id: "eth", node: <LineChartETH data={chartData.eth} /> },
-    { id: "sol", node: <LineChartSOL data={chartData.sol} /> },
-    { id: "binancecoin", node: <LineChartBNB data={chartData.bnb} /> },
-    { id: "xrp", node: <LineChartXRP data={chartData.xrp} /> },
-    { id: "ada", node: <LineChartADA data={chartData.ada} /> },
-    { id: "dot", node: <LineChartDOT data={chartData.dot} /> },
-    { id: "doge", node: <LineChartDOGE data={chartData.doge} /> },
-  ];
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + charts.length) % charts.length);
-  const next = () => setCurrent((c) => (c + 1) % charts.length);
-
   return (
     <section className={styles.infografic} id="infographic">
       <div className={styles.container}>
         <h2 className={styles.title}>Kurs Veränderungen</h2>
         <p className={styles.subtitle}>
-          Die folgende Grafik zeigt die Entwicklung der Kurse über die
-          vergangenen 365 Tage.
-        </p>
-        <p className={styles.subsubtitle}>
-          Die Werte basieren auf historischen Tageskursen und dienen als
-          Orientierung für die kurzfristige Preisentwicklung.
+          Ob Schubkraft oder Schwerkraft – nutze jede <br /> Marktbewegung als
+          Antrieb für dein Depot.
         </p>
 
         <div
@@ -104,65 +22,8 @@ const Infographic = () => {
           aria-roledescription="carousel"
           aria-label="Charts"
         >
-          {/* <button
-            className={`${styles.sideArrow} ${styles.left}`}
-            onClick={prev}
-            aria-label="Vorheriges Chart"
-          >
-            ←
-          </button> */}
-
-          {/* <div className={styles.chartWrapper} key={charts[current].id}>
-            {isLoading && (
-              <div className={styles.loadingIndicator}>Lade Chart-Daten...</div>
-            )}
-            {error && <div className={styles.errorIndicator}>{error}</div>}
-            {!isLoading && !error && charts[current].node}
-          </div> */}
-
           <LineChartBTC />
-
-          {/* <button
-            className={`${styles.sideArrow} ${styles.right}`}
-            onClick={next}
-            aria-label="Nächstes Chart"
-          >
-            →
-          </button> */}
         </div>
-
-        {/* <div className={styles.carouselControls}>
-          <div className={styles.dots}>
-            {charts.map((c, i) => (
-              <button
-                key={c.id}
-                className={`${styles.dot} ${
-                  i === current ? styles.activeDot : ""
-                }`}
-                onClick={() => setCurrent(i)}
-                aria-label={`Gehe zu ${c.id.toUpperCase()}`}
-                aria-current={i === current}
-              />
-            ))}
-          </div>
-        </div> */}
-
-        {/* Quellenangabe unter den Punkten */}
-        {/* <div className={styles.attribution}>
-          <span>Data provided by </span>
-          <a
-            href="https://www.coingecko.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/CGAPI-Lockup.svg"
-              alt="CoinGecko API"
-              width={120}
-              height={30}
-            />
-          </a>
-        </div> */}
       </div>
     </section>
   );
