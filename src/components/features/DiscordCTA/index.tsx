@@ -5,12 +5,10 @@ import Image from "next/image";
 import styles from "./DiscordCTA.module.css";
 
 const DiscordCTA = () => {
-  // WICHTIG: Ersetze dies durch deinen echten Invite-Link!
   const discordInviteLink = "https://discord.gg/YeVyVHEQgg";
 
   return (
-    <section className={styles.ctaSection} date-theme="dark">
-      {/* Hintergrund-Effekt */}
+    <section className={styles.ctaSection} data-theme="dark">
       <div className={styles.glowEffect} aria-hidden="true"></div>
 
       <div className={styles.container}>

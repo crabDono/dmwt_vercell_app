@@ -9,7 +9,7 @@ const CommentSection = async () => {
     },
   });
   return (
-    <section className={styles.information}>
+    <section className={styles.information} data-theme="dark">
       <div className={styles.glassContainer}>
         <h2 className={styles.title}>Teile deine Gedanken</h2>
         <p className={styles.subtitle}>
