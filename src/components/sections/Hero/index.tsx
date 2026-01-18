@@ -21,7 +21,7 @@ const Hero = () => {
           zur Unabhängigkeit.
         </p>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex justify">
           <ButtonComponent
             onClick={() => {
               router.push("/quiz");

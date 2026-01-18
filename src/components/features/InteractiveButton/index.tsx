@@ -7,18 +7,18 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ButtonComponent = forwardRef<HTMLButtonElement, Props>(
-  ({ text = "STARTE QUIZ!", className, ...rest }, ref) => {
+  ({ text = "Mission Starten!", className, ...rest }, ref) => {
     return (
       <button
         ref={ref}
         {...rest}
         className={cn(
-          "group relative w-auto cursor-pointer overflow-hidden rounded-full border border-white bg-background p-2 px-6 text-center font-semibold text-white",
+          "group relative w-auto cursor-pointer overflow-hidden rounded-full border border-white bg-white p-2 px-6 text-center font-semibold text-black",
           className
         )}
       >
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 scale-100 rounded-lg bg-primary transition-all duration-300 group-hover:scale-[100.8]" />
+          {/* <div className="w-2 h-2 scale-100 rounded-lg bg-primary transition-all duration-300 group-hover:scale-[100.8]" /> */}
           <span className="inline-block whitespace-nowrap transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
             {text}
           </span>
