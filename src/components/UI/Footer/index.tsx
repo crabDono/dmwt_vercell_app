@@ -40,12 +40,21 @@ export default function Footer() {
             </Link>
           </div>
 
+          <Link 
+            href="https://discord.gg/YeVyVHEQgg" target="_blank" rel="noopener noreferrer" className={styles.discordButton} >
+            <Image src="/discord.svg" alt="Discord" width={20} height={20} className={styles.discordIcon}/>Discord beitreten
+          </Link>
+
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} MMM Finances
+            © {new Date().getFullYear()} Triple M Finances
           </p>
         </div>
 
-        
+        <div className={styles.rightSection}>
+          <Link href="/impressum" className={styles.link}>
+            IMPRESSUM
+          </Link>
+        </div>
       </div>
     </footer>
   );
