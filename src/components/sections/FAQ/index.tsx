@@ -12,37 +12,31 @@ const faqData: FAQItem[] = [
     id: "faq-1",
     question: "Was ist Kryptowährung?",
     answer:
-      "Kryptowährung ist digitales Geld, das auf Blockchain-Technologie basiert. Es ermöglicht sichere und dezentrale Transaktionen ohne Banken.",
+      "Kryptowährungen sind digitales Geld. Anders als Euro oder Dollar werden sie nicht von einer Zentralbank gedruckt, sondern durch ein Computernetzwerk dezentral verwaltet. Das macht sie unabhängig und global verfügbar.",
   },
   {
     id: "faq-2",
     question: "Wie sicher ist Bitcoin?",
     answer:
-      "Bitcoin wird durch komplexe mathematische Algorithmen und das Proof-of-Work-System gesichert. Seine Blockchain ist seit 2009 nicht gehackt worden.",
+      "Das Bitcoin-Netzwerk selbst gilt als extrem sicher und wurde noch nie gehackt. Risiken entstehen meist beim Nutzer: Wer seine Zugangsdaten verliert oder auf Betrüger hereinfällt, verliert sein Geld. Bildung ist hier der beste Schutz.",
   },
   {
     id: "faq-3",
     question: "Was ist eine Blockchain?",
     answer:
-      "Eine Blockchain ist eine dezentrale Datenbank, in der Transaktionen in Blöcken gespeichert werden.  Jeder Block ist mit dem vorherigen verknüpft und kryptografisch geschützt.",
+      "Stell dir die Blockchain als ein digitales Kassenbuch vor, das jeder einsehen, aber niemand nachträglich ändern kann. Jede Transaktion wird in einem Block gespeichert und an den vorherigen angekettet – so entsteht eine unveränderbare Historie.",
   },
   {
     id: "faq-4",
     question: "Kann ich mit Kryptos Geld verdienen?",
     answer:
-      "Ja, es gibt mehrere Wege: Trading, Staking, Mining oder langfristige Investitionen.  Allerdings sind diese mit Risiken verbunden.",
+      "Ja, durch Kurssteigerungen beim Kaufen und Verkaufen (Trading) oder durch langfristiges Halten. Aber Achtung: Die Kurse schwanken stark. Investiere nur Geld, dessen Verlust du verschmerzen kannst.",
   },
   {
     id: "faq-5",
-    question: "Sind Kryptowährungen legal? ",
-    answer:
-      "In den meisten Ländern sind Kryptowährungen legal, aber die Regulierung unterscheidet sich je nach Land. Informiere dich über die Gesetze in deinem Land.",
-  },
-  {
-    id: "faq-6",
     question: "Wie bewahre ich meine Kryptos sicher auf? ",
     answer:
-      "Die sicherste Methode ist die Verwendung einer Hardware Wallet.  Online Wallets sind praktischer, aber weniger sicher.  Nutze immer starke Passwörter.",
+      "Auf einer 'Wallet'. Am sichersten sind Hardware-Wallets (wie ein USB-Stick). Der wichtigste Teil ist dein 'Private Key' – wer diesen Schlüssel hat, besitzt die Coins. Gib ihn niemals weiter!",
   },
 ];
 

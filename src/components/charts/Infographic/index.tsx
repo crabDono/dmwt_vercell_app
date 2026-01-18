@@ -23,14 +23,14 @@ const segments = [
     color: "#84cc16",
     icon: PiggyBank,
     description:
-      "Durch Staking oder Lending kannst du deine Kryptowährungen sparen und gleichzeitig passive Einnahmen generieren. Viele Plattformen bieten attraktive Zinssätze für deine digitalen Assets.",
+      "Krypto als Sparbuch? Viele nutzen 'Hodling' (das langfristige Halten) als Strategie. Trotz Volatilität sehen viele in Bitcoin einen Wertspeicher gegen Inflation.",
   },
   {
     label: "Bitcoin Security",
     color: "#06b6d4",
     icon: ShieldCheck,
     description:
-      "Die Sicherheit von Bitcoin basiert auf der Blockchain-Technologie und kryptografischen Algorithmen. Dein Private Key ist der Schlüssel zu deinen Vermögenswerten und sollte niemals weitergegeben werden.",
+      "Sicherheit steht an erster Stelle. Durch kryptografische Verfahren ist das Netzwerk extrem sicher vor Manipulationen. Dein persönlicher Schutz hängt jedoch von deinem Umgang mit Passwörtern und Schlüsseln ab.",
   },
   {
     label: "Mining Farm",
@@ -44,14 +44,14 @@ const segments = [
     color: "#f87171",
     icon: Bitcoin,
     description:
-      "Bitcoin ist die erste und bekannteste Kryptowährung. Mit einem dezentralen Netzwerk und begrenztem Angebot (21 Millionen) hat Bitcoin sich als digitales Gold etabliert.",
+      "Bitcoin ist digitales Geld ohne Banken. Stell es dir wie Gold vor, das du per E-Mail versenden kannst. Es ist die erste und bekannteste Kryptowährung, die Transaktionen weltweit und zensurresistent ermöglicht.",
   },
   {
     label: "Token",
     color: "#a855f7",
     icon: Coins,
     description:
-      "Tokens sind digitale Assets auf Blockchains wie Ethereum. Sie können Utility-Token, Security-Token oder Governance-Token sein und verschiedene Funktionen im Ökosystem erfüllen.",
+      "Ein Token ist mehr als nur eine Währung. Er kann Kunst (NFTs), Zugangsrechte oder Stimmrechte in einem DeFi-Protokoll repräsentieren. Tokens nutzen bestehende Blockchains wie Ethereum für ihre Funktionen.",
   },
 ];
 

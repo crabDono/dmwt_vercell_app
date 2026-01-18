@@ -93,15 +93,6 @@
   flex: 1;
 }
 
-.imagePlaceholder {
-  background-color: white;
-  border-radius: 0.5rem;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  max-width: 28rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
 /* Modal Overlay */
 .modalOverlay {
   position: fixed;
@@ -127,14 +118,6 @@
 
 .modalBody {
   padding: 2rem;
-}
-
-.modalImage {
-  background-color: white;
-  border-radius: 0.5rem;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  margin-bottom: 1.5rem;
 }
 
 .modalTitle {
@@ -163,4 +146,20 @@
 
 .closeButton:hover {
   color: white;
+}
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.modalDisplayImage {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: block;
 }
