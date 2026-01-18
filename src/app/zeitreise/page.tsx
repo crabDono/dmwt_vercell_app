@@ -15,11 +15,11 @@ export default function Page() {
     <main data-theme="light">
       <Zeitreise />
       <Infographic />
+      <CryptoInfographic />
       <BlogSection />
       <FAQ />
-      <CryptoInfographic />
-      <TextParallax />
       <CommunityStats />
+      <TextParallax />
       <CommentSection />
     </main>
   );

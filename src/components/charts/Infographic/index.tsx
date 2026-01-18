@@ -12,18 +12,11 @@ import styles from "./CryptoInfographic.module.css";
 
 const segments = [
   {
-    label: "Cloud Mining",
-    color: "#6366f1",
-    icon: Cloud,
+    label: "Bitcoin",
+    color: "#f87171",
+    icon: Bitcoin,
     description:
-      "Cloud Mining ermöglicht es dir, Kryptowährungen zu schürfen, ohne teure Hardware zu besitzen. Du vermietest Rechenleistung von Rechenzentren und erhältst einen Anteil der geschürften Münzen.",
-  },
-  {
-    label: "Saving",
-    color: "#84cc16",
-    icon: PiggyBank,
-    description:
-      "Krypto als Sparbuch? Viele nutzen 'Hodling' (das langfristige Halten) als Strategie. Trotz Volatilität sehen viele in Bitcoin einen Wertspeicher gegen Inflation.",
+      "Bitcoin ist digitales Geld ohne Banken. Stell es dir wie Gold vor, das du per E-Mail versenden kannst. Es ist die erste und bekannteste Kryptowährung, die Transaktionen weltweit und zensurresistent ermöglicht.",
   },
   {
     label: "Bitcoin Security",
@@ -33,18 +26,11 @@ const segments = [
       "Sicherheit steht an erster Stelle. Durch kryptografische Verfahren ist das Netzwerk extrem sicher vor Manipulationen. Dein persönlicher Schutz hängt jedoch von deinem Umgang mit Passwörtern und Schlüsseln ab.",
   },
   {
-    label: "Mining Farm",
-    color: "#fbbf24",
-    icon: Server,
+    label: "Saving",
+    color: "#84cc16",
+    icon: PiggyBank,
     description:
-      "Mining Farms sind spezialisierte Rechenzentren, die große Mengen an Kryptowährungen schürfen. Sie nutzen spezialisierte Hardware (ASICs) für maximale Effizienz und Rentabilität.",
-  },
-  {
-    label: "Bitcoin",
-    color: "#f87171",
-    icon: Bitcoin,
-    description:
-      "Bitcoin ist digitales Geld ohne Banken. Stell es dir wie Gold vor, das du per E-Mail versenden kannst. Es ist die erste und bekannteste Kryptowährung, die Transaktionen weltweit und zensurresistent ermöglicht.",
+      "Krypto als Sparbuch? Viele nutzen 'Hodling' (das langfristige Halten) als Strategie. Trotz Volatilität sehen viele in Bitcoin einen Wertspeicher gegen Inflation.",
   },
   {
     label: "Token",
@@ -52,6 +38,20 @@ const segments = [
     icon: Coins,
     description:
       "Ein Token ist mehr als nur eine Währung. Er kann Kunst (NFTs), Zugangsrechte oder Stimmrechte in einem DeFi-Protokoll repräsentieren. Tokens nutzen bestehende Blockchains wie Ethereum für ihre Funktionen.",
+  },
+  {
+    label: "Cloud Mining",
+    color: "#6366f1",
+    icon: Cloud,
+    description:
+      "Cloud Mining ermöglicht es dir, Kryptowährungen zu schürfen, ohne teure Hardware zu besitzen. Du vermietest Rechenleistung von Rechenzentren und erhältst einen Anteil der geschürften Münzen.",
+  },
+  {
+    label: "Mining Farm",
+    color: "#fbbf24",
+    icon: Server,
+    description:
+      "Mining Farms sind spezialisierte Rechenzentren, die große Mengen an Kryptowährungen schürfen. Sie nutzen spezialisierte Hardware (ASICs) für maximale Effizienz und Rentabilität.",
   },
 ];
 

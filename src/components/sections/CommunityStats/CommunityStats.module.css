@@ -188,3 +188,14 @@
     font-size: 2rem;
   }
 }
+
+.progressFill {
+  /* width: 40%;  <-- Lösche oder kommentiere diese feste Breite aus */
+  width: 0%; /* Startet bei 0 */
+  height: 100%;
+  background: #314d7a;
+  border-radius: 2px;
+  /* Optional: Macht die Bewegung etwas geschmeidiger, aber nicht zu langsam */
+  transition: width 0.1s linear;
+  will-change: width; /* Performance Optimierung für Browser */
+}

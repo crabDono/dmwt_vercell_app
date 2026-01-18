@@ -1,6 +1,6 @@
 .section {
   min-height: 100vh;
-  background: #0B0E1D;
+  background: #0b0e1d;
   color: white;
   padding: 4rem 2rem;
   position: relative;
@@ -28,19 +28,23 @@
 }
 
 .progressFill {
-  width: 40%;
+  width: 0%;
   height: 100%;
   background: linear-gradient(90deg, #4a90e2 0%, #63b3ed 100%);
   border-radius: 2px;
   position: relative;
+  transition: width 0.1s linear;
+  will-change: width;
 }
 
 .rocket {
   position: absolute;
-  left: 40%;
+  left: 0%;
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
+  transition: left 0.1s linear;
+  will-change: left;
 }
 
 .title {
@@ -72,8 +76,8 @@
 
 .card {
   cursor: default;
-  background: #0E1628;
-  border: 2px solid #EFEFEF;
+  background: #0e1628;
+  border: 2px solid #efefef;
   border-radius: 1.5rem;
   padding: 2.5rem 2rem;
   text-align: left;

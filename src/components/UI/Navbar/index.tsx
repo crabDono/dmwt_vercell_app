@@ -16,7 +16,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // NEU: State für das Theme ('dark' = dunkler Hintergrund/weißer Text, 'light' = heller Hintergrund/dunkler Text)
+  // State für das Theme ('dark' = dunkler Hintergrund/weißer Text, 'light' = heller Hintergrund/dunkler Text)
   const [navTheme, setNavTheme] = useState("dark");
 
   const container = useRef<HTMLDivElement>(null);
@@ -29,12 +29,7 @@ export default function Navbar() {
     { href: "/zeitreise", label: "Zeitreise" },
   ];
 
-  const secondaryLinks = [
-    { href: "/login", label: "Einloggen" },
-    { href: "/free_test", label: "Kostenlos testen" },
-  ];
-
-  // --- NEU: Intersection Observer Logik ---
+  // --- Intersection Observer Logik ---
   useEffect(() => {
     const handleScroll = () => {
       // Wir suchen alle Sektionen, die ein 'data-theme' Attribut haben
@@ -45,7 +40,6 @@ export default function Navbar() {
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         // Wir prüfen: Ist der obere Teil der Sektion im Bereich der Navbar?
-        // (0 bis 100px vom oberen Bildschirmrand)
         if (rect.top <= 80 && rect.bottom >= 80) {
           const theme = section.getAttribute("data-theme");
           if (theme) foundTheme = theme;
@@ -56,11 +50,10 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Einmal beim Laden ausführen
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]); // Auch bei Seitenwechsel neu prüfen
-  // -----------------------------------------
+  }, [pathname]);
 
   useGSAP(
     () => {
@@ -86,7 +79,7 @@ export default function Navbar() {
             ease: "power2.out",
             delay: 0.2,
           },
-          "<"
+          "<",
         )
         .to(
           ".reveal_item",
@@ -96,10 +89,10 @@ export default function Navbar() {
             duration: 1,
             ease: "hop",
           },
-          "-=0.5"
+          "-=0.5",
         );
     },
-    { scope: container }
+    { scope: container },
   );
 
   const toggleMenu = () => {
@@ -127,7 +120,6 @@ export default function Navbar() {
 
   return (
     <div className={styles.navContainer} ref={container}>
-      {/* Nutze themeClass (basiert jetzt auf effectiveTheme) */}
       <nav className={`${styles.menuBar} ${themeClass}`}>
         <div className={styles.logoWrapper}>
           <Link href="/">
@@ -136,7 +128,6 @@ export default function Navbar() {
               alt="Logo"
               width={100}
               height={60}
-              // Nutze auch hier effectiveTheme!
               className={effectiveTheme === "light" ? styles.invertLogo : ""}
             />
           </Link>
@@ -158,7 +149,6 @@ export default function Navbar() {
       </nav>
 
       <div className={styles.menuOverlay} ref={overlayRef}>
-        {/* ... Rest bleibt gleich ... */}
         <div className={styles.overlayContent}>
           <div className={styles.mediaWrapper}>
             <div
@@ -186,24 +176,13 @@ export default function Navbar() {
                   </div>
                 ))}
               </div>
-              <div className={styles.menuCol}>
-                {secondaryLinks.map((link) => (
-                  <div key={link.href} className={styles.revealTextWrapper}>
-                    <span className={`${styles.revealTextInner} reveal_item`}>
-                      <Link href={link.href} className={styles.menuTag}>
-                        {link.label}
-                      </Link>
-                    </span>
-                  </div>
-                ))}
-              </div>
+              {/* Sekundäre Links (Login/Free Test) wurden hier entfernt */}
             </div>
             <div className={styles.menuFooter}>
-              {/* Footer content... */}
               <div className={styles.menuCol}>
                 <div className={styles.revealTextWrapper}>
                   <span className={`${styles.revealTextInner} reveal_item`}>
-                    <p>Kontakt</p>
+                    <p>IMMM</p>
                   </span>
                 </div>
               </div>

@@ -1,6 +1,5 @@
 /* Navbar.module.css */
 
-/* Definiere Variablen direkt im Container, damit sie sicher da sind */
 .navContainer {
   --bg: #171717;
   --fg: #ffffff;
@@ -8,8 +7,6 @@
   --menu-fg-secondary: #5f5f5f;
   --hamburger-border: rgba(255, 255, 255, 0.1);
 }
-
-/* ... menuBar, logoWrapper etc. bleiben gleich ... */
 
 .menuBar {
   position: fixed;
@@ -43,7 +40,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: var(--fg); /* Explizit Farbe setzen */
+  color: var(--fg);
 }
 
 /* Hamburger Styles */
@@ -65,7 +62,7 @@
   width: 15px;
   height: 1.5px;
   background-color: var(--fg);
-  transition: all 0.3s ease; /* Schnellere Transition für CSS */
+  transition: all 0.3s ease;
 }
 
 .hamburgerIcon span:nth-child(1) {
@@ -75,7 +72,6 @@
   transform: translateY(3px);
 }
 
-/* Wenn Klasse 'hamburgerActive' gesetzt ist */
 .hamburgerActive span:nth-child(1) {
   transform: rotate(45deg);
 }
@@ -90,15 +86,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--menu-bg); /* Prüfe, ob das Schwarz ist! */
+  background-color: var(--menu-bg);
   z-index: 40;
-
   display: flex;
   overflow: hidden;
-
-  /* WICHTIG: Wir entfernen hier clip-path! 
-     Wir lassen GSAP das übernehmen. */
-  visibility: hidden; /* Startet unsichtbar, damit es nicht flackert */
+  visibility: hidden;
 }
 
 .overlayContent {
@@ -114,7 +106,6 @@
   position: relative;
   height: 100%;
   overflow: hidden;
-  /* Opacity wird von GSAP gesteuert */
 }
 
 .mediaWrapper img {
@@ -150,13 +141,12 @@
 
 /* Helper Klassen für Animation */
 .revealTextWrapper {
-  overflow: hidden; /* Maske */
+  overflow: hidden;
   line-height: 1.1;
 }
 
 .revealTextInner {
   display: block;
-  /* Transform wird von GSAP gesetzt */
 }
 
 .menuLink {
@@ -165,12 +155,6 @@
   color: var(--fg);
   text-decoration: none;
   transition: color 0.3s;
-}
-
-.menuTag {
-  font-size: 1.5rem;
-  color: var(--menu-fg-secondary);
-  text-decoration: none;
 }
 
 .menuFooter {
@@ -200,30 +184,27 @@
   }
 }
 
-/* STANDARD (Dark Theme: Weiße Schrift) */
+/* THEMES */
 .navThemeDark {
   --fg: #ffffff;
   --hamburger-border: rgba(255, 255, 255, 0.1);
 }
 
-/* LIGHT THEME (Heller Hintergrund: Dunkle Schrift) */
 .navThemeLight {
-  --fg: #0c1222; /* Dein dunkles Space-Blau */
+  --fg: #0c1222;
   --hamburger-border: rgba(12, 18, 34, 0.2);
 }
 
-/* Optional: Logo invertieren, falls es ein weißes SVG ist */
 .invertLogo {
-  filter: invert(1); /* Macht Weiß zu Schwarz */
+  filter: invert(1);
 }
 
-/* Sicherstellen, dass die toggleBtn Farbe die Variable nutzt */
 .toggleBtn {
-  color: var(--fg); /* Wichtig! */
+  color: var(--fg);
 }
 
 .toggleLabel {
-  color: var(--fg); /* Wichtig! */
+  color: var(--fg);
 }
 
 .hamburgerIcon {
@@ -233,16 +214,12 @@
 .hamburgerIcon span {
   background-color: var(--fg);
 }
+
 .menuOverlay {
   --fg: #ffffff !important;
   color: #ffffff !important;
 }
 
-/* Damit auch die Links im Overlay weiß bleiben */
 .menuOverlay a {
   color: #ffffff !important;
-}
-
-.menuOverlay .menuTag {
-  color: #94a3b8 !important; /* Hellgrau für die kleinen Links */
 }
