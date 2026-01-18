@@ -39,6 +39,10 @@
 .astronaut {
   image-rendering: pixelated;
   filter: drop-shadow(0 0 20px rgba(255, 150, 50, 0.5));
+  /* ÄNDERUNG: Verhindert Verzerrung und Stauchen */
+  object-fit: contain;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .speechBubble {
@@ -203,11 +207,7 @@
     font-size: 44px;
   }
   .astronautContainer {
-    top: 220px;
-  }
-  .astronaut {
-    width: 150px !important;
-    height: 188px !important;
+    top: 350px;
   }
   .timelineContainer {
     padding: 0 60px;
@@ -245,12 +245,12 @@
     padding-top: 40px;
   }
   .astronautContainer {
-    top: 200px;
+    top: 450px;
     left: 30px;
   }
   .astronaut {
     width: 120px !important;
-    height: 150px !important;
+    height: auto !important; /* ÄNDERUNG: auto statt fester Pixelwert */
   }
   .speechBubble {
     left: 70px;
@@ -299,12 +299,12 @@
     font-size: 24px;
   }
   .astronautContainer {
-    top: 180px;
+    top: 250px;
     left: 20px;
   }
   .astronaut {
     width: 90px !important;
-    height: 113px !important;
+    height: auto !important; /* ÄNDERUNG: auto statt fester Pixelwert */
   }
   .speechBubble {
     left: 50px;

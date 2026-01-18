@@ -24,7 +24,7 @@ export default function Navbar() {
   const mainLinks = [
     { href: "/", label: "Home" },
     { href: "/quiz", label: "Quiz" },
-    { href: "/zeitreise", label: "Zeitreise" },
+    { href: "/informationen", label: "Informationen" },
   ];
 
   useEffect(() => {
