@@ -1,9 +1,9 @@
-.section {
+/* .section {
   background: linear-gradient(to bottom, #e6e6e6 0%, #0b0e1d 15%, #0b0e1d 100%);
   padding: 6rem 2rem;
-  padding-top: 20rem; /* Mehr Platz oben für sanften Übergang */
+  padding-top: 20rem;
   margin-top: -1px;
-}
+} */
 
 .headerSection {
   background: #0b0e1d;

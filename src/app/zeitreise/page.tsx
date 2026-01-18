@@ -6,6 +6,7 @@ import FAQ from "@/src/components/sections/FAQ";
 import CryptoInfographic from "@/src/components/charts/Infographic";
 import Zeitreise from "@/src/components/sections/Zeitreise";
 import BlogSection from "@/src/components/sections/Blog";
+import CommunityStats from "@/src/components/sections/CommunityStats";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ export default function Page() {
       <FAQ />
       <CryptoInfographic />
       <TextParallax />
+      <CommunityStats />
       <CommentSection />
     </main>
   );

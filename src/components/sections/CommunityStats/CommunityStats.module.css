@@ -1,0 +1,190 @@
+.section {
+  min-height: 100vh;
+  background: #0b0e1d; /* Matches existing theme */
+  color: white;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Header & Progress Bar */
+.progressBar {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.progressFill {
+  width: 40%;
+  height: 100%;
+  background: #314d7a; /* Darker blue bar from image */
+  border-radius: 2px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #fff;
+}
+
+/* Main Layout: Grid + Astronaut */
+.contentWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0; /* Gap entfernen, damit wir volle Kontrolle haben */
+  position: relative;
+}
+
+.statsGrid {
+  /* ... existierender Code ... */
+  margin-right: 2rem; /* Manueller Abstand statt Gap */
+}
+
+.astronautWrapper {
+  /* ... existierender Code ... */
+  width: 600px;
+  /* Kein Margin nötig, oder negative Margin für Überlappung */
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    6,
+    1fr
+  ); /* 6 columns for easy 3-up and 2-up layout */
+  gap: 1.5rem;
+  max-width: 900px; /* Constrain width of the cards area */
+  flex: 1;
+}
+
+/* Card Styling */
+.card {
+  background: transparent;
+  border: 1px solid #efefef;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  grid-column: span 2; /* Default: span 2 of 6 (3 items per row) */
+  min-height: 220px;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cardWide {
+  grid-column: span 3; /* Bottom items: span 3 of 6 (2 items per row) */
+}
+
+.icon {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Astronaut Styling */
+.astronautWrapper {
+  flex-shrink: 0;
+  width: 600px; /* Deine erhöhte Breite */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2rem;
+
+  /* NEU: Zieht den Wrapper näher an das Grid heran */
+  margin-left: -2rem;
+}
+
+/* ODER alternativ direkt am Bild, wenn der Wrapper seine Position behalten soll */
+.astronautImage {
+  /* ... */
+  /* Zieht das Bild innerhalb des Wrappers nach links */
+  transform: translateX(-20px);
+}
+
+.astronautImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .contentWrapper {
+    gap: 2rem;
+  }
+
+  .astronautWrapper {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statsGrid {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .astronautWrapper {
+    margin-top: 2rem;
+    width: 200px;
+    order: 2; /* Move below on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr; /* Stack vertically on mobile */
+  }
+
+  .card,
+  .cardWide {
+    grid-column: span 1;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
