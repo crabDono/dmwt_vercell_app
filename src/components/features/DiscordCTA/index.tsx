@@ -9,6 +9,14 @@ const DiscordCTA = () => {
 
   return (
     <section className={styles.ctaSection} data-theme="dark">
+      <div className={styles.waveTop}>
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M0,60 C300,0 900,120 1200,60 L1200,0 L0,0 Z"
+            fill="#e8e8e8"
+          />
+        </svg>
+      </div>
       <div className={styles.glowEffect} aria-hidden="true"></div>
 
       <div className={styles.container}>
