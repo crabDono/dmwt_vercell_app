@@ -14,7 +14,7 @@ export default function Footer() {
             <Image src="/triple.svg" alt="Logo" width={80} height={80} />
           </Link>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} IMMM Finances
+            © {new Date().getFullYear()} MMM Finances
           </p>
         </div>
 

@@ -174,7 +174,7 @@ export default function Navbar() {
               <div className={styles.menuCol}>
                 <div className={styles.revealTextWrapper}>
                   <span className={`${styles.revealTextInner} reveal_item`}>
-                    <p>IMMM</p>
+                    <p>MMM</p>
                   </span>
                 </div>
               </div>
