@@ -12,6 +12,7 @@ interface CommentFieldProps {
 export default function CommentField({ comments }: CommentFieldProps) {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,50 +75,86 @@ export default function CommentField({ comments }: CommentFieldProps) {
           ></textarea>
         </div>
 
-        <button type="submit" className={styles.submitButton}>
-          Feedback senden
-        </button>
+        <div className={styles.buttonGroup}>
+          <button type="submit" className={styles.submitButton}>
+            Feedback senden
+          </button>
+          <button
+            type="button"
+            className={styles.viewButton}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Feedback anschauen
+          </button>
+        </div>
       </form>
 
-      <div className={styles.commentList}>
-        {currentComments.map((comment) => (
-          <div key={comment.id} className={styles.commentCard}>
-            <div className={styles.cardHeader}>
-              <div className={styles.avatar}>
-                {comment.name.charAt(0).toUpperCase()}
-              </div>
-              <div className={styles.metaData}>
-                <span className={styles.commentName}>{comment.name}</span>
-                <span className={styles.commentDate}>
-                  {new Date(comment.createdAt).toLocaleDateString("de-DE")}
-                </span>
-              </div>
+      {isModalOpen && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>Community Feedback</h3>
+              <button
+                className={styles.closeButton}
+                onClick={() => setIsModalOpen(false)}
+              >
+                ✕
+              </button>
             </div>
 
-            <p className={styles.commentText}>{comment.content}</p>
-          </div>
-        ))}
-      </div>
+            <div className={styles.modalBody}>
+              <div className={styles.commentList}>
+                {currentComments.map((comment) => (
+                  <div key={comment.id} className={styles.commentCard}>
+                    <div className={styles.cardHeader}>
+                      <div className={styles.avatar}>
+                        {comment.name.charAt(0).toUpperCase()}
+                      </div>
+                      <div className={styles.metaData}>
+                        <span className={styles.commentName}>
+                          {comment.name}
+                        </span>
+                        <span className={styles.commentDate}>
+                          {new Date(comment.createdAt).toLocaleDateString(
+                            "de-DE",
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    <p className={styles.commentText}>{comment.content}</p>
+                  </div>
+                ))}
+              </div>
 
-      {totalPages > 1 && (
-        <div className={styles.pagination}>
-          <button
-            onClick={() => setCurrentPage((p) => p - 1)}
-            disabled={currentPage === 1}
-            className={styles.paginationButton}
-          >
-            Zurück
-          </button>
-          <span className={styles.paginationInfo}>
-            {currentPage} / {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((p) => p + 1)}
-            disabled={currentPage === totalPages}
-            className={styles.paginationButton}
-          >
-            Weiter
-          </button>
+              {totalPages > 1 && (
+                <div className={styles.pagination}>
+                  <button
+                    onClick={() => setCurrentPage((p) => p - 1)}
+                    disabled={currentPage === 1}
+                    className={styles.paginationButton}
+                  >
+                    Zurück
+                  </button>
+                  <span className={styles.paginationInfo}>
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    onClick={() => setCurrentPage((p) => p + 1)}
+                    disabled={currentPage === totalPages}
+                    className={styles.paginationButton}
+                  >
+                    Weiter
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
