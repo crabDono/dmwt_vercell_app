@@ -192,7 +192,7 @@ export default function QuizPage() {
               <span className={styles.levelName}>{resultLevel}</span>
             </p>
             <button
-              onClick={() => router.push("/zeitreise")}
+              onClick={() => router.push("/informationen")}
               className={styles.restartButton}
             >
               Zur Zeitreise
