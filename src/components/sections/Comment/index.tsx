@@ -10,7 +10,6 @@ const CommentSection = async () => {
   });
   return (
     <section className={styles.information}>
-      {/* Container für den Glas-Effekt */}
       <div className={styles.glassContainer}>
         <h2 className={styles.title}>Teile deine Gedanken</h2>
         <p className={styles.subtitle}>

@@ -1,4 +1,3 @@
-// components/features/CommentField/index.tsx
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -16,7 +15,7 @@ export default function CommentField({ comments }: CommentFieldProps) {
 
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const commentsPerPage = 4; // Weniger pro Seite, da Karten größer sind
+  const commentsPerPage = 4;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -32,18 +31,16 @@ export default function CommentField({ comments }: CommentFieldProps) {
     router.refresh();
   };
 
-  // Pagination Logic
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = comments.slice(
     indexOfFirstComment,
-    indexOfLastComment
+    indexOfLastComment,
   );
   const totalPages = Math.ceil(comments.length / commentsPerPage);
 
   return (
     <div className={styles.container}>
-      {/* --- FORMULAR --- */}
       <form onSubmit={handleSubmit} className={styles.formCard}>
         <h3 className={styles.formTitle}>Hinterlasse Feedback</h3>
 
@@ -82,7 +79,6 @@ export default function CommentField({ comments }: CommentFieldProps) {
         </button>
       </form>
 
-      {/* --- LISTE DER FEEDBACKS --- */}
       <div className={styles.commentList}>
         {currentComments.map((comment) => (
           <div key={comment.id} className={styles.commentCard}>
@@ -103,7 +99,6 @@ export default function CommentField({ comments }: CommentFieldProps) {
         ))}
       </div>
 
-      {/* --- PAGINATION --- */}
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button

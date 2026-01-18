@@ -30,19 +30,17 @@ body {
   scrollbar-width: none;
 }
 
-/* responsive typography (scale down on small screens) */
 @media (max-width: 420px) {
   html {
     font-size: 93%;
-  } /* ~15px */
+  }
 }
 @media (min-width: 1024px) {
   html {
     font-size: 100%;
-  } /* back to 16 */
+  }
 }
 
-/* centered page container */
 .container {
   width: 100%;
   max-width: var(--container-max);

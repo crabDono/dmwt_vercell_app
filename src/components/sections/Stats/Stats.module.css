@@ -160,15 +160,7 @@
     top: auto;
     opacity: 0.5;
   }
-}
 
-@media (max-width: 480px) {
-  .astronaut {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
   .section {
     padding: 3rem 1rem;
   }
@@ -176,5 +168,11 @@
   .statsGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .astronaut {
+    display: none;
   }
 }

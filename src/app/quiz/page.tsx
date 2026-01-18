@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import styles from "./Quiz.module.css";
-// import Navbar from "@/src/components/UI/Navbar"; // Falls du sie brauchst
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -121,28 +120,24 @@ export default function QuizPage() {
   const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  // Wir initialisieren das Array mit null, damit wir wissen, ob eine Frage schon beantwortet wurde
   const [answers, setAnswers] = useState<(number | null)[]>(
-    new Array(quizQuestions.length).fill(null)
+    new Array(quizQuestions.length).fill(null),
   );
 
   const [showResult, setShowResult] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [resultLevel, setResultLevel] = useState("");
 
-  // Wählt eine Antwort aus, geht aber noch NICHT weiter
   const handleAnswerSelect = (answerIndex: number) => {
     const newAnswers = [...answers];
-    newAnswers[currentQuestion] = answerIndex + 1; // +1 für den Score (1-5 Punkte)
+    newAnswers[currentQuestion] = answerIndex + 1;
     setAnswers(newAnswers);
   };
 
   const handleNext = () => {
-    // Wenn wir bei der letzten Frage sind -> Auswerten
     if (currentQuestion === quizQuestions.length - 1) {
       calculateResult();
     } else {
-      // Sonst -> Nächste Frage
       setCurrentQuestion((prev) => prev + 1);
     }
   };
@@ -154,7 +149,6 @@ export default function QuizPage() {
   };
 
   const calculateResult = () => {
-    // Summiere alle Antworten (wir gehen davon aus, dass keine null ist, da der Next Button sonst disabled wäre)
     const totalScore =
       answers.reduce((sum, current) => sum! + (current || 0), 0) || 0;
 
@@ -172,9 +166,7 @@ export default function QuizPage() {
     setShowResult(true);
   };
 
-  // Hilfsvariable: Welche Antwort ist aktuell bei DIESER Frage ausgewählt?
   const currentSelectedAnswer = answers[currentQuestion];
-  // Ist es die letzte Frage?
   const isLastQuestion = currentQuestion === quizQuestions.length - 1;
 
   return (
@@ -209,7 +201,6 @@ export default function QuizPage() {
         ) : (
           <>
             <div className={styles.questionSection}>
-              {/* Optional: Header mit Fortschritt */}
               <div className={styles.progressHeader}>
                 <span className={styles.questionCountText}>
                   FRAGE {currentQuestion + 1} VON {quizQuestions.length}
@@ -223,8 +214,6 @@ export default function QuizPage() {
 
             <div className={styles.answerSection}>
               {quizQuestions[currentQuestion].answers.map((answer, index) => {
-                // Wir prüfen, ob der Index im answers-Array gespeichert ist
-                // (Index im Array ist 0-basiert, gespeicherter Wert ist 1-basiert, daher index + 1)
                 const isSelected = currentSelectedAnswer === index + 1;
 
                 let buttonClass = styles.answerButton;
@@ -244,7 +233,6 @@ export default function QuizPage() {
               })}
             </div>
 
-            {/* NEU: Navigation Buttons */}
             <div className={styles.navigationButtons}>
               <button
                 className={`${styles.navButton} ${styles.navButtonBack}`}
@@ -260,7 +248,7 @@ export default function QuizPage() {
               <button
                 className={`${styles.navButton} ${styles.navButtonNext}`}
                 onClick={handleNext}
-                disabled={currentSelectedAnswer === null} // Nur aktiv wenn Antwort gewählt
+                disabled={currentSelectedAnswer === null}
               >
                 {isLastQuestion ? "Ergebnis anzeigen" : "Weiter"}
               </button>

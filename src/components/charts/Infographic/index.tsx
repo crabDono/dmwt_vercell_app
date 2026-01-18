@@ -68,7 +68,6 @@ const CryptoInfographic = () => {
       </div>
 
       <div className={styles.container}>
-        {/* Linke Seite - Interaktive Karten */}
         <div className={styles.leftSection}>
           <div className={styles.cardsGrid}>
             {segments.map((segment, index) => {
@@ -97,7 +96,6 @@ const CryptoInfographic = () => {
           </div>
         </div>
 
-        {/* Rechte Seite - Content */}
         <div className={styles.rightSection}>
           <div className={styles.contentCard}>
             <div

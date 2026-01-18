@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { AccordionItem } from "../../features/Accordion";
-import { Accordion } from "../../features/Accordion";
+import { Accordion, AccordionItem } from "../../features/Accordion";
 
 export default function Footer() {
   return (
@@ -13,13 +11,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.topSection}>
           <Link href="/" className={styles.logoLink}>
-            <Image
-              src="/triple.svg" // Pfad anpassen, falls nötig
-              alt="Logo"
-              width={80} // Größe angepasst
-              height={80}
-              className="rounded-full"
-            />
+            <Image src="/triple.svg" alt="Logo" width={80} height={80} />
           </Link>
           <p className={styles.copyright}>
             © {new Date().getFullYear()} IMMM Finances
@@ -29,10 +21,7 @@ export default function Footer() {
         <hr className={styles.line} />
 
         <div className={styles.accordionContainer}>
-          <Accordion
-            multiple={false}
-            className={styles.accordion} // Eigene Klasse für das Accordion
-          >
+          <Accordion multiple={false} className={styles.accordion}>
             <AccordionItem id="item-1" title="Impressum">
               <div className={styles.accordionContent}>
                 Angaben gemäß § 5 TMG <br />

@@ -24,33 +24,34 @@
 }
 
 .title {
-  font-size: 3.5rem; /* Leicht reduziert */
+  font-size: 3.5rem;
   font-weight: bold;
-  margin-top: 0; /* Entfernt, da justify-content zentriert */
-  margin-bottom: 0; /* Angepasst */
+  margin-top: 0;
+  margin-bottom: 0;
   color: #0b0e1c;
 }
 
 .subtitle {
-  font-size: 1.25rem; /* Reduziert */
-  font-weight: normal; /* Von medium auf normal */
-  margin-bottom: 0; /* Angepasst */
-  color: #0b0e1c; /* Etwas heller als darkgray */
-  max-width: 800px; /* Begrenzt die Zeilenlänge für bessere Lesbarkeit */
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 0;
+  color: #0b0e1c;
+  max-width: 800px;
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.chartArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  overflow: visible;
+  position: relative;
 }
 
-/* --- Media Queries für Responsiveness --- */
-
-/* Medium screens (tablets, ~1024px und kleiner) */
 @media (max-width: 1024px) {
   .title {
-    font-size: 3rem; /* Schriftgröße reduzieren */
+    font-size: 3rem;
     margin-top: 4rem;
   }
 
@@ -59,31 +60,19 @@
   }
 }
 
-/* Small screens (mobile, ~767px und kleiner) */
 @media (max-width: 767px) {
   .infografic {
     padding: 3rem 0;
   }
 
   .container {
-    min-height: auto; /* Höhe an Inhalt anpassen */
+    min-height: auto;
     justify-content: flex-start;
   }
 
   .title {
-    font-size: 2.25rem; /* Schriftgröße für Mobile */
+    font-size: 2.25rem;
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
-}
-
-/* Chart-Container: größer und responsive */
-.chartArea {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
-  overflow: visible; /* arrows außerhalb erlauben */
-  position: relative; /* für absolute Buttons */
 }

@@ -5,43 +5,33 @@ import styles from "./CommunityStats.module.css";
 import Image from "next/image";
 
 const CommunityStats = () => {
-  // 1. Ref für das Element erstellen
   const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // 2. Gesamthöhe der Seite und aktuelle Position berechnen
       const totalScroll =
         document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
-      // 3. Prozentwert berechnen (0 bis 100)
       const scrollPercent = (totalScroll / windowHeight) * 100;
 
-      // 4. Breite direkt am DOM-Element setzen (verhindert Re-Renders)
       if (progressRef.current) {
         progressRef.current.style.width = `${scrollPercent}%`;
       }
     };
 
-    // Event Listener hinzufügen
     window.addEventListener("scroll", handleScroll);
-
-    // Initialen Wert setzen (falls man die Seite neu lädt und schon unten ist)
     handleScroll();
 
-    // Cleanup beim Verlassen der Komponente
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section className={styles.section} data-theme="dark">
       <div className={styles.container}>
-        {/* Progress Bar / Decorator */}
         <div className={styles.progressBar}>
-          {/* 5. Ref hier verbinden */}
           <div ref={progressRef} className={styles.progressFill}></div>
         </div>
 
@@ -49,9 +39,6 @@ const CommunityStats = () => {
 
         <div className={styles.contentWrapper}>
           <div className={styles.statsGrid}>
-            {/* --- OBERE REIHE: Die Crew & Die Mission --- */}
-
-            {/* Card 1: Teilnehmer -> "Kadetten" */}
             <div className={styles.card}>
               <div className={styles.icon}>
                 <Image src="/users.svg" alt="Users" width={32} height={32} />
@@ -64,7 +51,6 @@ const CommunityStats = () => {
               </div>
             </div>
 
-            {/* Card 2: Discord -> "Funkverkehr" */}
             <div className={styles.card}>
               <div className={styles.icon}>
                 <Image
@@ -82,7 +68,6 @@ const CommunityStats = () => {
               </div>
             </div>
 
-            {/* Card 3: Unabhängigkeit -> "Autonomie" */}
             <div className={styles.card}>
               <div className={styles.icon}>
                 <Image src="/lock.svg" alt="Security" width={32} height={32} />
@@ -95,9 +80,6 @@ const CommunityStats = () => {
               </div>
             </div>
 
-            {/* --- UNTERE REIHE: Ressourcen & Erfolg --- */}
-
-            {/* Card 4: Lektionen -> "Flugdaten" */}
             <div className={`${styles.card} ${styles.cardWide}`}>
               <div className={styles.icon}>
                 <Image src="/users.svg" alt="Content" width={32} height={32} />
@@ -110,7 +92,6 @@ const CommunityStats = () => {
               </div>
             </div>
 
-            {/* Card 5: Bewertung -> "System-Status" */}
             <div className={`${styles.card} ${styles.cardWide}`}>
               <div className={styles.icon}>
                 <Image src="/users.svg" alt="Rating" width={32} height={32} />
@@ -124,7 +105,6 @@ const CommunityStats = () => {
             </div>
           </div>
 
-          {/* Astronaut Side Image */}
           <div className={styles.astronautWrapper}>
             <Image
               src="/astronaut_2.png"

@@ -34,7 +34,7 @@ const timelineEvents: TimelineEvent[] = [
   {
     year: 2010,
     title: "Erste Transaktion",
-    description: "10. 000 BTC für 2 Pizzas",
+    description: "10.000 BTC für 2 Pizzas",
     phase: "Die Startphase",
     mountain: "/mountains/mountain_2010.png",
   },
@@ -69,7 +69,7 @@ const timelineEvents: TimelineEvent[] = [
   {
     year: 2021,
     title: "All-Time-High",
-    description: "Bitcoin erreicht $69. 000",
+    description: "Bitcoin erreicht $69.000",
     phase: "Die Explosion",
     mountain: "/mountains/mountain_2021.png",
   },
@@ -82,13 +82,11 @@ const timelineEvents: TimelineEvent[] = [
   },
 ];
 
-// Hilfsfunktion:  Prüft ob ein neuer Abschnitt beginnt
 const isNewPhase = (index: number): boolean => {
   if (index === 0) return true;
   return timelineEvents[index].phase !== timelineEvents[index - 1].phase;
 };
 
-// Hilfsfunktion: Prüft ob nach diesem Event ein neuer Abschnitt kommt
 const isPhaseEnd = (index: number): boolean => {
   if (index === timelineEvents.length - 1) return false;
   return timelineEvents[index].phase !== timelineEvents[index + 1].phase;
@@ -150,12 +148,10 @@ export default function ZeitreiseContent() {
       className={styles.zeitreiseSection}
       data-theme="dark"
     >
-      {/* Header */}
       <div className={styles.header}>
         <h1 className={styles.title}>Entstehung von Bitcoin</h1>
       </div>
 
-      {/* Astronaut mit Sprechblase */}
       <div ref={astronautRef} className={styles.astronautContainer}>
         <div className={styles.speechBubble}>
           <p className={styles.speechText}>
@@ -172,24 +168,20 @@ export default function ZeitreiseContent() {
         />
       </div>
 
-      {/* Timeline mit Berge, Jahre und Phasen */}
       <div ref={timelineRef} className={styles.timelineContainer}>
         {timelineEvents.map((event, index) => (
           <div key={event.year} className={styles.eventWrapper}>
-            {/* Phase Label - nur beim ersten Event einer Phase */}
             {isNewPhase(index) && (
               <div className={styles.phaseLabel}>
                 <span className={styles.phaseLabelText}>{event.phase}</span>
               </div>
             )}
 
-            {/* Event Column */}
             <div
               className={`${styles.eventColumn} ${
                 activeEvent === index ? styles.eventColumnActive : ""
               }`}
             >
-              {/* Berg */}
               <div className={styles.mountainWrapper}>
                 <Image
                   src={event.mountain}
@@ -200,19 +192,15 @@ export default function ZeitreiseContent() {
                 />
               </div>
 
-              {/* Timeline Punkt und Jahr */}
               <div className={styles.eventMarkerWrapper}>
                 <div className={styles.eventMarker} />
                 <span className={styles.eventYear}>{event.year}</span>
               </div>
             </div>
 
-            {/* Trennlinie - nach dem letzten Event einer Phase */}
             {isPhaseEnd(index) && <div className={styles.phaseDivider} />}
           </div>
         ))}
-
-        {/* Durchgehende Timeline Linie */}
         <div className={styles.timelineLine} />
       </div>
     </section>

@@ -5,25 +5,21 @@ import styles from "./Stats.module.css";
 import Image from "next/image";
 
 const Stats = () => {
-  // 1. Refs für den Balken UND die Rakete erstellen
   const barRef = useRef<HTMLDivElement>(null);
   const rocketRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // 2. Scroll-Fortschritt berechnen
       const totalScroll =
         document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
-      // Verhindert Division durch 0
       if (windowHeight === 0) return;
 
       const scrollPercent = (totalScroll / windowHeight) * 100;
 
-      // 3. Styles direkt setzen (performant ohne Re-Render)
       if (barRef.current) {
         barRef.current.style.width = `${scrollPercent}%`;
       }
@@ -33,7 +29,7 @@ const Stats = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initialer Aufruf
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -43,7 +39,6 @@ const Stats = () => {
       <div className={styles.container}>
         <div className={styles.progressContainer}>
           <div className={styles.progressBar}>
-            {/* Refs verbinden */}
             <div ref={barRef} className={styles.progressFill}></div>
             <div ref={rocketRef} className={styles.rocket}>
               🚀

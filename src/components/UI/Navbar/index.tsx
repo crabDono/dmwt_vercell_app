@@ -15,8 +15,6 @@ CustomEase.create("hop", "0.87, 0, 0.13, 1");
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // State für das Theme ('dark' = dunkler Hintergrund/weißer Text, 'light' = heller Hintergrund/dunkler Text)
   const [navTheme, setNavTheme] = useState("dark");
 
   const container = useRef<HTMLDivElement>(null);
@@ -29,17 +27,13 @@ export default function Navbar() {
     { href: "/zeitreise", label: "Zeitreise" },
   ];
 
-  // --- Intersection Observer Logik ---
   useEffect(() => {
     const handleScroll = () => {
-      // Wir suchen alle Sektionen, die ein 'data-theme' Attribut haben
       const sections = document.querySelectorAll("[data-theme]");
-
-      let foundTheme = "dark"; // Standard-Fallback
+      let foundTheme = "dark";
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        // Wir prüfen: Ist der obere Teil der Sektion im Bereich der Navbar?
         if (rect.top <= 80 && rect.bottom >= 80) {
           const theme = section.getAttribute("data-theme");
           if (theme) foundTheme = theme;
@@ -114,7 +108,6 @@ export default function Navbar() {
   }, [pathname]);
 
   const effectiveTheme = isMenuOpen ? "dark" : navTheme;
-
   const themeClass =
     effectiveTheme === "light" ? styles.navThemeLight : styles.navThemeDark;
 
@@ -176,7 +169,6 @@ export default function Navbar() {
                   </div>
                 ))}
               </div>
-              {/* Sekundäre Links (Login/Free Test) wurden hier entfernt */}
             </div>
             <div className={styles.menuFooter}>
               <div className={styles.menuCol}>

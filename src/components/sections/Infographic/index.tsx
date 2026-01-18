@@ -1,10 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import styles from "./Infographic.module.css";
 import LineChartBTC from "../../charts/LineChartBTC";
-
-type ChartData = [number, number][];
 
 const Infographic = () => {
   return (

@@ -1,8 +1,6 @@
-/* components/Comment/Comment.module.css */
 .information {
   min-height: 100vh;
   padding: 4rem 2rem;
-  /* NEU: Dein gewünschtes Helles Grau */
   background-color: #e6e6e6;
   display: flex;
   align-items: center;
@@ -21,13 +19,11 @@
   font-weight: 800;
   text-align: center;
   margin: 0 0 0.5rem 0;
-  /* NEU: Dunkles Blau statt Weiß für Kontrast */
   color: #0c1222;
 }
 
 .subtitle {
   font-size: 1.125rem;
-  /* NEU: Dunkleres Grau für Lesbarkeit */
   color: #4b5563;
   text-align: center;
   margin: 0 0 3rem 0;
