@@ -1,7 +1,7 @@
 .information {
   min-height: 100vh;
   padding: 4rem 2rem;
-  background-color: #e6e6e6;
+  background-color: #0b0e1d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
   font-weight: 800;
   text-align: center;
   margin: 0 0 0.5rem 0;
-  color: #0c1222;
+  color: #fff;
 }
 
 .subtitle {

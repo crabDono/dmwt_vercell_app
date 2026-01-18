@@ -1,7 +1,7 @@
 .ctaSection {
   position: relative;
   /* Passt zum dunklen Theme, aber etwas heller um sich abzuheben */
-  background: linear-gradient(145deg, #12172d 0%, #0b0e1d 100%);
+  background-color: #0b0e1d;
   padding: 4rem 2rem;
   overflow: hidden;
   border-top: 1px solid rgba(88, 101, 242, 0.2);
