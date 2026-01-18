@@ -28,33 +28,36 @@
 
 .astronautContainer {
   position: absolute;
-  top: 500px;
+  top: 350px;
   left: 60px;
   z-index: 20;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: max-content;
 }
 
 .astronaut {
   image-rendering: pixelated;
   filter: drop-shadow(0 0 20px rgba(255, 150, 50, 0.5));
-  /* ÄNDERUNG: Verhindert Verzerrung und Stauchen */
+  width: 180px;
+  height: auto !important;
   object-fit: contain;
-  height: auto;
+  aspect-ratio: auto;
   flex-shrink: 0;
 }
 
 .speechBubble {
   position: absolute;
   top: -20px;
-  left: 100px;
+  left: 120px;
   background: #ffffff;
   border-radius: 8px;
   padding: 12px 16px;
   min-width: 150px;
   max-width: 200px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 25;
 }
 
 .speechBubble::before {
@@ -78,7 +81,7 @@
 
 .timelineContainer {
   position: absolute;
-  bottom: 0;
+  bottom: 120px;
   left: 0;
   display: flex;
   align-items: flex-end;
@@ -202,6 +205,8 @@
   z-index: 1;
 }
 
+/* --- MEDIA QUERIES --- */
+
 @media (max-width: 1024px) {
   .title {
     font-size: 44px;
@@ -210,6 +215,7 @@
     top: 350px;
   }
   .timelineContainer {
+    bottom: 80px;
     padding: 0 60px;
     padding-bottom: 20px;
   }
@@ -248,20 +254,8 @@
     top: 450px;
     left: 30px;
   }
-  .astronaut {
-    width: 120px !important;
-    height: auto !important; /* ÄNDERUNG: auto statt fester Pixelwert */
-  }
-  .speechBubble {
-    left: 70px;
-    min-width: 100px;
-    max-width: 140px;
-    padding: 8px 12px;
-  }
-  .speechText {
-    font-size: 8px;
-  }
   .timelineContainer {
+    bottom: 60px;
     padding: 0 40px;
     padding-bottom: 15px;
   }
@@ -302,12 +296,17 @@
     top: 250px;
     left: 20px;
   }
+  .timelineContainer {
+    bottom: 40px;
+    padding: 0 30px;
+    padding-bottom: 10px;
+  }
   .astronaut {
-    width: 90px !important;
-    height: auto !important; /* ÄNDERUNG: auto statt fester Pixelwert */
+    width: 130px !important;
+    height: auto !important;
   }
   .speechBubble {
-    left: 50px;
+    left: 90px;
     top: -10px;
     min-width: 80px;
     max-width: 120px;
@@ -315,10 +314,6 @@
   }
   .speechText {
     font-size: 7px;
-  }
-  .timelineContainer {
-    padding: 0 30px;
-    padding-bottom: 10px;
   }
   .phaseLabelText {
     font-size: 16px;
