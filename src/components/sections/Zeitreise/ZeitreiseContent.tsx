@@ -120,7 +120,7 @@ export default function ZeitreiseContent() {
             const progress = self.progress;
             const eventIndex = Math.min(
               Math.floor(progress * timelineEvents.length),
-              timelineEvents.length - 1
+              timelineEvents.length - 1,
             );
             setActiveEvent(eventIndex);
 
@@ -152,7 +152,7 @@ export default function ZeitreiseContent() {
     >
       {/* Header */}
       <div className={styles.header}>
-        <h1 className={styles.title}>History of Bitcoin</h1>
+        <h1 className={styles.title}>Entstehung von Bitcoin</h1>
       </div>
 
       {/* Astronaut mit Sprechblase */}
