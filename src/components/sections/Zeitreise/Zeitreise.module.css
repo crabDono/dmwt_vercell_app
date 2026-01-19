@@ -28,7 +28,7 @@
 
 .astronautContainer {
   position: absolute;
-  top: 350px;
+  top: 450px;
   left: 60px;
   z-index: 20;
   display: flex;
