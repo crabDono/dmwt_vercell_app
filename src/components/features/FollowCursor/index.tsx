@@ -16,14 +16,12 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
     let height = window.innerHeight;
     const cursor = { x: width / 2, y: height / 2 };
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     );
 
-    // Farbe, die von CSS-Variable überschrieben werden kann
     let drawColor = color;
     let dot: Dot | null = null;
 
-    // Werte, die außerhalb von init() gebraucht werden
     let cursorOffset = { x: 0, y: 0 };
     let parsedLag = 8;
 
@@ -48,7 +46,7 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
           this.position.y,
           this.width,
           0,
-          2 * Math.PI
+          2 * Math.PI,
         );
         context.fill();
         context.closePath();
@@ -72,7 +70,6 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
     const updateDot = () => {
       if (context && dot) {
         context.clearRect(0, 0, width, height);
-        // Zielpunkt inkl. Offset, damit Punkt an Cursor-Spitze sitzt
         const targetX = cursor.x + (cursorOffset?.x || 0);
         const targetY = cursor.y + (cursorOffset?.y || 0);
         dot.moveTowards(targetX, targetY, context);
@@ -99,7 +96,6 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
       canvas.height = height;
       document.body.appendChild(canvas);
 
-      // CSS-Variablen vom angehängten Canvas lesen
       const computed = getComputedStyle(canvas);
       const dotSizeRaw = (
         computed.getPropertyValue("--dot-size") || "12px"
@@ -108,7 +104,6 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
       const cssDotColor = computed.getPropertyValue("--dot-color")?.trim();
       if (cssDotColor) drawColor = cssDotColor;
 
-      // Offset lesen (px) — sorgt dafür, dass der Punkt an der Cursor-Spitze sitzt
       const offsetXRaw = (
         computed.getPropertyValue("--dot-offset-x") || "0px"
       ).trim();
@@ -120,11 +115,9 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
         y: parseFloat(offsetYRaw) || 0,
       };
 
-      // Lag (wie träge der Punkt folgt). Kleiner = näher an Cursor
       const lagRaw = (computed.getPropertyValue("--dot-lag") || "6").trim();
       parsedLag = Math.max(1, parseFloat(lagRaw) || 6);
 
-      // Dot jetzt erstellen (lag kann fest oder abhängig von Größe sein)
       dot = new Dot(width / 2, height / 2, parsedDotSize, parsedLag);
 
       window.addEventListener("mousemove", onMouseMove);
@@ -160,7 +153,7 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#3232322b" }) => {
     };
   }, [color]);
 
-  return null; // This component doesn't render any visible JSX
+  return null;
 };
 
 export default FollowCursor;

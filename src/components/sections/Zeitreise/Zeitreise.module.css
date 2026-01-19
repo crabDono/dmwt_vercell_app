@@ -308,12 +308,12 @@
   .speechBubble {
     left: 90px;
     top: -10px;
-    min-width: 80px;
+    min-width: 90px;
     max-width: 120px;
     padding: 6px 10px;
   }
   .speechText {
-    font-size: 7px;
+    font-size: 10px;
   }
   .phaseLabelText {
     font-size: 16px;

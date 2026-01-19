@@ -10,8 +10,6 @@ export type AccordionItemProps = {
   defaultOpen?: boolean;
   children?: React.ReactNode;
   className?: string;
-
-  // injected optional props (für cloneElement)
   isOpen?: boolean;
   onToggle?: () => void;
 };
@@ -45,7 +43,6 @@ export function Accordion({
       if (props?.id && props.defaultOpen) initial[props.id] = true;
     });
     setOpenItems(initial);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
 
   const toggle = (id: string) => {
@@ -66,7 +63,6 @@ export function Accordion({
       data-component="accordion"
     >
       {React.Children.map(children, (child) => {
-        // Typsichere Prüfung, damit cloneElement die zusätzlichen Props akzeptiert
         if (!React.isValidElement<AccordionItemProps>(child)) return null;
         const id = child.props.id;
         if (!id) return null;
@@ -138,7 +134,7 @@ export function AccordionItem({
           onKeyDown={handleKeyDown}
           className={cn(
             "flex w-full items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-2 focus-visible:ring-offset-2",
-            "disabled:opacity-50"
+            "disabled:opacity-50",
           )}
           type="button"
         >
@@ -146,7 +142,7 @@ export function AccordionItem({
           <ChevronDownIcon
             className={cn(
               "text-muted-foreground transition-transform duration-200 transform",
-              isOpen ? "rotate-180" : "rotate-0"
+              isOpen ? "rotate-180" : "rotate-0",
             )}
             aria-hidden
           />

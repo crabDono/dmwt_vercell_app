@@ -2,7 +2,6 @@ import "./globals.css";
 import Navbar from "../components/UI/Navbar";
 import Footer from "../components/UI/Footer";
 import FollowCursor from "../components/features/FollowCursor";
-import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   title: "MMM Finances",
@@ -19,7 +18,7 @@ export default function RootLayout({
       <body>
         <main className="min-h-screen bg-white">
           <Navbar />
-          {/* <FollowCursor /> */}
+          {/* <FollowCursor /> TopSecret */}
           <div className="w-full">{children}</div>
           <Footer />
         </main>

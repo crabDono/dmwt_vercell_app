@@ -46,9 +46,6 @@
   pointer-events: none;
 }
 
-/* --- Media Queries für Responsiveness --- */
-
-/* Medium screens (tablets, ~1024px und kleiner) */
 @media (max-width: 1024px) {
   .hero {
     padding-top: 6rem;
@@ -76,7 +73,6 @@
   }
 }
 
-/* Small screens (mobile, ~767px und kleiner) */
 @media (max-width: 767px) {
   .hero {
     padding-top: 8rem;

@@ -10,8 +10,6 @@ export type FAQAccordionItemProps = {
   defaultOpen?: boolean;
   children?: React.ReactNode;
   className?: string;
-
-  // injected optional props (für cloneElement)
   isOpen?: boolean;
   onToggle?: () => void;
 };
@@ -45,7 +43,6 @@ export function FAQAccordion({
       if (props?.id && props.defaultOpen) initial[props.id] = true;
     });
     setOpenItems(initial);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
 
   const toggle = (id: string) => {
@@ -137,7 +134,7 @@ export function FAQAccordionItem({
           onKeyDown={handleKeyDown}
           className={cn(
             "flex w-full items-center justify-between gap-4 py-6 text-left outline-none",
-            "disabled:opacity-50"
+            "disabled:opacity-50",
           )}
           type="button"
         >
@@ -147,7 +144,7 @@ export function FAQAccordionItem({
           <Plus
             className={cn(
               "h-6 w-6 text-[#1a1a2e] transition-transform duration-300 ease-in-out flex-shrink-0",
-              isOpen ? "rotate-45" : "rotate-0"
+              isOpen ? "rotate-45" : "rotate-0",
             )}
             strokeWidth={1.5}
             aria-hidden

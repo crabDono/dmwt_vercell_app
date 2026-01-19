@@ -1,6 +1,5 @@
-/* Simuliert den hellgrauen Bereich um den Graphen herum */
 .pageBackground {
-  background-color: #e6e6e6; /* Dein gewünschtes Hellgrau */
+  background-color: #e6e6e6;
   padding: 40px;
   display: flex;
   justify-content: center;
@@ -9,12 +8,8 @@
 }
 
 .chartContainer {
-  /* Dein gewünschter dunkler Hintergrund für den Graphen */
-
   border-radius: 24px;
   padding: 32px;
-  /* Schatten, damit sich die dunkle Karte vom hellen Hintergrund abhebt */
-  /* box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.2); */
   color: white;
   width: 100%;
   max-width: 1920px;
@@ -51,4 +46,20 @@
   position: relative;
   height: 400px;
   width: 100%;
+}
+@media (max-width: 450px) {
+  .pageBackground {
+    padding: 1rem;
+    align-items: flex-start;
+  }
+  .chartContainer {
+    padding: 1rem;
+    width: 100%;
+  }
+  .bigNumber {
+    font-size: 2.5rem;
+  }
+  .canvasWrapper {
+    height: 300px;
+  }
 }

@@ -21,7 +21,6 @@ Dieses Projekt wurde im Rahmen des Moduls "Digitale Medien und Webtechnologien" 
 - **Styling:** [CSS Modules](https://github.com/css-modules/css-modules)
 - **Datenbank-ORM:** [Prisma](https://www.prisma.io/)
 - **Charts:** [Chart.js](https://www.chartjs.org/)
-- **Datenquelle:** [CoinGecko API](https://www.coingecko.com/en/api)
 - **Deployment:** [Vercel](https://vercel.com/)
 
 ## ⚙️ Erste Schritte
@@ -60,28 +59,3 @@ Um das Projekt lokal auszuführen, befolge diese Schritte:
     npm run dev
     ```
     Öffne [http://localhost:3000](http://localhost:3000) in deinem Browser.
-
----
-
-## ✅ To-Do Liste
-
-Hier ist eine Liste geplanter Features und Verbesserungen für das Projekt.
-
-### Kernfunktionalität
-
-- [x] Rotenfaden (HOME -> QUIZ -> Zeitreise -> CTA)
-- [ ] Benutzerauthentifizierung (Login/Registrierung) implementieren.
-- [x] Eine "Zeitreise"-Seite mit historischen Meilensteinen der Krypto-Welt erstellen.
-
-### Inhalt & UX
-
-- [ ] Weitere Kryptowährungen zu den Infografiken hinzufügen.
-- [x] Das Quiz um weitere Fragen und Themengebiete erweitern.
-- [ ] Detaillierte Artikel oder Guides zu den wichtigsten Themen erstellen.
-- [ ] Animationen und Übergänge für eine bessere User Experience hinzufügen.
-
-### Technik
-
-- [ ] Unit- und Integration-Tests für kritische Komponenten schreiben.
-- [ ] Error-Handling und Ladezustände weiter verbessern.
-- [x] Pagination für den Kommentarbereich implementieren.
