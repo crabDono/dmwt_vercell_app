@@ -292,15 +292,6 @@ export default function BlogSection() {
         ))}
       </div>
 
-      <div className={styles.waveDivider}>
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path
-            d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
-            fill="#e8e8e8"
-          />
-        </svg>
-      </div>
-
       {selectedBlog && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
