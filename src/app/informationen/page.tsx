@@ -21,7 +21,6 @@ export default function Page() {
       <CommunityStats />
       <TextParallax />
       <DiscordCTA />
-      <CommentSection />
     </main>
   );
 }
